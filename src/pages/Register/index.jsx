@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -20,4 +20,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
