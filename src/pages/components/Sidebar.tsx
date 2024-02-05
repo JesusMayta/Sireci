@@ -1,0 +1,63 @@
+import { Link, NavLink } from "react-router-dom";
+import { sideLinks } from "../../helpers";
+
+import { FcSettings, FcImport } from 'react-icons/fc';
+import { IoClose } from "react-icons/io5";
+import { closeSidebar, useAppDispatch, useAppSelector } from "../../store";
+
+
+
+
+export const Sidebar = () => {
+
+    const { isOpen } = useAppSelector((state) => state.sideBar);
+    const dispatch = useAppDispatch();
+
+    const logoutSession = () => {
+        console.log('click');
+    };
+
+    const onCloseSidebar = () => dispatch(closeSidebar())
+
+    return (
+
+        <aside className={`${(isOpen) ? 'translate-x-0' : 'xl:translate-x-0'} fixed z-30 inset-0 w-72 bg-gray-300 rounded-lg my-2 mx-2 -translate-x-80 border border-gray-400 shadow-lg shadow-gray-700 transition-all duration-500`}>
+
+            <button onClick={onCloseSidebar} className="absolute xl:hidden right-[6px] top-2">
+                <IoClose className="text-2xl" />
+            </button>
+
+            <div className="flex flex-col justify-between h-full mx-4 font-bold">
+
+                <div className="h-[75%] mt-14">
+
+                    <p className="text-center text-2xl font-black mb-8">Sistema de Registro Civil</p>
+                    {sideLinks.map(link => (
+                        <NavLink to={link.to} key={link.id}>
+                            <div className="flex flex-row items-center mx-1 my-5 py-2 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg">
+                                <link.icon className="w-[35%] text-3xl" />
+                                <p className="">{link.name}</p>
+                            </div>
+                        </NavLink>
+                    ))}
+                </div>
+
+                <div className="flex flex-col justify-around items-center  w-full h-[25%] border-t border-gray-800">
+                    <p className="self-start font-black">Mas opciones</p>
+
+                    <div className="w-full h-[60%]">
+                        <Link to="/" className="flex items-center py-2 mx-1 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg">
+                            <FcSettings className="w-[35%] text-3xl" />
+                            <p className="text-center">Mi perfil</p>
+                        </Link>
+                        <button type="button" onClick={logoutSession} className="flex items-center hover:bg-red-700 hover:text-white w-full py-2 rounded-lg hover:shadow-lg hover:shadow-red-800 mt-4">
+                            <FcImport className="w-[35%] text-3xl" />
+                            <p>Cerrar Sesión</p>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </aside>
+    );
+};
