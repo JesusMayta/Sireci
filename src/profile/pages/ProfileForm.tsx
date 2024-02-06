@@ -6,13 +6,13 @@ import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
     nombre: Yup.string().required('Campo requerido'),
-    apellido: Yup.string().required('Campo requerido'),
+    primer_apellido: Yup.string().required('Campo requerido'),
+    segundo_apellido:Yup.string().required('Campo requerio'),
     telefono: Yup.string().required('Campo requerido'),
-    email: Yup.string().email('Correo electrónico inválido').required('Campo requerido'),
+    email: Yup.string().email( 'Correo electrónico inválido').required('Campo requerido'),
     usuario: Yup.string().required('Campo requerido'),
     tipoUsuario: Yup.string().required('Campo requerido'),
-    password: Yup.string().required('Campo requerido'),
-    id: Yup.string().required('Campo requerido'),
+    password: Yup.string().required('Campo requerido').min(8, 'La contraseña debe tener al menos 8 caracteres'),
 });
 
 
@@ -20,13 +20,13 @@ export const ProfileForm = () => {
   const formik  =useFormik ({
    initialValues:{
     nombre: '',
-    apellido: '',
+    primer_apellido: '',
+    segundo_apellido:'',
     telefono: '',
     email: '',
     usuario: '',
     tipoUsuario: '',
     password: '',
-    id: '',
    },
    validationSchema:validationSchema,
    onSubmit:(values)=>{
@@ -55,23 +55,39 @@ export const ProfileForm = () => {
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring' 
                                 />
                                  {formik.touched.nombre && formik.errors.nombre ? (
-                                  <div>{formik.errors.nombre}</div>
+                                  <div className='text-red-500 text-lg'>{formik.errors.nombre}</div>
                                  ) : null}
                             </div>
                             <div>
-                                <label>Apellido: </label>
+                                <label>Primer apellido: </label>
                                 <input 
                                 type='text'
-                                id='apellido'
-                                name='apellido'
+                                id='primer_apellido'
+                                name='primer_apellido'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.apellido}
-                                placeholder="Ingresa tu apellido"
+                                value={formik.values.primer_apellido}
+                                placeholder="Ingresa tu apellido paterno"
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring' 
                                 />
-                                {formik.touched.apellido && formik.errors.apellido ? (
-                                  <div>{formik.errors.apellido}</div>
+                                {formik.touched.primer_apellido && formik.errors.primer_apellido ? (
+                                  <div className='text-red-500 text-lg'>{formik.errors.primer_apellido}</div>
+                                 ) : null}
+                            </div>
+                            <div>
+                                <label>Segundo apellido: </label>
+                                <input 
+                                type='text'
+                                id='segundo_apellido'
+                                name='segundo_apellido'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.segundo_apellido}
+                                placeholder="Ingresa tu apellido materno"
+                                className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring' 
+                                />
+                                {formik.touched.segundo_apellido && formik.errors.segundo_apellido ? (
+                                  <div className='text-red-500 text-lg'>{formik.errors.segundo_apellido}</div>
                                  ) : null}
                             </div>
                             <div>
@@ -87,7 +103,7 @@ export const ProfileForm = () => {
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
                                 />
                                 {formik.touched.telefono && formik.errors.telefono ? (
-                                  <div>{formik.errors.telefono}</div>
+                                  <div className='text-red-500 text-lg'>{formik.errors.telefono}</div>
                                  ) : null}
 
                             </div>
@@ -103,7 +119,7 @@ export const ProfileForm = () => {
                                 placeholder="Ingresa tu email"
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'/>
                                 {formik.touched.email && formik.errors.email ? (
-                                  <div>{formik.errors.email}</div>
+                                  <div className='text-red-500 text-lg'>{formik.errors.email}</div>
                                  ) : null}
  
                             </div>
@@ -120,7 +136,7 @@ export const ProfileForm = () => {
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
                                 />
                                 {formik.touched.usuario && formik.errors.usuario ? (
-                                  <div>{formik.errors.usuario}</div>
+                                  <div className='text-red-500 text-lg'>{formik.errors.usuario}</div>
                                  ) : null}
                             </div>
                              <div>
@@ -137,7 +153,7 @@ export const ProfileForm = () => {
                                 <option value="administrador" label='administrador'></option>
                                 </select>
                                 {formik.touched.tipoUsuario && formik.errors.tipoUsuario ? (
-                                  <div>{formik.errors.tipoUsuario}</div>
+                                  <div className='text-red-500 text-lg'>{formik.errors.tipoUsuario}</div>
                                 ) : null}
                             </div> 
                         
@@ -154,25 +170,8 @@ export const ProfileForm = () => {
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
                                 />
                                 {formik.touched.password && formik.errors.password ? (
-                                  <div>{formik.errors.password}</div>
+                                  <div className='text-red-500 text-lg'>{formik.errors.password}</div>
                                  ) : null}
-                            </div>
-                            <div>                    
-                                <label>ID:</label>
-                                <input 
-                                type='text'
-                                id='id'
-                                name='id'
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.id}
-                                placeholder="Ingresa tu id" 
-                                className='box-content h-2 w-12 p-4 border-4'
-                                />
-                               {formik.touched.id && formik.errors.id ? (
-                                  <div>{formik.errors.id}</div>
-                                ) : null}
-
                             </div>                    
                         </div>
                         <div  className='w-full flex justify-center '>
