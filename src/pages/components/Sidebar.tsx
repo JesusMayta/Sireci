@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { sideLinks } from "../../helpers";
 
-import { FcSettings, FcImport } from 'react-icons/fc';
+import { FcPortraitMode, FcImport } from 'react-icons/fc';
 import { IoClose } from "react-icons/io5";
 import { closeSidebar, useAppDispatch, useAppSelector } from "../../store";
 
@@ -46,8 +46,8 @@ export const Sidebar = () => {
                     <p className="self-start font-black">Mas opciones</p>
 
                     <div className="w-full h-[60%]">
-                        <Link to="/" className="flex items-center py-2 mx-1 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg">
-                            <FcSettings className="w-[35%] text-3xl" />
+                        <Link to="/profile" className="flex items-center py-2 mx-1 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg">
+                            <FcPortraitMode className="w-[35%] text-3xl" />
                             <p className="text-center">Mi perfil</p>
                         </Link>
                         <button type="button" onClick={logoutSession} className="flex items-center hover:bg-red-700 hover:text-white w-full py-2 rounded-lg hover:shadow-lg hover:shadow-red-800 mt-4">
@@ -56,7 +56,6 @@ export const Sidebar = () => {
                         </button>
                     </div>
                 </div>
-
             </div>
         </aside>
     );

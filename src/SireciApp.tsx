@@ -7,13 +7,6 @@ export const SireciApp = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-
-        {/* Estructuración = Jesus*} */}
-
-        {/* Maquetas o vistas Hugo = Login Diego = registro Emir = homePage */}
-
-        {/* Estructuración backend (Bravo y Samuel) */}
-
         <AppRouter />
       </BrowserRouter>
     </Provider>
