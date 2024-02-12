@@ -2,13 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface authOptions {
     status: string | undefined;
-    user: Object | undefined;
+    user: {
+        name: string | undefined;
+        uid: number | undefined
+    }
     errorMessage: string | undefined;
 };
 
 const initialState: authOptions = {
     status: 'not-authenticated',
-    user: {},
+    user: {
+        name: '',
+        uid: 0
+    },
     errorMessage: undefined
 }
 
@@ -18,7 +24,10 @@ export const authSlice = createSlice({
     reducers: {
         onChecking: (state) => {
             state.status = 'checking';
-            state.user = {};
+            state.user = {
+                name: '',
+                uid: 0
+            };
             state.errorMessage = undefined;
         },
         loginUser: (state, { payload }) => {
@@ -28,10 +37,13 @@ export const authSlice = createSlice({
         },
         logoutUser: (state, { payload }) => {
             state.status = 'not-authenticated';
-            state.user = {};
+            state.user = {
+                name: '',
+                uid: 0
+            };
             state.errorMessage = payload;
         }
     }
 });
 
-export const { loginUser, onChecking } = authSlice.actions;
+export const { loginUser, onChecking, logoutUser } = authSlice.actions;

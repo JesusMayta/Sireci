@@ -1,23 +1,21 @@
 import { IoMenuSharp } from 'react-icons/io5';
 
-import { openSidebar } from '../../store/Sidebar/sideSlice';
+import { openSidebar } from '../../store/ui/uiSlice';
 import { useAppDispatch } from '../../store';
+import { useAuthStore } from '../../hooks';
 
 
 export const Navbar = () => {
 
+    const { user } = useAuthStore();
     const dispatch = useAppDispatch();
 
-    const onOpenSidebar = () => {
-        dispatch(openSidebar());
-        console.log('Abrir sidebar');
-    };
-
+    const onOpenSidebar = () => dispatch(openSidebar());
 
     const photoUser = "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg";
 
     return (
-        <nav className="sticky top-1 z-10 h-16 py-2 w-full bg-gray-900 rounded-lg text-white shadow-lg shadow-gray-700">
+        <nav className="sticky top-1 z-10 h-16 py-2 bg-gray-900 rounded-lg text-white shadow-lg shadow-gray-700">
 
             <div className="h-full flex flex-row justify-between items-center mx-12">
 
@@ -32,7 +30,7 @@ export const Navbar = () => {
                 </div>
 
                 <figure className="flex items-center gap-2">
-                    <span className="hidden sm:inline me-3">admin</span>
+                    <span className="hidden sm:inline me-3">{user?.name}</span>
                     <img src={photoUser} alt="" className="h-full w-9 md:w-11 rounded-full" />
                 </figure>
 

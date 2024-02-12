@@ -1,11 +1,14 @@
+import { MdOutlineError } from "react-icons/md";
+
 interface options {
     message: string | undefined;
 };
 
 export const MessageAlert = ({ message }: options) => {
     return (
-        <p className="text-red-600 text-sm mt-1 font-bold">
-            {message}
-        </p>
+        <div className="flex items-center gap-x-1 mt-1 text-sm text-red-600 font-bold">
+            <MdOutlineError />
+            <p>{message}</p>
+        </div>
     );
 };

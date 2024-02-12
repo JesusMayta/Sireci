@@ -1,11 +1,14 @@
+import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { LoginPage } from '../pages/login';
 import { RegisterPage } from '../pages/register';
 import { ProfilePage } from '../pages/profile';
 import { NacimientoPage } from '../pages/nacimiento';
 import { useAuthStore } from '../hooks';
-import { useEffect } from 'react';
 import { LoadingPage } from '../pages/components';
+import { MatrimonioPage } from '../pages/matrimonio/pages/MatrimonioPage';
+
 
 export const AppRouter = () => {
 
@@ -35,6 +38,7 @@ export const AppRouter = () => {
                         <>
                             <Route path="/profile" element={<ProfilePage />} />
                             <Route path="/nacimiento" element={<NacimientoPage />} />
+                            <Route path="/matrimonio" element={<MatrimonioPage />} />
                             <Route path="/*" element={<Navigate to="/nacimiento" />} />
                         </>
                     )

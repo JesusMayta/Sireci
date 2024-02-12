@@ -1,9 +1,7 @@
-import { LoginOptions } from "../pages/login";
-import { loginUser, onChecking, useAppDispatch, useAppSelector } from "../store";
 import axios from 'axios';
-
-// const urlApi = 'https://sireci-be.onrender.com/api/auth/login'
-
+import SireciApi from "../api/sireciApi";
+import { LoginOptions } from "../pages/login";
+import { loginUser, logoutUser, onChecking, useAppDispatch, useAppSelector } from "../store";
 
 export const useAuthStore = () => {
 
@@ -15,24 +13,43 @@ export const useAuthStore = () => {
         dispatch(onChecking());
 
         try {
-            const resp = await axios.post('https://sireci-be.onrender.com/api/auth/login', { email, password });
-            console.log({ resp });
-            // dispatch(loginUser(data));
+            const { data } = await Axios.post('/auth/login', { email, password });
+            console.log(data);
+            dispatch(loginUser({ name: 'Jesus', uid: 1 }));
 
         } catch (error) {
+            dispatch(logoutUser('Usuario y/o contraseña incorrecta!'))
             console.log(error);
         };
     };
 
+    const logoutUserSession = () => {
+        dispatch(logoutUser(undefined));
+    };
+
     const verifyAuthToken = async () => {
 
+        // const token = localStorage.getItem('token');
+
+        // if (!token) return dispatch(logoutUser(undefined));
+
+        try {
+
+            dispatch(loginUser({ name: 'Jesus', uid: 1 }));
+        } catch (error) {
+            dispatch(logoutUser(undefined));
+        };
     };
 
     return {
+        // Properties
         status,
         user,
         errorMessage,
+
+        // Methods
         startLogin,
+        logoutUserSession,
         verifyAuthToken
     };
 };
