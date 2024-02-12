@@ -1,6 +1,7 @@
 import '../../../src/styles.css'
 import {useFormik, } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
  
 
@@ -8,6 +9,7 @@ const validationSchema = Yup.object({
     nombre: Yup.string().required('Campo requerido'),
     primer_apellido: Yup.string().required('Campo requerido'),
     segundo_apellido:Yup.string().required('Campo requerio'),
+    direccion:Yup.string().required('Campo requerio'),
     telefono: Yup.string().required('Campo requerido'),
     email: Yup.string().email( 'Correo electrónico inválido').required('Campo requerido'),
     usuario: Yup.string().required('Campo requerido'),
@@ -22,6 +24,7 @@ export const ProfileForm = () => {
     nombre: '',
     primer_apellido: '',
     segundo_apellido:'',
+    direccion:'',
     telefono: '',
     email: '',
     usuario: '',
@@ -29,9 +32,19 @@ export const ProfileForm = () => {
     password: '',
    },
    validationSchema:validationSchema,
-   onSubmit:(values)=>{
+   onSubmit:async(values)=>{
+    const objeto={user_name:values.nombre,
+      user_first_lastname:values.primer_apellido,
+      user_address:values.direccion,
+      user_email:values.email,
+      user_is_admin:0,
+      user_is_active:1,
+      user_username:values.usuario,
+      user_password:values.password}
+    const respuesta=await axios.post("https://sireci-be.onrender.com/api/auth/register",objeto)
     console.log("Valores enviados",values)
-   },
+    console.log(respuesta)
+    },
   });  
 
     return (
@@ -88,6 +101,22 @@ export const ProfileForm = () => {
                                 />
                                 {formik.touched.segundo_apellido && formik.errors.segundo_apellido ? (
                                   <div className='text-red-500 text-lg'>{formik.errors.segundo_apellido}</div>
+                                 ) : null}
+                            </div>
+                            <div>
+                                <label>Direccion: </label>
+                                <input 
+                                type='text'
+                                id='direccion'
+                                name='direccion'
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.direccion}
+                                placeholder="Ingresa tu apellido paterno"
+                                className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring' 
+                                />
+                                {formik.touched.direccion && formik.errors.direccion ? (
+                                  <div className='text-red-500 text-lg'>{formik.errors.direccion}</div>
                                  ) : null}
                             </div>
                             <div>
@@ -149,8 +178,8 @@ export const ProfileForm = () => {
                                 value={formik.values.tipoUsuario} 
                                 className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'>
                                 <option value="" label="Selecciona una opción" />  
-                                <option value="usuario" label='usuario'></option>
-                                <option value="administrador" label='administrador'></option>
+                                <option value="1" label='usuario'></option>
+                                <option value="0" label='administrador'></option>
                                 </select>
                                 {formik.touched.tipoUsuario && formik.errors.tipoUsuario ? (
                                   <div className='text-red-500 text-lg'>{formik.errors.tipoUsuario}</div>
