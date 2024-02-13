@@ -1,4 +1,4 @@
-import '../../../src/styles.css'
+
 import {useFormik, } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -217,5 +217,3 @@ export const ProfileForm = () => {
      </>
     );
   };
-
-  

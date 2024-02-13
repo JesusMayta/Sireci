@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {},
+    backgroundImage: {
+      'login-image': "url('/public/images/fondo-login.jpg')",
+    },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 };
