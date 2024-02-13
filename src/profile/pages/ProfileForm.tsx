@@ -33,7 +33,8 @@ export const ProfileForm = () => {
    },
    validationSchema:validationSchema,
    onSubmit:async(values)=>{
-    const objeto={user_name:values.nombre,
+    const objeto={
+      user_name:values.nombre,
       user_first_lastname:values.primer_apellido,
       user_address:values.direccion,
       user_email:values.email,
