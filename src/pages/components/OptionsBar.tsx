@@ -1,6 +1,13 @@
 import { MdAdd, MdOutlineSearch } from "react-icons/md";
-export const OptionsBar = () => {
 
+interface BarOptions {
+    onOpenForm: (value: boolean) => void;
+};
+export const OptionsBar = ({ onOpenForm }: BarOptions) => {
+
+    const onAddDoc = () => {
+        onOpenForm(true);
+    };
 
     return (
         <div className="flex items-center justify-between px-4 sm:px-12 pb-7 h-16 mt-8 border-b border-gray-400">
@@ -14,7 +21,7 @@ export const OptionsBar = () => {
             </div>
 
             <button
-                // onClick={}
+                onClick={onAddDoc}
                 className="flex items-center bg-teal-800 py-2 px-3 text-white rounded-full sm:rounded-lg gap-x-1 shadow-md shadow-teal-800 font-semibold"
             >
                 <MdAdd className="text-xl" />
