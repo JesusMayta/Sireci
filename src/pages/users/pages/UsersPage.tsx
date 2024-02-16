@@ -3,15 +3,16 @@ import { Footer, OptionsBar, TitlePage } from "../../components";
 import { PrincipalLayout } from "../../layouts";
 import { AddDocumentView, TableView } from "../../views";
 
-const thead = ['DNI', 'Nombres y apellidos', 'Código', 'Acción'];
+const thead = ['ID', 'Nombres', 'Apellidos', ' Teléfono', ' Usuario', 'Email', 'Acción'];
 
-export const NacimientoPage = () => {
+export const UsersPage = () => {
 
     const [openFormDoc, setopenFormDoc] = useState<boolean>(false);
 
     const openViewForm = (value: boolean) => {
         setopenFormDoc(value);
     };
+
 
     return (
         <PrincipalLayout>
@@ -40,6 +41,6 @@ export const NacimientoPage = () => {
                     <Footer />
                 </div>
             </div>
-        </PrincipalLayout >
-    )
-}
+        </PrincipalLayout>
+    );
+};

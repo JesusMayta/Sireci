@@ -4,7 +4,8 @@ interface authOptions {
     status: string | undefined;
     user: {
         name: string | undefined;
-        uid: number | undefined
+        uid: number | undefined;
+        role: string | undefined;
     }
     errorMessage: string | undefined;
 };
@@ -13,7 +14,8 @@ const initialState: authOptions = {
     status: 'not-authenticated',
     user: {
         name: '',
-        uid: 0
+        uid: 0,
+        role: 'user'
     },
     errorMessage: undefined
 }
@@ -26,7 +28,8 @@ export const authSlice = createSlice({
             state.status = 'checking';
             state.user = {
                 name: '',
-                uid: 0
+                uid: 0,
+                role: 'user'
             };
             state.errorMessage = undefined;
         },
@@ -39,7 +42,8 @@ export const authSlice = createSlice({
             state.status = 'not-authenticated';
             state.user = {
                 name: '',
-                uid: 0
+                uid: 0,
+                role: 'user'
             };
             state.errorMessage = payload;
         }

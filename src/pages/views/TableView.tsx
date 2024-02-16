@@ -7,7 +7,7 @@ export const TableView = ({ tableHead }: optionsTable) => {
     return (
         <div className="shadow-lg shadow-gray-600 rounded-lg overflow-x-auto">
             <table className="min-w-full">
-                <thead className="bg-gray-100 border-b-2 border-gray-200 text-xs font-semibold text-gray-800 uppercase text-center">
+                <thead className="bg-gray-900 border-b-2 border-gray-200 text-xs font-semibold text-gray-800 uppercase text-center">
                     <tr>
                         {(tableHead.map(head => (
                             <th key={head} className="px-1 py-3 tracking-wider">

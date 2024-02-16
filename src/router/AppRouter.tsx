@@ -8,11 +8,13 @@ import { NacimientoPage } from '../pages/nacimiento';
 import { useAuthStore } from '../hooks';
 import { LoadingPage } from '../pages/components';
 import { MatrimonioPage } from '../pages/matrimonio/pages/MatrimonioPage';
+import { UsersPage } from '../pages/users';
+import { MantenimientoPage } from '../pages/mantenimiento';
 
 
 export const AppRouter = () => {
 
-    const { status, verifyAuthToken } = useAuthStore();
+    const { status, user, verifyAuthToken } = useAuthStore();
 
     useEffect(() => {
         verifyAuthToken();
@@ -26,23 +28,25 @@ export const AppRouter = () => {
 
     return (
         <Routes>
-            {
-                (status === 'not-authenticated')
-                    ? (
-                        <>
-                            <Route path="/" element={<LoginPage />} />
-                            <Route path="/register" element={<RegisterPage />} />
-                            <Route path="/*" element={<Navigate to="/" />} />
-                        </>
-                    ) : (
-                        <>
-                            <Route path="/profile" element={<ProfilePage />} />
-                            <Route path="/nacimiento" element={<NacimientoPage />} />
-                            <Route path="/matrimonio" element={<MatrimonioPage />} />
-                            <Route path="/*" element={<Navigate to="/nacimiento" />} />
-                        </>
-                    )
-            };
+            {(status === 'not-authenticated')
+                ? (
+                    <>
+                        <Route path="/" element={<LoginPage />} />
+                        <Route path="/register" element={<RegisterPage />} />
+                        <Route path="/*" element={<Navigate to="/" />} />
+                    </>
+                ) : (
+                    <>
+
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/nacimiento" element={<NacimientoPage />} />
+                        <Route path="/matrimonio" element={<MatrimonioPage />} />
+                        <Route path="/mantenimiento" element={<MantenimientoPage/>} />
+                        <Route path="/*" element={<Navigate to="/nacimiento" />} />
+
+                        {(user.role === 'admin') && <Route path='/usuarios' element={< UsersPage />} />}
+                    </>
+                )};
         </Routes>
     )
 }

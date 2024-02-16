@@ -1,20 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
-import { sideLinks } from "../../helpers";
+import { SideLinks } from "../../helpers";
 
 import { FcPortraitMode, FcImport } from 'react-icons/fc';
 import { IoClose } from "react-icons/io5";
 import { closeSidebar, useAppDispatch, useAppSelector } from "../../store";
 import { useAuthStore } from "../../hooks";
-
-
-
+import { useMemo } from "react";
 
 export const Sidebar = () => {
 
     const { isOpenSidebar } = useAppSelector((state) => state.ui);
     const dispatch = useAppDispatch();
 
-    const { logoutUserSession } = useAuthStore();
+    const { user, logoutUserSession } = useAuthStore();
+
+    const route = useMemo(() => {
+        return (user.role === 'admin') ? 'admin' : 'user';
+    }, [user.role]);
 
     const logoutSession = () => {
         logoutUserSession();
@@ -23,6 +25,7 @@ export const Sidebar = () => {
     const onCloseSidebar = () => {
         dispatch(closeSidebar())
     };
+
 
     return (
 
@@ -37,12 +40,12 @@ export const Sidebar = () => {
                 <div className="h-[75%] mt-14">
 
                     <p className="text-center text-2xl font-black mb-8">Sistema de Registro Civil</p>
-                    {sideLinks.map(link => (
+                    {(SideLinks[route].map(link => (
                         <NavLink to={link.to} key={link.id} className={({ isActive }) => `flex flex-row items-center mx-1 my-5 py-2 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg ${(isActive) ? 'bg-gray-900 text-white shadow-lg shadow-gray-700' : ''}`}>
                             <link.icon className="w-[35%] text-3xl" />
                             <p className="">{link.name}</p>
                         </NavLink>
-                    ))}
+                    )))}
                 </div>
 
                 <div className="flex flex-col justify-around items-center  w-full h-[25%] border-t border-gray-800">

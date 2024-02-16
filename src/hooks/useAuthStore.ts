@@ -1,7 +1,6 @@
-import axios from 'axios';
 import SireciApi from "../api/sireciApi";
 import { LoginOptions } from "../pages/login";
-import { loginUser, logoutUser, onChecking, useAppDispatch, useAppSelector } from "../store";
+import { closeFormDocument, loginUser, logoutUser, onChecking, useAppDispatch, useAppSelector } from "../store";
 
 export const useAuthStore = () => {
 
@@ -13,9 +12,9 @@ export const useAuthStore = () => {
         dispatch(onChecking());
 
         try {
-            const { data } = await Axios.post('/auth/login', { email, password });
+            const { data } = await SireciApi.post('/auth/login', { email, password });
             console.log(data);
-            dispatch(loginUser({ name: 'Jesus', uid: 1 }));
+            dispatch(loginUser({ name: 'Jesus', uid: 1, role: 'admin' }));
 
         } catch (error) {
             dispatch(logoutUser('Usuario y/o contraseña incorrecta!'))
@@ -35,7 +34,7 @@ export const useAuthStore = () => {
 
         try {
 
-            dispatch(loginUser({ name: 'Jesus', uid: 1 }));
+            dispatch(loginUser({ name: 'Jesus', uid: 1, role: 'admin' }));
         } catch (error) {
             dispatch(logoutUser(undefined));
         };
