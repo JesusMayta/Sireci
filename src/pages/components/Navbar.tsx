@@ -7,7 +7,7 @@ import { useAuthStore } from '../../hooks';
 
 export const Navbar = () => {
 
-    const { user } = useAuthStore();
+    const { userSession } = useAuthStore();
     const dispatch = useAppDispatch();
 
     const onOpenSidebar = () => dispatch(openSidebar());
@@ -30,7 +30,7 @@ export const Navbar = () => {
                 </div>
 
                 <figure className="flex items-center gap-2">
-                    <span className="hidden sm:inline me-3">{user?.role}</span>
+                    <span className="hidden sm:inline me-3">{userSession?.name}</span>
                     <img src={photoUser} alt="" className="h-full w-9 md:w-11 rounded-full" />
                 </figure>
 

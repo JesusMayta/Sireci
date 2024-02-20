@@ -5,18 +5,13 @@ import { FcPortraitMode, FcImport } from 'react-icons/fc';
 import { IoClose } from "react-icons/io5";
 import { closeSidebar, useAppDispatch, useAppSelector } from "../../store";
 import { useAuthStore } from "../../hooks";
-import { useMemo } from "react";
 
 export const Sidebar = () => {
 
     const { isOpenSidebar } = useAppSelector((state) => state.ui);
     const dispatch = useAppDispatch();
 
-    const { user, logoutUserSession } = useAuthStore();
-
-    const route = useMemo(() => {
-        return (user.role === 'admin') ? 'admin' : 'user';
-    }, [user.role]);
+    const { userSession, logoutUserSession } = useAuthStore();
 
     const logoutSession = () => {
         logoutUserSession();
@@ -40,7 +35,7 @@ export const Sidebar = () => {
                 <div className="h-[75%] mt-14">
 
                     <p className="text-center text-2xl font-black mb-8">Sistema de Registro Civil</p>
-                    {(SideLinks[route].map(link => (
+                    {(SideLinks[(userSession.isAdmin === 1) ? 'admin' : 'user'].map(link => (
                         <NavLink to={link.to} key={link.id} className={({ isActive }) => `flex flex-row items-center mx-1 my-5 py-2 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg ${(isActive) ? 'bg-gray-900 text-white shadow-lg shadow-gray-700' : ''}`}>
                             <link.icon className="w-[35%] text-3xl" />
                             <p className="">{link.name}</p>

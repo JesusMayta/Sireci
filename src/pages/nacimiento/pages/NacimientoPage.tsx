@@ -18,18 +18,19 @@ export const NacimientoPage = () => {
             <div className="flex flex-col justify-between h-full">
 
                 <div className="h-[90%] flex flex-col justify-between w-full">
-                    <div className="pt-3 sm:pt-2">
-                        <TitlePage title={(openFormDoc) ? 'Registro de partida de nacimiento' : 'Acta de nacimiento'} />
+                    <div className="pt-6 sm:pt-2">
+                        <TitlePage title={(openFormDoc) ? 'Registrar Acta de nacimiento' : 'Actas de nacimiento'} />
                     </div>
 
                     {(openFormDoc) ? (
-                        <AddDocumentView />
+                        <AddDocumentView onCloseForm={openViewForm} />
                     ) : (
                         <>
-                            <div className="mb-12 w-full">
+                            {/* <div className="mb-12 w-full">
                                 <OptionsBar onOpenForm={openViewForm} />
-                            </div>
-                            <div className="px-4 sm:px-8 pb-8 overflow-y-auto w-full">
+                            </div> */}
+                            <div className="my-7 px-4 sm:px-10 overflow-y-auto h-[90%] rounded-lg">
+                                <OptionsBar onOpenForm={openViewForm} textButton="Agregar Acta" optionsSort={['dni', 'nombres', 'código']} placeHolder="Buscar por dni, nombres ó código" />
                                 <TableView tableHead={thead} />
                             </div>
                         </>
@@ -40,6 +41,6 @@ export const NacimientoPage = () => {
                     <Footer />
                 </div>
             </div>
-        </PrincipalLayout >
+        </PrincipalLayout>
     )
 }

@@ -1,11 +1,9 @@
 
 export const Footer = () => {
     return (
-        <footer className="border-b border-gray-600">
-            <div className="flex flex-row justify-between h-full w-full pt-8 pb-1 px-8">
-                <p className="text-2xl text-gray-400 font-medium">SIRECI</p>
-                <span className="text-gray-500 font-semibold">© 2024 Todos los derechos reservados</span>
-            </div>
+        <footer className="flex flex-row items-center md:items-end pb-0 md:pb-2 px-8 justify-between bg-gray-900 rounded-lg h-full w-full text-gray-400 shadow-lg shadow-gray-950">
+            <p className="text-lg md:text-2xl font-medium">SIRECI</p>
+            <span className=" font-semibold text-xs md:text-base">© 2024 Todos los derechos reservados</span>
         </footer>
     );
 };

@@ -1,66 +1,69 @@
-// import { IoCloseOutline } from 'react-icons/io5';
+import { IoMdArrowBack } from "react-icons/io";
 
-export const AddDocumentView = () => {
+interface FormOptions {
+    onCloseForm: (value: boolean) => void;
+}
 
+export const AddDocumentView = ({ onCloseForm }: FormOptions) => {
+
+
+    const onBackPage = () => {
+        onCloseForm(false)
+    };
 
     return (
-        <div className="h-full p-4 bg-gray-300">
+        <div className="h-full p-4 flex flex-row mt-4">
+            <div className="w-1/2 h-full">
+                <button onClick={onBackPage} className="flex items-center gap-x-2 py-1 px-3 font-bold rounded-lg hover:underline hover:bg-white hover:border hover:border-gray-700 hover:shadow-lg hover:shadow-gray-400 duration-200 ">
+                    <IoMdArrowBack />
+                    Volver
+                </button>
+                <h2 className="text-center text-lg font-semibold">Complete los campos</h2>
 
-            <h2 className="mb-5 font-bold text-xl">Completa los campos</h2>
+                <div className="mt-12">
+                    <form>
+                        <div className="flex flex-row w-full gap-x-3">
+                            <div className="w-1/2">
+                                <label htmlFor="" className="font-semibold text-sm">Nombres:</label>
+                                <input type="text" className="py-2 w-full" />
+                            </div>
 
-            <form>
+                            <div className="w-1/2">
+                                <label htmlFor="">Primer Apellido:</label>
+                                <input type="text" className="py-2 w-full" />
+                            </div>
+                        </div>
 
-                <div className="flex flex-row px-24">
-                    <div className="flex flex-col gap-y-2 w-1/2">
-                        <label htmlFor="nombres" className="self-baseline font-medium">Nombres:</label>
-                        <input id="nombres" type="text" className="py-2 ps-3 w-4/5 rounded-lg border-2 border-gray-400" placeholder="ej: Richard " />
-                    </div>
+                        <div className="flex flex-row w-full gap-x-3">
+                            <div className="w-1/2">
+                                <label htmlFor="" className="font-semibold text-sm">Segundo Apellido:</label>
+                                <input type="text" className="py-2 w-full" />
+                            </div>
 
-                    <div className="flex flex-col gap-y-2 w-1/2">
-                        <label htmlFor="primerApellido" className="font-medium">Primer Apellido:</label>
-                        <input id="primerApellido" type="text" className="py-2 ps-3 w-4/5 rounded-lg border-2 border-gray-400" placeholder="ej: Perez" />
-                    </div>
+                            <div className="w-1/2">
+                                <label htmlFor="">DNI:</label>
+                                <input type="text" className="py-2 w-full" />
+                            </div>
+                        </div>
+
+                        <div className="flex flex-row w-full gap-x-3">
+                            <div className="w-1/2">
+                                <label htmlFor="" className="font-semibold text-sm">Segundo Apellido:</label>
+                                <input type="text" className="py-2 w-full" />
+                            </div>
+
+                            <div className="w-1/2">
+                                <label htmlFor="">DNI:</label>
+                                <input type="text" className="py-2 w-full" />
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-
-                <div className="flex flex-row mt-[18px] px-24">
-                    <div className="flex flex-col gap-y-2 w-1/2">
-                        <label htmlFor="segundoApellido" className="font-medium">Segundo Apellido:</label>
-                        <input id="segundoApellido" type="text" className="py-2 ps-3 w-4/5 rounded-lg border-2 border-gray-400" placeholder="ej: Gutierrez" autoCapitalize="" />
-                    </div>
-
-                    <div className="flex flex-col gap-y-2 w-1/2">
-                        <label htmlFor="dni" className="font-medium">DNI:</label>
-                        <input id="dni" type="text" className="py-2 ps-3 w-4/5 rounded-lg border-2 border-gray-400" />
-                    </div>
-                </div>
-
-                <div className="flex flex-row mt-6">
-                    <div className="flex flex-col gap-y-2 w-1/2">
-                        <label htmlFor="fechaNacimiento" className="font-medium">Fecha de nacimiento:</label>
-                        <input id="fechaNacimiento" type="date" className="py-2 px-3 w-4/5 rounded-lg" />
-                    </div>
-
-                    <div className="flex flex-col gap-y-2 w-1/2">
-                        <label htmlFor="codigoActa" className="font-medium">Código de acta:</label>
-                        <input id="codigoActa" type="text" className="py-2 ps-3 w-4/5 rounded-lg" />
-                    </div>
-                </div>
-
-                <div className="flex flex-row items-center mt-6">
-                    <label htmlFor="fechaNacimiento" className="font-medium">Archivo pdf:</label>
-                    <input id="fechaNacimiento" type="file" className="py-2 px-3 w-4/5 rounded-lg" />
-                </div>
-
-                <div className="bg-white h-60 w-full overflow-y-auto">
-                    asd
-                </div>
-
-                <div className="flex flex-row gap-x-5 mt-6 justify-center">
-                    <button className="rounded-lg bg-teal-800">Registrar</button>
-                    <button className="rounded-lg bg-teal-800">Cancelar</button>
-                </div>
-            </form>
+            <div className="h-full w-1/2 px-16">
+                <div className="bg-white h-full rounded-lg"></div>
+            </div>
 
         </div>
         // <>

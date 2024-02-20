@@ -16,7 +16,9 @@ export const LoginPage = () => {
 
   const { startLogin, errorMessage } = useAuthStore();
 
-  const handleSubmit = ({ email, password }: LoginOptions) => startLogin({ email, password });
+  const handleSubmit = ({ email, password }: LoginOptions) => {
+    startLogin({ email, password });
+  }
 
   useEffect(() => {
     if (errorMessage !== undefined) {

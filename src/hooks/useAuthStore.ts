@@ -1,49 +1,67 @@
-import SireciApi from "../api/sireciApi";
+import { jwtDecode } from "jwt-decode";
+import { SireciApi } from "../api/sireciApi";
 import { LoginOptions } from "../pages/login";
-import { closeFormDocument, loginUser, logoutUser, onChecking, useAppDispatch, useAppSelector } from "../store";
+import { onCheckingAuthSession, onLoginUserSession, onLogoutUserSession, useAppDispatch, useAppSelector } from "../store";
 
 export const useAuthStore = () => {
 
-    const { status, user, errorMessage } = useAppSelector((state) => state.auth);
+    const { status, userSession, errorMessage } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
 
     const startLogin = async ({ email, password }: LoginOptions) => {
 
-        dispatch(onChecking());
+        dispatch(onCheckingAuthSession());
 
         try {
-            const { data } = await SireciApi.post('/auth/login', { email, password });
-            console.log(data);
-            dispatch(loginUser({ name: 'Jesus', uid: 1, role: 'admin' }));
+            const { data: UserToken } = await SireciApi().post('/auth/login', { email, password });
+            const { access_token } = UserToken.data;
+            localStorage.setItem('token', access_token);
+
+            await getUserByEmail();
 
         } catch (error) {
-            dispatch(logoutUser('Usuario y/o contraseña incorrecta!'))
+            dispatch(onLogoutUserSession('Usuario y/o contraseña incorrecta!'))
             console.log(error);
         };
     };
 
+    const getUserByEmail = async () => {
+
+        const token = localStorage.getItem('token');
+        if (!token) return dispatch(onLogoutUserSession('El usuario ha caducado'));
+
+        try {
+            const Token: { email: string } = jwtDecode(token);
+            const { data: UserLogged } = await SireciApi().get(`/users/by-email/${Token.email}`);
+            dispatch(onLoginUserSession(UserLogged.data));
+        } catch (error) {
+            logoutUserSession();
+        };
+    };
+
     const logoutUserSession = () => {
-        dispatch(logoutUser(undefined));
+        localStorage.clear();
+        dispatch(onLogoutUserSession(undefined));
     };
 
     const verifyAuthToken = async () => {
 
-        // const token = localStorage.getItem('token');
+        dispatch(onCheckingAuthSession());
 
-        // if (!token) return dispatch(logoutUser(undefined));
+        const token = localStorage.getItem('token');
+        if (!token) return dispatch(onLogoutUserSession(undefined));
 
         try {
-
-            dispatch(loginUser({ name: 'Jesus', uid: 1, role: 'admin' }));
+            await getUserByEmail();
         } catch (error) {
-            dispatch(logoutUser(undefined));
+            dispatch(onLogoutUserSession(undefined));
         };
     };
 
     return {
         // Properties
         status,
-        user,
+        userSession,
         errorMessage,
 
         // Methods
