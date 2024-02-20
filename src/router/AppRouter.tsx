@@ -10,6 +10,7 @@ import { LoadingPage } from '../pages/components';
 import { MatrimonioPage } from '../pages/matrimonio/pages/MatrimonioPage';
 import { UsersPage } from '../pages/users';
 import { MantenimientoPage } from '../pages/mantenimiento';
+import { PersonasPages } from '../pages/personas/pages/PersonasPages';
 
 
 export const AppRouter = () => {
@@ -42,6 +43,7 @@ export const AppRouter = () => {
                         <Route path="/nacimiento" element={<NacimientoPage />} />
                         <Route path="/matrimonio" element={<MatrimonioPage />} />
                         <Route path="/mantenimiento" element={<MantenimientoPage/>} />
+                        <Route path="/personas" element={<PersonasPages/>}/>
                         <Route path="/*" element={<Navigate to="/nacimiento" />} />
 
                         {(user.role === 'admin') && <Route path='/usuarios' element={< UsersPage />} />}
