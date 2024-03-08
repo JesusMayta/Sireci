@@ -1,3 +1,4 @@
+export * from './defuncion/pages/DefuncionPage';
 export * from './loading/pages/LoadingPages';
 export * from './login/pages/LoginPage';
 export * from './matrimonio/pages/MatrimonioPage';

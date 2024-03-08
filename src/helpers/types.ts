@@ -41,3 +41,26 @@ export interface ContentTableBirth {
     };
     user_user_id: string;
 };
+
+export interface ContentTableMarriage {
+    _id: string,
+    mar_book: string,
+    mar_husband: {
+        _id: string,
+        per_names: string;
+        per_first_lastname: string;
+        per_document: string;
+        per_state: boolean
+    },
+    mar_wife: {
+        _id: string;
+        per_names: string;
+        per_first_lastname: string,
+        per_document: string;
+        per_state: boolean
+    },
+    mar_file: string;
+    mar_state: boolean;
+    user_user_id: string;
+    mar_date: string;
+}

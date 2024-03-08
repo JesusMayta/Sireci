@@ -28,7 +28,7 @@ export const BarOptions = ({ textButton, optionsSort, placeHolder }: BarOptions)
             <div className="flex flex-col items-center justify-between space-y-6 w-full lg:flex-row lg:space-y-0">
                 <div className="relative flex w-full lg:w-3/4 items-center">
                     <MdOutlineSearch className="absolute left-3 text-2xl text-blue-800" />
-                    <input type="text" name="search" onChange={onSearchingDocs} className="border border-gray-400 shadow-md shadow-gray-400 h-12 w-full rounded-3xl bg-white py-3 pl-11 text-sm outline-none placeholder:text-xs md:placeholder:text-sm" placeholder={placeHolder} />
+                    <input type="text" name="search" onChange={onSearchingDocs} className="border border-gray-400 shadow-md shadow-gray-400 h-12 w-full rounded-3xl bg-white py-3 pl-11 text-sm outline-none placeholder:text-xs md:placeholder:text-sm" placeholder={placeHolder} autoComplete="off" />
                 </div>
 
                 <div className="flex items-center justify-between lg:justify-end w-full">

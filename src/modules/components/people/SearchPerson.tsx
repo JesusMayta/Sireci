@@ -10,7 +10,7 @@ interface SearchOptions {
 };
 
 export const SearchPerson = ({ placeHolder, getPerson }: SearchOptions) => {
-
+    ;
     const { people } = usePeopleStore();
 
     const [selected, setSelected] = useState('')
@@ -30,7 +30,7 @@ export const SearchPerson = ({ placeHolder, getPerson }: SearchOptions) => {
     return (
         <Combobox value={selected} onChange={onGetValue}>
             <div className="relative mt-2">
-                <div className='relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left sm:text-sm shadow-lg shadow-gray-300 border border-gray-400'>
+                <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left sm:text-sm shadow-lg shadow-gray-300 border border-gray-400" >
                     <Combobox.Input
                         className="w-full border-none py-2 px-3 text-sm leading-5 text-black focus:outline-none"
                         placeholder={placeHolder}
@@ -70,9 +70,9 @@ export const SearchPerson = ({ placeHolder, getPerson }: SearchOptions) => {
                                 ))
                                 ))}
                         </Combobox.Options>
-                    </Transition>
+                    </Transition >
                 }
-            </div>
-        </Combobox>
-    )
-}
+            </div >
+        </Combobox >
+    );
+};

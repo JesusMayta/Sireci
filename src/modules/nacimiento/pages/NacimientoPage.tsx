@@ -1,14 +1,10 @@
-
 import { useEffect } from 'react';
-
-import { BirthDocument, PrincipalView } from '../views';
-
-import { Footer, TitlePage } from '../../components';
 import { PrincipalLayout } from '../../layouts';
 import { useUiStore } from '../../../hooks';
 
-const ThNames = ['DNI', 'Nombres y apellidos', 'Código', 'Acción'];
-const SortBy = ['Dni', 'Nombres', 'Código']
+import { Footer, TitlePage } from '../../components';
+import { BirthDocument, PrincipalView } from '../views';
+
 
 export const NacimientoPage = () => {
 
@@ -26,9 +22,7 @@ export const NacimientoPage = () => {
                         <TitlePage title={(isOpenViewForm) ? 'Registrar partida de nacimiento' : 'Actas de nacimiento'} />
                     </div>
 
-                    {(isOpenViewForm) ?
-                        (<BirthDocument />) :
-                        (<PrincipalView textButton="Agregar Acta" optionsSort={SortBy} placeHolder="Buscar por dni, nombres ó código" tableHead={ThNames} />)}
+                    {(isOpenViewForm) ? (<BirthDocument />) : (<PrincipalView />)}
                 </div>
 
                 <div className="h-[10%] w-full">

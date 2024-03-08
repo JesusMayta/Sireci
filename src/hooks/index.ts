@@ -3,4 +3,3 @@ export * from './useDocumentsStore';
 export * from './useUserStore';
 export * from './useUiStore';
 export * from './usePeopleStore';
-export * from './useRegisterDocs';

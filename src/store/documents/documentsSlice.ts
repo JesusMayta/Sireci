@@ -5,6 +5,8 @@ export const documentsSlice = createSlice({
     initialState: {
         isLoadingDocuments: false,
         birthDocuments: [],
+        marriageDocuments: [],
+        deathCertificates: [],
     },
     reducers: {
         onCheckingDocuments: (state) => {
@@ -14,7 +16,15 @@ export const documentsSlice = createSlice({
             state.isLoadingDocuments = false;
             state.birthDocuments = payload;
         },
+        onGetMarriageDocuments: (state, { payload }) => {
+            state.isLoadingDocuments = false;
+            state.marriageDocuments = payload;
+        },
+        onGetDeathCertificates: (state, { payload }) => {
+            state.isLoadingDocuments = false;
+            state.deathCertificates = payload;
+        }
     }
 });
 
-export const { onGetBirthDocuments, onCheckingDocuments } = documentsSlice.actions;
+export const { onGetBirthDocuments, onCheckingDocuments, onGetMarriageDocuments, onGetDeathCertificates } = documentsSlice.actions;

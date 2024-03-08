@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { LoadingPage, LoginPage, NacimientoPage, MatrimonioPage, UsersPage, PersonasPage } from '../modules';
+import { LoadingPage, LoginPage, NacimientoPage, MatrimonioPage, UsersPage, DefuncionPage, PersonasPages } from '../modules';
 
 import { useAuthStore } from '../hooks';
 
@@ -31,9 +31,10 @@ export const AppRouter = () => {
                     {/* <Route path="/profile" element={<ProfilePage />} /> */}
                     <Route path="/nacimiento" element={<NacimientoPage />} />
                     <Route path="/matrimonio" element={<MatrimonioPage />} />
-                    {(userSession.isAdmin === 1) && <Route path='/usuarios' element={< UsersPage />} />}
-                    <Route path='/personas' element={< PersonasPage />} />
+                    <Route path='/personas' element={< PersonasPages />} />
+                    <Route path='/defuncion' element={< DefuncionPage />} />
                     <Route path="/*" element={<Navigate to="/nacimiento" />} />
+                    {(userSession.isAdmin === 1) && <Route path='/usuarios' element={< UsersPage />} />}
                 </>)};
         </Routes>
     );
