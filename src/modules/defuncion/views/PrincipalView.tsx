@@ -2,27 +2,27 @@ import { useEffect } from "react";
 import { useDocumentsStore } from "../../../hooks";
 import { BarOptions } from "../../views";
 import { TableDeathDocs } from "../components/TableDeathDocs";
+import { ToastAlert } from "../../components";
+import { Bounce, toast } from "react-toastify";
 
+const SortBy = ['Dni', 'Nombres', 'Código'];
 
-interface BarOptions {
-    textButton: string;
-    placeHolder: string;
-    optionsSort: string[];
-    tableHead: string[];
-};
+export const PrincipalView = () => {
 
-export const PrincipalView = ({ textButton, placeHolder, optionsSort, tableHead }: BarOptions) => {
-
-    const { getAllCertificatesBirth } = useDocumentsStore();
+    const { successMessage } = useDocumentsStore();
 
     useEffect(() => {
-        getAllCertificatesBirth();
-    }, []);
+
+        if (successMessage !== undefined) {
+            toast.success(successMessage, { transition: Bounce });
+        };
+    }, [successMessage])
 
     return (
         <div className="my-6 pb-4 px-4 sm:px-10 overflow-y-scroll h-[90%]">
-            <BarOptions textButton={textButton} optionsSort={optionsSort} placeHolder={placeHolder} />
+            <BarOptions textButton="Agregar acta" optionsSort={SortBy} placeHolder="Buscar por dni, nombres ó código" />
             <TableDeathDocs />
+            <ToastAlert />
         </div>
     );
 };

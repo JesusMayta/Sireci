@@ -1,5 +1,5 @@
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { useDocumentsStore, usePeopleStore } from '../../../hooks';
+import { useDocumentsStore, usePeopleStore, useUiStore } from '../../../hooks';
 import { ContentTableMarriage } from '../../../helpers';
 import { LoadComponent } from '../../components';
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ const tableHead = ['Marido', 'Mujer', 'Código', 'Acción'];
 export const TableMarriage = () => {
 
     const { textFindPeople } = usePeopleStore();
+    const { startOpenEditModal } = useUiStore();
     const { isLoadingDocuments, marriageDocuments, getAllCertificatesMarriage } = useDocumentsStore();
 
     useEffect(() => {
@@ -67,7 +68,7 @@ export const TableMarriage = () => {
                                     </td>
 
                                     <td className="hidden text-center py-4 text-sm font-semibold lg:table-cell">
-                                        <button type="button" className="bg-yellow-200 px-3 py-2 rounded-lg">
+                                        <button type="button" className="bg-yellow-200 px-3 py-2 rounded-lg" onClick={startOpenEditModal} >
                                             <FiEdit className="text-yellow-800" />
                                         </button>
                                         <button className="ms-3 bg-red-200 px-3 py-2 rounded-lg">

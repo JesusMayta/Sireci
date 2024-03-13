@@ -1,16 +1,25 @@
-import { useEffect } from "react";
-import { useUiStore } from "../../../hooks";
-import { PrincipalLayout } from "../../layouts"
-import { Footer, TitlePage } from "../../components";
-import { MarriageDocument, PrincipalView } from "../views";
+import { useEffect } from 'react';
+import { Bounce, toast } from 'react-toastify';
+
+import { useDocumentsStore, useUiStore } from '../../../hooks';
+import { BarOptions, Footer, TitlePage, ToastAlert } from '../../components';
+import { PrincipalLayout } from '../../layouts';
+import { TableMarriage } from '../components/TableMarriage';
+import { MarriageDocument } from '../views';
+import { ModalMarriage } from '../components/ModalMarriage';
+
+const SortBy = ['Marido', 'Mujer', 'Código'];
 
 export const MatrimonioPage = () => {
 
-    const { isOpenViewForm, onChangeStateViewForm } = useUiStore();
+    const { isOpenViewForm, isOpenEditModal } = useUiStore();
+    const { successMessage } = useDocumentsStore();
 
     useEffect(() => {
-        onChangeStateViewForm(false);
-    }, []);
+        if (successMessage !== undefined) {
+            toast.success(successMessage, { transition: Bounce });
+        };
+    }, [successMessage]);
 
     return (
         <PrincipalLayout>
@@ -20,13 +29,20 @@ export const MatrimonioPage = () => {
                         <TitlePage title={(isOpenViewForm) ? 'Registrar partida de matrimonio' : 'Actas de matrimonio'} />
                     </div>
 
-                    {(isOpenViewForm) ? (<MarriageDocument />) : (<PrincipalView />)}
+                    {(isOpenViewForm) ? (<MarriageDocument />) : (
+                        <div className="my-6 pb-4 px-4 sm:px-10 overflow-y-scroll h-[90%]">
+                            <BarOptions textButton="Agregar Acta" optionsSort={SortBy} placeHolder="Buscar por marido, mujer ó código" />
+                            <TableMarriage />
+                            <ToastAlert />
+                        </div>
+                    )}
                 </div>
 
                 <div className="h-[10%] w-full">
                     <Footer />
                 </div>
             </div>
+            {(isOpenEditModal) && <ModalMarriage />}
         </PrincipalLayout>
     );
 };

@@ -1,11 +1,11 @@
 import { SireciApi } from "../api";
 import { useAppDispatch, useAppSelector } from "../store";
-import { onCheckingDocuments, onGetBirthDocuments, onGetDeathCertificates, onGetMarriageDocuments } from "../store/documents/documentsSlice";
+import { onCheckingDocuments, onGetBirthDocuments, onGetDeathCertificates, onGetMarriageDocuments, onSuccessRegisterDoc } from "../store/documents/documentsSlice";
 
 
 export const useDocumentsStore = () => {
 
-    const { birthDocuments, isLoadingDocuments, marriageDocuments, deathCertificates } = useAppSelector((state) => state.documents);
+    const { successMessage, birthDocuments, isLoadingDocuments, marriageDocuments, deathCertificates } = useAppSelector((state) => state.documents);
     const dispatch = useAppDispatch();
 
     const getAllCertificatesBirth = async () => {
@@ -42,7 +42,6 @@ export const useDocumentsStore = () => {
         try {
 
             const { data: CertificatesDeath } = await SireciApi().get('/certificates/death');
-            console.log(CertificatesDeath.data);
             dispatch(onGetDeathCertificates(CertificatesDeath.data));
 
         } catch (error) {
@@ -61,16 +60,45 @@ export const useDocumentsStore = () => {
         };
     };
 
+    const startRegisterMarriageDoc = async (values: any) => {
+        try {
+            const { data } = await SireciApi().post('/certificates/marriage', values);
+            console.log(data);
+            return true;
+        } catch (error) {
+            return false;
+        };
+    };
+
+    const startRegisterDeathDoc = async (values: any) => {
+        try {
+            const { data } = await SireciApi().post('/certificates/death', values);
+            console.log(data);
+            return true;
+        } catch (error) {
+            return false;
+        };
+    };
+
+    const startSendSuccessMessage = (message: string) => {
+        dispatch(onSuccessRegisterDoc(message));
+    };
+
     return {
         //*Properties
         birthDocuments,
+        deathCertificates,
         isLoadingDocuments,
         marriageDocuments,
+        successMessage,
 
         //*Methods
         getAllCertificatesBirth,
         getAllCertificatesDeath,
         getAllCertificatesMarriage,
-        startRegisterBirthDocument
+        startSendSuccessMessage,
+        startRegisterBirthDocument,
+        startRegisterDeathDoc,
+        startRegisterMarriageDoc
     };
 };

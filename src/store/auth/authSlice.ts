@@ -15,7 +15,7 @@ const initialState: AuthOptions = {
         password: '',
     },
     errorMessage: undefined
-}
+};
 
 export const authSlice = createSlice({
     name: 'auth',

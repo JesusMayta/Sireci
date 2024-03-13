@@ -16,7 +16,7 @@ export interface AuthOptions {
         username: string;
         password: string;
     };
-    errorMessage: string | undefined
+    errorMessage: string | undefined;
 };
 
 export interface PersonOptions {
@@ -24,6 +24,7 @@ export interface PersonOptions {
     per_names: string;
     per_first_lastname: string;
     per_document: string;
+    per_document_number: string;
     per_state: boolean;
 };
 
@@ -33,34 +34,26 @@ export interface ContentTableBirth {
     birth_book: string;
     birth_father: string;
     birth_mother: string;
-    person_per_id: {
-        _id: string;
-        per_names: string;
-        per_first_lastname: string;
-        per_document: string;
-    };
+    person_per_id: PersonOptions;
     user_user_id: string;
 };
 
 export interface ContentTableMarriage {
     _id: string,
     mar_book: string,
-    mar_husband: {
-        _id: string,
-        per_names: string;
-        per_first_lastname: string;
-        per_document: string;
-        per_state: boolean
-    },
-    mar_wife: {
-        _id: string;
-        per_names: string;
-        per_first_lastname: string,
-        per_document: string;
-        per_state: boolean
-    },
+    mar_husband: PersonOptions;
+    mar_wife: PersonOptions;
     mar_file: string;
     mar_state: boolean;
     user_user_id: string;
     mar_date: string;
-}
+};
+
+export interface ContentTableDeath {
+    _id: string;
+    dea_book: string;
+    dea_state: boolean;
+    person_per_id: PersonOptions;
+    user_user_id: string;
+    dea_date: string;
+};

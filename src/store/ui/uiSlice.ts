@@ -5,6 +5,7 @@ export const uiSlice = createSlice({
     initialState: {
         isOpenSidebar: false,
         isOpenViewForm: false,
+        isOpenEditModal: false,
     },
     reducers: {
         openSidebar: (state) => {
@@ -18,6 +19,12 @@ export const uiSlice = createSlice({
         },
         onCloseViewForm: (state) => {
             state.isOpenViewForm = false;
+        },
+        onOpenEditModal: (state) => {
+            state.isOpenEditModal = true;
+        },
+        onCloseEditModal: (state) => {
+            state.isOpenEditModal = false;
         }
     }
 });
@@ -27,6 +34,10 @@ export const {
     // Form Add document
     onOpenViewForm,
     onCloseViewForm,
+
+    //Form edit docs
+    onOpenEditModal,
+    onCloseEditModal,
 
     // Sidebar
     openSidebar,

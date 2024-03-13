@@ -1,7 +1,8 @@
 import { BackButton, InfoForm } from "../../components";
-import { FormRegister } from "./FormRegister";
+import { FormRegister } from "../components/FormRegister";
 
 export const MarriageDocument = () => {
+
     return (
         <div className="w-full h-full flex flex-row mt-5 p-4 animate-fade-right animate-duration-1000">
             <div className="w-full lg:w-[60%]">

@@ -1,8 +1,9 @@
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { useEffect, useState } from 'react';
+import { FiEdit, FiTrash2 } from 'react-icons/fi';
+
 import { useDocumentsStore, usePeopleStore } from '../../../hooks';
 import { ContentTableBirth } from '../../../helpers';
 import { LoadComponent } from '../../components';
-import { useEffect, useState } from "react";
 import { ModalDocument } from "../views/ModalDocument";
 
 const tableHead = ['DNI', 'Nombres y apellidos', 'Código', 'Acción'];
@@ -46,7 +47,7 @@ export const TableBirthDocuments = () => {
                             {(filterPeople.map((data: ContentTableBirth) =>
                                 <tr key={data._id} className="border-b border-gray-400">
                                     <td className="ps-7 lg:ps-3 py-1 text-sm text-left lg:text-center text-black">
-                                        {data.person_per_id.per_document}
+                                        {data.person_per_id.per_document_number}
                                         <div className="mt-1 lg:hidden">
                                             <p className="font-semibold">{data.birth_father}</p>
                                         </div>

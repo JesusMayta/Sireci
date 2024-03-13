@@ -1,22 +1,12 @@
-import { useEffect } from "react";
-import { useUiStore } from "../../../hooks";
-import { Footer, TitlePage } from "../../components";
-import { PrincipalLayout } from "../../layouts";
-import { DefunciónDocument } from "../views/DefunciónDocument";
-import { PrincipalView } from "../views";
+import { Footer, TitlePage } from '../../components';
+import { PrincipalLayout } from '../../layouts';
+import { DefunciónDocument } from '../views/DefunciónDocument';
+import { PrincipalView } from '../views';
+import { useUiStore } from '../../../hooks';
 
-
-const ThNames = ['DNI', 'Nombres y apellidos', 'Código', 'Acción'];
-const SortBy = ['Dni', 'Nombres', 'Código']
 export const DefuncionPage = () => {
 
-    const { isOpenViewForm, onChangeStateViewForm } = useUiStore();
-
-    useEffect(() => {
-        onChangeStateViewForm(false);
-    }, []);
-
-
+    const { isOpenViewForm } = useUiStore();
 
     return (
         <PrincipalLayout>
@@ -26,9 +16,7 @@ export const DefuncionPage = () => {
                         <TitlePage title={(isOpenViewForm) ? 'Registrar acta de defunción' : 'Actas de defunción'} />
                     </div>
 
-                    {(isOpenViewForm) ?
-                        (<DefunciónDocument />) :
-                        (<PrincipalView textButton="Agregar Acta" optionsSort={SortBy} placeHolder="Buscar por dni, nombres ó código" tableHead={ThNames} />)}
+                    {(isOpenViewForm) ? (<DefunciónDocument />) : (<PrincipalView />)}
                 </div>
 
                 <div className="h-[10%] w-full">
