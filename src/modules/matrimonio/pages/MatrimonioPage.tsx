@@ -1,25 +1,16 @@
-import { useEffect } from 'react';
-import { Bounce, toast } from 'react-toastify';
-
-import { useDocumentsStore, useUiStore } from '../../../hooks';
-import { BarOptions, Footer, TitlePage, ToastAlert } from '../../components';
-import { PrincipalLayout } from '../../layouts';
+import { useUiStore } from '../../../hooks';
+import { DeleteModal, Footer, TitlePage } from '../../components';
+import { PrincipalLayout, PrincipalView } from '../../layouts';
 import { TableMarriage } from '../components/TableMarriage';
 import { MarriageDocument } from '../views';
-import { ModalMarriage } from '../components/ModalMarriage';
+import { ModalToUpdate } from '../views/ModalToUpdate';
 
 const SortBy = ['Marido', 'Mujer', 'Código'];
 
 export const MatrimonioPage = () => {
 
-    const { isOpenViewForm, isOpenEditModal } = useUiStore();
-    const { successMessage } = useDocumentsStore();
+    const { isOpenViewForm, isOpenEditModal, isOpenDeleteModal } = useUiStore();
 
-    useEffect(() => {
-        if (successMessage !== undefined) {
-            toast.success(successMessage, { transition: Bounce });
-        };
-    }, [successMessage]);
 
     return (
         <PrincipalLayout>
@@ -30,11 +21,9 @@ export const MatrimonioPage = () => {
                     </div>
 
                     {(isOpenViewForm) ? (<MarriageDocument />) : (
-                        <div className="my-6 pb-4 px-4 sm:px-10 overflow-y-scroll h-[90%]">
-                            <BarOptions textButton="Agregar Acta" optionsSort={SortBy} placeHolder="Buscar por marido, mujer ó código" />
+                        <PrincipalView SortBy={SortBy}>
                             <TableMarriage />
-                            <ToastAlert />
-                        </div>
+                        </PrincipalView>
                     )}
                 </div>
 
@@ -42,7 +31,8 @@ export const MatrimonioPage = () => {
                     <Footer />
                 </div>
             </div>
-            {(isOpenEditModal) && <ModalMarriage />}
+            {(isOpenEditModal) && <ModalToUpdate />}
+            {(isOpenDeleteModal) && <DeleteModal />}
         </PrincipalLayout>
     );
 };

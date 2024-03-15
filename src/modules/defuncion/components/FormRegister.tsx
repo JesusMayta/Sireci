@@ -2,13 +2,13 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { ErrorText, MessageAlert, SearchPerson, ToastAlert } from '../../components';
 import { useState } from 'react';
 import { DeathDocumentValidations, PersonOptions } from '../../../helpers';
-import { useDocumentsStore, useUiStore } from '../../../hooks';
+import { useDeathDocsStore, useUiStore } from '../../../hooks';
 import { Bounce, toast } from 'react-toastify';
 
 export const FormRegister = ({ user }: { user: string }) => {
 
 
-    const { startRegisterDeathDoc, startSendSuccessMessage } = useDocumentsStore();
+    const { startRegisterDeathDoc, startSendSuccessMessage } = useDeathDocsStore();
     const { onChangeStateViewForm } = useUiStore();
 
     const [person, setPerson] = useState<PersonOptions>({ _id: '', per_document: '', per_document_number: '', per_names: '', per_state: false, per_first_lastname: '' });
@@ -50,7 +50,7 @@ export const FormRegister = ({ user }: { user: string }) => {
                             <div className="mt-4 flex flex-row gap-x-8">
                                 <div className="w-1/2">
                                     <p className="font-semibold">Persona difunta:</p>
-                                    <SearchPerson error={errorPerson} getPerson={(person: PersonOptions) => setPerson(person)} placeHolder="Buscar al difunto..." />
+                                    <SearchPerson inputText='' error={errorPerson} getPerson={(person: PersonOptions) => setPerson(person)} placeHolder="Buscar al difunto..." />
                                     {(errorPerson) && <ErrorText />}
                                 </div>
 

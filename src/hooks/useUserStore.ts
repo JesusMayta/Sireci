@@ -15,6 +15,7 @@ export const useUserStore = () => {
         try {
             const { data: AllUsers } = await SireciApi().get('/users');
             dispatch(onLoadUsers(AllUsers.data));
+            console.log(AllUsers);
         } catch (error) {
             console.log(error);
         };

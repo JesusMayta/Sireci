@@ -15,7 +15,7 @@ export const BirthDocumentValidations = Yup.object({
 
 export const MarriageDocumentValidations = Yup.object({
     mar_date: Yup.string().required('La fecha es requerida'),
-    codigo: Yup.string().length(8, 'El código debe tener 8 caracteres').required('El código de acta es requerido'),
+    mar_book: Yup.string().required('Este campo es requerido'),
 });
 
 export const DeathDocumentValidations = Yup.object({

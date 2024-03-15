@@ -4,7 +4,7 @@ import { HiDocumentArrowUp, HiXCircle } from 'react-icons/hi2';
 
 import { BirthDocumentValidations, PersonOptions } from '../../../helpers';
 import { ErrorText, MessageAlert, SearchPerson, ToastAlert } from '../../components';
-import { useAuthStore, useDocumentsStore, useUiStore } from '../../../hooks';
+import { useAuthStore, useBirthDocsStore, useUiStore } from '../../../hooks';
 import { Bounce, toast } from 'react-toastify';
 
 const PersonObject = { _id: '', per_names: '', per_first_lastname: '', per_state: false, per_document: '' };
@@ -12,7 +12,7 @@ const PersonObject = { _id: '', per_names: '', per_first_lastname: '', per_state
 export const FormRegister = () => {
 
     const { userSession } = useAuthStore();
-    const { startRegisterBirthDocument, startSendSuccessMessage } = useDocumentsStore();
+    const { startRegisterBirthDocument, startSendSuccessMessage } = useBirthDocsStore();
     const { onChangeStateViewForm } = useUiStore();
 
     const [errorSearch, setErrorSearch] = useState({ errorPerson: false, errorFather: false, errorMother: false });
@@ -58,12 +58,12 @@ export const FormRegister = () => {
                         <div className="flex flex-col sm:flex-row w-full gap-x-8 xl:gap-x-6 2xl:gap-x-16">
                             <div className="flex flex-col w-full sm:w-1/2">
                                 <p className="text-sm font-semibold">Persona a registrar:</p>
-                                <SearchPerson error={errorSearch.errorPerson} placeHolder="Buscar persona..." getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, principal_person: person })} />
+                                <SearchPerson inputText='' error={errorSearch.errorPerson} placeHolder="Buscar persona..." getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, principal_person: person })} />
                                 {(errorSearch.errorPerson) && <ErrorText />}
                             </div>
                             <div className="w-full sm:w-1/2 flex flex-col mt-3 sm:mt-0">
                                 <p className="text-sm font-semibold">Padre de la persona:</p>
-                                <SearchPerson error={errorSearch.errorFather} placeHolder="Buscar al padre..." getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, birth_father: person })} />
+                                <SearchPerson inputText='' error={errorSearch.errorFather} placeHolder="Buscar al padre..." getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, birth_father: person })} />
                                 {(errorSearch.errorFather) && <ErrorText />}
                             </div>
                         </div>
@@ -71,7 +71,7 @@ export const FormRegister = () => {
                         <div className="mt-1 sm:mt-3 flex flex-col sm:flex-row w-full gap-x-8 xl:gap-x-6 2xl:gap-x-16">
                             <div className="flex flex-col w-full sm:w-1/2 mt-3 sm:mt-0">
                                 <p className="font-semibold text-sm">Madre de la persona:</p>
-                                <SearchPerson error={errorSearch.errorMother} placeHolder="Buscar a la madre..." getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, birth_mother: person })} />
+                                <SearchPerson inputText='' error={errorSearch.errorMother} placeHolder="Buscar a la madre..." getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, birth_mother: person })} />
                                 {(errorSearch.errorMother) && <ErrorText />}
                             </div>
                             <div className="w-full sm:w-1/2 flex flex-col mt-3 sm:mt-0">

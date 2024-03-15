@@ -1,17 +1,17 @@
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { useDocumentsStore, usePeopleStore, useUiStore } from '../../../hooks';
+import { useMarriageDocsStore, usePeopleStore, useUiStore } from '../../../hooks';
 import { ContentTableMarriage } from '../../../helpers';
 import { LoadComponent } from '../../components';
 import { useEffect } from "react";
-// import { ModalDocument } from "../views/ModalDocument";
+import { ModalToUpdate } from "../views";
 
 const tableHead = ['Marido', 'Mujer', 'Código', 'Acción'];
 
 export const TableMarriage = () => {
 
     const { textFindPeople } = usePeopleStore();
-    const { startOpenEditModal } = useUiStore();
-    const { isLoadingDocuments, marriageDocuments, getAllCertificatesMarriage } = useDocumentsStore();
+    const { getCertificateById, marriageDocuments, getAllCertificatesMarriage, isLoadingDocuments } = useMarriageDocsStore();
+    const { startOpenEditModal, isOpenEditModal, startOpenDeleteModal } = useUiStore();
 
     useEffect(() => {
         getAllCertificatesMarriage();
@@ -21,11 +21,23 @@ export const TableMarriage = () => {
         return <LoadComponent />
     };
 
+    const openEditModal = async (id: string) => {
+        const isValid = await getCertificateById(id);
+        if (isValid) {
+            startOpenEditModal();
+            getAllCertificatesMarriage();
+        };
+    };
+
     const filterPeople = (textFindPeople === '')
         ? marriageDocuments
         : marriageDocuments.filter((person: ContentTableMarriage) => person.mar_husband.per_names.toLowerCase().replace(/\s+/g, '').includes(textFindPeople.toLowerCase().replace(/\s+/g, '')) ||
             (person.mar_husband.per_first_lastname.toLowerCase().replace(/\s+/g, '').includes(textFindPeople.toLowerCase().replace(/\s+/g, ''))) ||
             (person.mar_wife.per_names.replace(/\s+/g, '').includes(textFindPeople.replace(/\s+/g, ''))))
+
+    const onDeleteCertificate = () => {
+        startOpenDeleteModal();
+    };
 
     return (
         <div className="mt-8 h-full">
@@ -60,6 +72,7 @@ export const TableMarriage = () => {
                                                 <FiEdit />
                                                 Editar
                                             </button>
+
                                             <button className="flex items-center justify-center w-2/5 rounded-xl  bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white">
                                                 <FiTrash2 />
                                                 Eliminar
@@ -68,10 +81,10 @@ export const TableMarriage = () => {
                                     </td>
 
                                     <td className="hidden text-center py-4 text-sm font-semibold lg:table-cell">
-                                        <button type="button" className="bg-yellow-200 px-3 py-2 rounded-lg" onClick={startOpenEditModal} >
+                                        <button type="button" className="bg-yellow-200 px-3 py-2 rounded-lg" onClick={() => openEditModal(data._id)} >
                                             <FiEdit className="text-yellow-800" />
                                         </button>
-                                        <button className="ms-3 bg-red-200 px-3 py-2 rounded-lg">
+                                        <button className="ms-3 bg-red-200 px-3 py-2 rounded-lg" onClick={onDeleteCertificate}>
                                             <FiTrash2 className="text-red-800" />
                                         </button>
                                     </td>
@@ -80,6 +93,7 @@ export const TableMarriage = () => {
                         </tbody>
                     </table>
                 )}
+            {(isOpenEditModal) && <ModalToUpdate />}
         </div>
     );
 };

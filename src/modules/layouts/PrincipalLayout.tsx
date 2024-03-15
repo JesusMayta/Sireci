@@ -4,12 +4,13 @@ import { Navbar, Sidebar } from '../components';
 
 export const PrincipalLayout = ({ children }: { children: React.ReactNode }) => {
 
-    const { isOpenSidebar, onChangeStateViewForm, startCloseEditModal } = useUiStore();
+    const { isOpenSidebar, onChangeStateViewForm, startCloseEditModal, startCloseDeleteModal } = useUiStore();
     const { startSearchPeople, getAllPersons } = usePeopleStore();
 
     useEffect(() => {
         getAllPersons();
         startCloseEditModal();
+        startCloseDeleteModal();
         onChangeStateViewForm(false);
         startSearchPeople('');
     }, []);

@@ -1,26 +1,16 @@
-import { useEffect } from 'react';
-import { Bounce, toast } from 'react-toastify';
+import { PrincipalLayout, PrincipalView } from '../../layouts';
+import { useUiStore } from '../../../hooks';
 
-import { PrincipalLayout } from '../../layouts';
-import { useDocumentsStore, useUiStore } from '../../../hooks';
-
-import { Footer, TitlePage, ToastAlert, BarOptions } from '../../components';
-import { BirthDocument } from '../views';
+import { Footer, TitlePage } from '../../components';
+import { BirthDocument, ModalUpdateBirth } from '../views';
 import { TableBirthDocuments } from '../components/TableBirthDocuments';
+
 
 const SortBy = ['Dni', 'Nombres', 'Código'];
 
 export const NacimientoPage = () => {
 
-    const { isOpenViewForm } = useUiStore();
-    const { successMessage } = useDocumentsStore();
-
-    useEffect(() => {
-
-        if (successMessage !== undefined) {
-            toast.success(successMessage, { transition: Bounce });
-        };
-    }, [successMessage])
+    const { isOpenViewForm, isOpenEditModal } = useUiStore();
 
     return (
         <PrincipalLayout>
@@ -32,17 +22,16 @@ export const NacimientoPage = () => {
                     {(isOpenViewForm) ?
                         (<BirthDocument />)
                         : (
-                            <div className="my-6 pb-4 px-4 sm:px-10 overflow-y-scroll h-[90%]">
-                                <BarOptions textButton="Agregar Acta" optionsSort={SortBy} placeHolder="Buscar por dni, nombres ó código" />
+                            <PrincipalView SortBy={SortBy}>
                                 <TableBirthDocuments />
-                                <ToastAlert />
-                            </div>
+                            </PrincipalView>
                         )}
                 </div>
                 <div className="h-[10%] w-full">
                     <Footer />
                 </div>
             </div>
+            {(isOpenEditModal) && <ModalUpdateBirth />}
         </PrincipalLayout>
     );
 };

@@ -1,19 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FiEdit, FiTrash2 } from 'react-icons/fi';
 
-import { useDocumentsStore, usePeopleStore } from '../../../hooks';
+import { useBirthDocsStore, usePeopleStore, useUiStore } from '../../../hooks';
 import { ContentTableBirth } from '../../../helpers';
 import { LoadComponent } from '../../components';
-import { ModalDocument } from "../views/ModalDocument";
 
 const tableHead = ['DNI', 'Nombres y apellidos', 'Código', 'Acción'];
 
 export const TableBirthDocuments = () => {
 
-    const [openModal, setOpenModal] = useState<boolean>(false);
-
     const { textFindPeople } = usePeopleStore();
-    const { isLoadingDocuments, birthDocuments, getAllCertificatesBirth } = useDocumentsStore();
+    const { isLoadingDocuments, birthDocuments, getAllCertificatesBirth } = useBirthDocsStore();
+    const { startOpenEditModal } = useUiStore();
 
     useEffect(() => {
         getAllCertificatesBirth();
@@ -28,6 +26,10 @@ export const TableBirthDocuments = () => {
         : birthDocuments.filter((person: ContentTableBirth) => person.person_per_id.per_names.toLowerCase().replace(/\s+/g, '').includes(textFindPeople.toLowerCase().replace(/\s+/g, '')) ||
             (person.person_per_id.per_first_lastname.toLowerCase().replace(/\s+/g, '').includes(textFindPeople.toLowerCase().replace(/\s+/g, ''))) ||
             (person.person_per_id.per_document.replace(/\s+/g, '').includes(textFindPeople.replace(/\s+/g, ''))))
+
+    const openEditModal = () => {
+        startOpenEditModal();
+    };
 
     return (
         <div className="mt-8 h-full">
@@ -58,7 +60,9 @@ export const TableBirthDocuments = () => {
                                     <td className="py-3 lg:py-2 px-6 text-sm text-gray-600">
                                         <p className="text-right lg:text-center"><span className="lg:hidden font-semibold">Código:</span> {data.birth_book}</p>
                                         <div className="flex lg:hidden flex-col gap-y-3 items-end w-full">
-                                            <button className="flex items-center justify-center gap-x-2 mt-3 w-[30%] rounded-xl bg-yellow-500 py-[7px] px-3 text-xs font-medium text-white">
+                                            <button
+                                                onClick={openEditModal}
+                                                className="flex items-center justify-center gap-x-2 mt-3 w-[30%] rounded-xl bg-yellow-500 py-[7px] px-3 text-xs font-medium text-white">
                                                 <FiEdit />
                                                 Editar
                                             </button>
@@ -70,10 +74,9 @@ export const TableBirthDocuments = () => {
                                     </td>
 
                                     <td className="hidden text-center py-4 text-sm font-semibold lg:table-cell">
-                                        <button type="button" onClick={() => setOpenModal(true)} className="bg-yellow-200 px-3 py-2 rounded-lg">
+                                        <button type="button" onClick={openEditModal} className="bg-yellow-200 px-3 py-2 rounded-lg">
                                             <FiEdit className="text-yellow-800" />
                                         </button>
-                                        {(openModal) && (<ModalDocument />)}
                                         <button className="ms-3 bg-red-200 px-3 py-2 rounded-lg">
                                             <FiTrash2 className="text-red-800" />
                                         </button>

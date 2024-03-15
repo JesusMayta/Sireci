@@ -4,7 +4,7 @@ import { HiDocumentArrowUp, HiXCircle } from 'react-icons/hi2';
 
 import { MarriageDocumentValidations, PersonOptions } from '../../../helpers';
 import { ErrorText, MessageAlert, SearchPerson, ToastAlert } from '../../components';
-import { useAuthStore, useDocumentsStore, useUiStore } from '../../../hooks';
+import { useAuthStore, useMarriageDocsStore, useUiStore } from '../../../hooks';
 import { Bounce, toast } from 'react-toastify';
 
 
@@ -13,7 +13,7 @@ const PersonObject = { _id: '', per_names: '', per_first_lastname: '', per_state
 export const FormRegister = () => {
 
     const { userSession } = useAuthStore();
-    const { startRegisterMarriageDoc, startSendSuccessMessage } = useDocumentsStore();
+    const { startRegisterMarriageDoc, startSendSuccessMessage } = useMarriageDocsStore();
     const { onChangeStateViewForm } = useUiStore();
 
     const [errorSearch, setErrorSearch] = useState({ errorHusband: false, errorWife: false });
@@ -49,13 +49,13 @@ export const FormRegister = () => {
                 validationSchema={MarriageDocumentValidations}
                 onSubmit={handleSubmit}
             >
-                {({ errors, values }) => (
+                {({ errors }) => (
                     <Form>
                         <div className="flex flex-row w-full gap-x-4">
                             <div className="w-1/2 flex flex-col">
                                 <h2 className="font-semibold bg-gray-900 text-white rounded-lg text-center py-2">Datos del marido</h2>
                                 <div className="mt-2">
-                                    <SearchPerson error={errorSearch.errorHusband} placeHolder="Buscar al esposo" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_husband: person })} />
+                                    <SearchPerson inputText='' error={errorSearch.errorHusband} placeHolder="Buscar al esposo" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_husband: person })} />
                                     {(errorSearch.errorHusband) && <ErrorText />}
                                 </div>
                             </div>
@@ -63,7 +63,7 @@ export const FormRegister = () => {
                             <div className="w-1/2 flex flex-col">
                                 <h2 className="font-semibold bg-gray-900 text-white rounded-lg text-center py-2">Datos de la esposa</h2>
                                 <div className="mt-2">
-                                    <SearchPerson error={errorSearch.errorWife} placeHolder="Buscar a la esposa" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_wife: person })} />
+                                    <SearchPerson inputText='' error={errorSearch.errorWife} placeHolder="Buscar a la esposa" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_wife: person })} />
                                     {(errorSearch.errorWife) && <ErrorText />}
                                 </div>
                             </div>

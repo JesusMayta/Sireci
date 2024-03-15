@@ -1,8 +1,8 @@
-import { closeSidebar, onCloseEditModal, onCloseViewForm, onOpenEditModal, onOpenViewForm, openSidebar, useAppDispatch, useAppSelector } from "../store";
+import { closeSidebar, onCloseDeleteModal, onCloseEditModal, onCloseViewForm, onOpenDeleteModal, onOpenEditModal, onOpenViewForm, openSidebar, useAppDispatch, useAppSelector } from '../store';
 
 export const useUiStore = () => {
 
-    const { isOpenSidebar, isOpenViewForm, isOpenEditModal } = useAppSelector((state) => state.ui);
+    const { isOpenSidebar, isOpenViewForm, isOpenEditModal, isOpenDeleteModal } = useAppSelector((state) => state.ui);
     const dispatch = useAppDispatch();
 
     //SideBar
@@ -27,18 +27,29 @@ export const useUiStore = () => {
         dispatch(onCloseEditModal());
     };
 
+    const startOpenDeleteModal = () => {
+        dispatch(onOpenDeleteModal());
+    };
+
+    const startCloseDeleteModal = () => {
+        dispatch(onCloseDeleteModal());
+    };
+
     return {
 
         // Properties
         isOpenSidebar,
         isOpenViewForm,
+        isOpenDeleteModal,
         isOpenEditModal,
 
         //Methods
         onOpenSideBar,
         onCloseSidebar,
+        startOpenDeleteModal,
+        startCloseDeleteModal,
         startOpenEditModal,
         startCloseEditModal,
-        onChangeStateViewForm
+        onChangeStateViewForm,
     };
 };

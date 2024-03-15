@@ -57,3 +57,13 @@ export interface ContentTableDeath {
     user_user_id: string;
     dea_date: string;
 };
+
+export interface ActiveCertificateMarriage {
+    _id: string;
+    mar_book: string;
+    mar_husband: PersonOptions;
+    mar_wife: PersonOptions;
+    mar_state: boolean;
+    user_user_id: string,
+    mar_date: string;
+};

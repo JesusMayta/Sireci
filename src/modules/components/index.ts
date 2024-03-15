@@ -3,6 +3,7 @@ export * from './buttons/GeneratePdf';
 export * from './notifications/MessageAlert';
 export * from './notifications/ErrorText';
 export * from './notifications/ToastAlert';
+export * from './notifications/DeleteModal';
 
 export * from './pdfs/BirthPdf';
 export * from './pdfs/PdfDownload';

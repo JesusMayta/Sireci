@@ -8,13 +8,14 @@ interface SearchOptions {
     error: boolean;
     placeHolder: string;
     getPerson: (person: PersonOptions) => void;
+    inputText: string;
 };
 
-export const SearchPerson = ({ error, placeHolder, getPerson }: SearchOptions) => {
-    ;
+export const SearchPerson = ({ error, placeHolder, getPerson, inputText }: SearchOptions) => {
+
     const { people } = usePeopleStore();
 
-    const [selected, setSelected] = useState('')
+    const [selected, setSelected] = useState(inputText)
     const [query, setQuery] = useState('')
 
 
@@ -35,7 +36,7 @@ export const SearchPerson = ({ error, placeHolder, getPerson }: SearchOptions) =
                     <Combobox.Input
                         className="w-full border-none py-2 px-3 text-sm leading-5 text-black focus:outline-none"
                         placeholder={placeHolder}
-                        displayValue={(person: PersonOptions) => (person.per_names === undefined) ? '' : person.per_names + ' ' + person.per_first_lastname}
+                        displayValue={(person: PersonOptions) => (person.per_names === undefined) ? selected : person.per_names + ' ' + person.per_first_lastname}
                         onChange={(event: any) => setQuery(event.target.value)}
                         autoComplete='off'
                     />
