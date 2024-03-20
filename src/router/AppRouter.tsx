@@ -1,21 +1,16 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { LoginPage } from '../pages/login';
-import { RegisterPage } from '../pages/register';
-import { ProfilePage } from '../pages/profile';
-import { NacimientoPage } from '../pages/nacimiento';
+import { LoadingPage, LoginPage, NacimientoPage, MatrimonioPage, UsersPage, PersonasPages } from '../modules';
+
 import { useAuthStore } from '../hooks';
-import { LoadingPage } from '../pages/components';
-import { MatrimonioPage } from '../pages/matrimonio/pages/MatrimonioPage';
-import { UsersPage } from '../pages/users';
-import { MantenimientoPage } from '../pages/mantenimiento';
-import { PersonasPages } from '../pages/personas/pages/PersonasPages';
+import { MantenimientoPage } from '../modules/mantenimiento';
+import { RegisterPage } from '../modules/register/pages/RegisterPage';
 
 
 export const AppRouter = () => {
 
-    const { status, user, verifyAuthToken } = useAuthStore();
+    const { status, userSession, verifyAuthToken } = useAuthStore();
 
     useEffect(() => {
         verifyAuthToken();
@@ -38,17 +33,15 @@ export const AppRouter = () => {
                     </>
                 ) : (
                     <>
-
-                        <Route path="/profile" element={<ProfilePage />} />
+                        {/* <Route path="/profile" element={<ProfilePage />} /> */}
                         <Route path="/nacimiento" element={<NacimientoPage />} />
                         <Route path="/matrimonio" element={<MatrimonioPage />} />
+                        {(userSession.isAdmin === 1) && <Route path='/usuarios' element={< UsersPage />} />}
                         <Route path="/mantenimiento" element={<MantenimientoPage/>} />
-                        <Route path="/personas" element={<PersonasPages/>}/>
+                        <Route path='/personas' element={< PersonasPages />} />
                         <Route path="/*" element={<Navigate to="/nacimiento" />} />
-
-                        {(user.role === 'admin') && <Route path='/usuarios' element={< UsersPage />} />}
                     </>
                 )};
         </Routes>
-    )
-}
+    );
+};

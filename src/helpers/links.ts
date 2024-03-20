@@ -1,4 +1,4 @@
-import { FcServices, FcPlus, FcConferenceCall, FcLike,  FcReading } from 'react-icons/fc';
+import { FcServices, FcPlus, FcConferenceCall, FcLike,FcReading } from 'react-icons/fc';
 import { GiDeathSkull } from "react-icons/gi";
 
 export const routes = [
@@ -6,7 +6,7 @@ export const routes = [
     { id: 2, to: '/matrimonio', name: 'Matrimonio', icon: FcLike },
     { id: 3, to: '/', name: 'Defunción', icon: GiDeathSkull },
     { id: 4, to: '/mantenimiento', name: 'Mantenimiento', icon: FcServices },
-    { id: 5, to: '/personas', name: 'Personas', icon: FcReading }
+    { id: 5, to: '/personas', name: 'Personas', icon: FcReading },
 
 ];
 

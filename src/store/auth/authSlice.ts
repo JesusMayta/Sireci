@@ -1,21 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { AuthOptions } from '../../helpers';
 
-interface authOptions {
-    status: string | undefined;
-    user: {
-        name: string | undefined;
-        uid: number | undefined;
-        role: string | undefined;
-    }
-    errorMessage: string | undefined;
-};
-
-const initialState: authOptions = {
+const initialState: AuthOptions = {
     status: 'not-authenticated',
-    user: {
+    userSession: {
+        id: '',
         name: '',
-        uid: 0,
-        role: 'user'
+        lastName: '',
+        address: '',
+        email: '',
+        isAdmin: 0,
+        isActive: 1,
+        username: '',
+        password: '',
     },
     errorMessage: undefined
 }
@@ -24,30 +21,32 @@ export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        onChecking: (state) => {
+        onCheckingAuthSession: (state) => {
             state.status = 'checking';
-            state.user = {
-                name: '',
-                uid: 0,
-                role: 'user'
-            };
+            state.userSession = initialState.userSession;
             state.errorMessage = undefined;
         },
-        loginUser: (state, { payload }) => {
+        onLoginUserSession: (state, { payload }) => {
             state.status = 'authenticated';
-            state.user = payload;
+            state.userSession = {
+                id: payload._id,
+                name: payload.user_name,
+                lastName: payload.user_firts_lastname,
+                address: payload.user_address,
+                email: payload.user_email,
+                isAdmin: payload.user_is_admin,
+                isActive: payload.user_is_active,
+                username: payload.user_username,
+                password: payload.user_password
+            };
             state.errorMessage = undefined;
         },
-        logoutUser: (state, { payload }) => {
+        onLogoutUserSession: (state, { payload }) => {
             state.status = 'not-authenticated';
-            state.user = {
-                name: '',
-                uid: 0,
-                role: 'user'
-            };
+            state.userSession = initialState.userSession
             state.errorMessage = payload;
         }
     }
 });
 
-export const { loginUser, onChecking, logoutUser } = authSlice.actions;
+export const { onLoginUserSession, onCheckingAuthSession, onLogoutUserSession } = authSlice.actions;

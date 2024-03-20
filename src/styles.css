@@ -8,3 +8,12 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+/* 
+::selection {
+  background-color: greenyellow;
+  color: #1f1c30;
+} */

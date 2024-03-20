@@ -3,9 +3,17 @@ import { getEnvVariables } from '../helpers';
 
 const { VITE_API_URL } = getEnvVariables();
 
-const SireciApi = axios.create({
-    baseURL: VITE_API_URL
-});
+export const SireciApi = () => {
 
+    const token = localStorage.token;
 
-export default SireciApi;
+    const apiAxios = axios.create({
+        baseURL: VITE_API_URL,
+        headers: {
+            Accept: 'application/json',
+            "Content-Type": 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return apiAxios;
+};

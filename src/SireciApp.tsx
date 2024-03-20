@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export const SireciApp = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter >
         <AppRouter />
       </BrowserRouter>
     </Provider>
