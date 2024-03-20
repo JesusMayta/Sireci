@@ -1,1 +1,2 @@
-export * from './PrincipalLayout.jsx'
+export * from './PrincipalLayout';
+export * from './PrincipalView';

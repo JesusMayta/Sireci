@@ -1,6 +1,6 @@
-import { SireciApi } from "../api";
-import { useAppDispatch, useAppSelector } from "../store";
-import { onCheckingPeople, onLoadPeople, onSearchPeople, setEmptyPeople } from "../store/people/peopleSlice";
+import { SireciApi } from '../api';
+import { useAppDispatch, useAppSelector } from '../store';
+import { onCheckingPeople, onLoadPeople, onSearchPeople, setEmptyPeople } from '../store/people/peopleSlice';
 
 
 export const usePeopleStore = () => {

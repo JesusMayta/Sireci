@@ -8,7 +8,7 @@ import { useAuthStore, useUiStore } from '../../../hooks';
 export const Sidebar = () => {
 
     const { userSession, logoutUserSession } = useAuthStore();
-    const { isOpenSidebar, onCloseSidebar } = useUiStore();
+    const { isOpenSidebar, startOpenSidebar } = useUiStore();
 
     const logoutSession = () => {
         logoutUserSession();
@@ -16,7 +16,7 @@ export const Sidebar = () => {
 
     return (
         <aside className={`${(isOpenSidebar) ? 'translate-x-0' : 'xl:translate-x-0'} fixed z-30 inset-0 w-64 sm:w-72 bg-gray-100 rounded-lg my-2 mx-2 -translate-x-80 border border-gray-400 shadow-lg shadow-gray-700 transition-all duration-500`}>
-            <button onClick={onCloseSidebar} className="absolute xl:hidden right-[6px] top-2">
+            <button onClick={() => startOpenSidebar(false)} className="absolute xl:hidden right-[6px] top-2">
                 <IoClose className="text-2xl" />
             </button>
 
@@ -24,7 +24,7 @@ export const Sidebar = () => {
                 <div className="h-[75%] mt-14">
                     <h2 className="text-center text-2xl font-black mb-8">Sistema de Registro Civil</h2>
                     {(SideLinks[(userSession.isAdmin === 1) ? 'admin' : 'user'].map(href => (
-                        <NavLink to={href.to} key={href.id} className={({ isActive }) => `flex flex-row items-center mx-1 my-5 py-2 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg ${(isActive) ? 'bg-gray-900 text-white shadow-lg shadow-gray-700' : ''}`}>
+                        <NavLink onClick={() => startOpenSidebar(false)} to={href.to} key={href.id} className={({ isActive }) => `flex flex-row items-center mx-1 my-5 py-2 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg ${(isActive) ? 'bg-gray-900 text-white shadow-lg shadow-gray-700' : ''}`}>
                             <href.icon className="w-[35%] text-xl sm:text-3xl" />
                             <p className="text-sm sm:text-base">{href.name}</p>
                         </NavLink>

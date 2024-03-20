@@ -1,2 +1,2 @@
 export * from './BirthDocument';
-export * from './PrincipalView';
+export * from './ModalUpdateBirth';

@@ -1,10 +1,10 @@
 import { useFormik } from "formik";
 import { PrincipalLayout } from "../../layouts"
-import  * as Yup from "yup";
+import * as Yup from "yup";
 
-const validationSchema=Yup.object({
-  nombres: Yup.string().required('Campo requerido'),
-  primer_apellido: Yup.string().required('Campo requerido'),
+const validationSchema = Yup.object({
+    nombres: Yup.string().required('Campo requerido'),
+    primer_apellido: Yup.string().required('Campo requerido'),
 })
 
 

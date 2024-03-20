@@ -1,8 +1,8 @@
-import { jwtDecode } from "jwt-decode";
-import { SireciApi } from "../api/sireciApi";
+import { jwtDecode } from 'jwt-decode';
+import { SireciApi } from '../api/sireciApi';
 
-import { onCheckingAuthSession, onLoginUserSession, onLogoutUserSession, useAppDispatch, useAppSelector } from "../store";
-import { LoginOptions } from "../helpers";
+import { onCheckingAuthSession, onLoginUserSession, onLogoutUserSession, useAppDispatch, useAppSelector } from '../store';
+import { LoginOptions } from '../helpers';
 
 export const useAuthStore = () => {
 
@@ -17,12 +17,9 @@ export const useAuthStore = () => {
             const { data: UserToken } = await SireciApi().post('/auth/login', { email, password });
             const { access_token } = UserToken.data;
             localStorage.setItem('token', access_token);
-
             await getUserByEmail();
-
         } catch (error) {
-            dispatch(onLogoutUserSession('Usuario y/o contraseña incorrecta!'))
-            console.log(error);
+            dispatch(onLogoutUserSession('Usuario y/o contraseña incorrecta'));
         };
     };
 
@@ -30,6 +27,7 @@ export const useAuthStore = () => {
 
         const token = localStorage.getItem('token');
         if (!token) return dispatch(onLogoutUserSession('Su sesión ha caducado'));
+
 
         try {
             const Token: { email: string } = jwtDecode(token);
@@ -41,8 +39,11 @@ export const useAuthStore = () => {
     };
 
     const logoutUserSession = () => {
-        localStorage.clear();
-        dispatch(onLogoutUserSession(undefined));
+        dispatch(onCheckingAuthSession());
+        setTimeout(() => {
+            localStorage.clear();
+            dispatch(onLogoutUserSession(undefined));
+        }, 2000);
     };
 
     const verifyAuthToken = async () => {

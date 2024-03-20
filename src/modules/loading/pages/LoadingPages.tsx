@@ -1,4 +1,4 @@
-import { spiral } from "ldrs";
+import { spiral } from 'ldrs';
 export const LoadingPage = () => {
 
     spiral.register();

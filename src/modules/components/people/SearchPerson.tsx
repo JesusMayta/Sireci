@@ -5,15 +5,17 @@ import { PersonOptions } from '../../../helpers';
 import { usePeopleStore } from '../../../hooks';
 
 interface SearchOptions {
+    error: boolean;
     placeHolder: string;
     getPerson: (person: PersonOptions) => void;
+    inputText: string;
 };
 
-export const SearchPerson = ({ placeHolder, getPerson }: SearchOptions) => {
+export const SearchPerson = ({ error, placeHolder, getPerson, inputText }: SearchOptions) => {
 
     const { people } = usePeopleStore();
 
-    const [selected, setSelected] = useState('')
+    const [selected, setSelected] = useState(inputText)
     const [query, setQuery] = useState('')
 
 
@@ -30,11 +32,11 @@ export const SearchPerson = ({ placeHolder, getPerson }: SearchOptions) => {
     return (
         <Combobox value={selected} onChange={onGetValue}>
             <div className="relative mt-2">
-                <div className='relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left sm:text-sm shadow-lg shadow-gray-300 border border-gray-400'>
+                <div className={`relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left sm:text-sm shadow-lg shadow-gray-300 border ${(error) ? 'border-red-600' : 'border-gray-400'}`} >
                     <Combobox.Input
                         className="w-full border-none py-2 px-3 text-sm leading-5 text-black focus:outline-none"
                         placeholder={placeHolder}
-                        displayValue={(person: PersonOptions) => (person.per_names === undefined) ? '' : person.per_names + ' ' + person.per_first_lastname}
+                        displayValue={(person: PersonOptions) => (person.per_names === undefined) ? selected : person.per_names + ' ' + person.per_first_lastname}
                         onChange={(event: any) => setQuery(event.target.value)}
                         autoComplete='off'
                     />
@@ -65,14 +67,14 @@ export const SearchPerson = ({ placeHolder, getPerson }: SearchOptions) => {
                                         }
                                         value={person}
                                     >
-                                        {`${person.per_names} ${person.per_first_lastname} (${person.per_document})`}
+                                        {`${person.per_names} ${person.per_first_lastname} (${person.per_document_number})`}
                                     </Combobox.Option>
                                 ))
                                 ))}
                         </Combobox.Options>
-                    </Transition>
+                    </Transition >
                 }
-            </div>
-        </Combobox>
-    )
-}
+            </div >
+        </Combobox >
+    );
+};

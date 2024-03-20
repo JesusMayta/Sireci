@@ -1,14 +1,21 @@
 import { useEffect } from 'react';
 import { usePeopleStore, useUiStore } from '../../hooks';
-import { Navbar, Sidebar } from '../components';
+import { Footer, Navbar, Sidebar } from '../components';
 
 export const PrincipalLayout = ({ children }: { children: React.ReactNode }) => {
 
-    const { isOpenSidebar } = useUiStore();
-    const { getAllPersons } = usePeopleStore();
+    const { isOpenSidebar, startOpenViewForm } = useUiStore();
+    const { startSearchPeople, getAllPersons } = usePeopleStore();
 
     useEffect(() => {
+        //* Get Persons
         getAllPersons();
+
+        //* Close form to Add certificate
+        startOpenViewForm(false);
+
+        //* clear filter to search
+        startSearchPeople('');
     }, []);
 
     return (
@@ -20,9 +27,16 @@ export const PrincipalLayout = ({ children }: { children: React.ReactNode }) => 
                     <Navbar />
                 </div>
                 <div className="h-[92%] w-full">
-                    {children}
+                    <div className="flex flex-col justify-between h-full">
+                        <div className="h-[90%] flex bg-grad flex-col justify-between w-full">
+                            {children}
+                        </div>
+                        <div className="h-[10%] w-full">
+                            <Footer />
+                        </div>
+                    </div>
                 </div>
             </section>
-        </main >
+        </main>
     );
 };

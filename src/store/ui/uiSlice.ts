@@ -5,19 +5,21 @@ export const uiSlice = createSlice({
     initialState: {
         isOpenSidebar: false,
         isOpenViewForm: false,
+        isOpenEditModal: false,
+        isOpenDeleteModal: false
     },
     reducers: {
-        openSidebar: (state) => {
-            state.isOpenSidebar = true;
+        onOpenSidebar: (state, { payload }) => {
+            state.isOpenSidebar = payload;
         },
-        closeSidebar: (state) => {
-            state.isOpenSidebar = false;
+        onOpenViewForm: (state, { payload }) => {
+            state.isOpenViewForm = payload;
         },
-        onOpenViewForm: (state) => {
-            state.isOpenViewForm = true;
+        onOpenEditModal: (state, { payload }) => {
+            state.isOpenEditModal = payload;
         },
-        onCloseViewForm: (state) => {
-            state.isOpenViewForm = false;
+        onOpenDeleteModal: (state, { payload }) => {
+            state.isOpenDeleteModal = payload;
         }
     }
 });
@@ -26,9 +28,13 @@ export const {
 
     // Form Add document
     onOpenViewForm,
-    onCloseViewForm,
+
+    //Form edit docs
+    onOpenEditModal,
+
+    //Modal delete docs
+    onOpenDeleteModal,
 
     // Sidebar
-    openSidebar,
-    closeSidebar
+    onOpenSidebar,
 } = uiSlice.actions;
