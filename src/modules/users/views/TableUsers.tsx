@@ -1,6 +1,6 @@
-import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useUserStore } from "../../../hooks";
 import { useEffect } from "react";
+import { LoadComponent } from "../../components";
 
 interface User {
     user_name: string;
@@ -11,15 +11,19 @@ interface User {
     user_is_admin: number
 };
 
-const tableHead = ['Nombres', 'Apellidos', ' E-mail', ' Username', 'Dirección', '¿Es administrador?', 'Acción'];
+const tableHead = ['Nombres', 'Apellidos', ' E-mail', ' Username', 'Dirección', '¿Es administrador?'];
 
 export const TableUsers = () => {
 
-    const { users, getAllUsers } = useUserStore();
+    const { users, getAllUsers, isLoadingUsers } = useUserStore();
 
     useEffect(() => {
         getAllUsers();
     }, [])
+
+    if (isLoadingUsers) {
+        return <LoadComponent />
+    };
 
     return (
         <div className="mt-6 overflow-hidden rounded-xl bg-white px-6 shadow-md shadow-gray-900 lg:px-3 select-none">
@@ -60,15 +64,6 @@ export const TableUsers = () => {
                             <td className="whitespace-no-wrap hidden py-3 text-xs text-right sm:px-3 lg:table-cell lg:text-center">{user.user_address}</td>
                             <td className="whitespace-no-wrap hidden py-4 text-center text-xs sm:px-3 lg:table-cell lg:text-center">{(user.user_is_admin === 1) ? 'Administrador' : 'Usuario'}</td>
                             {/* <span className="mt-1 ml-auto block w-fit whitespace-nowrap rounded-full bg-blue-100 px-2 py-0.5 text-center text-xs text-blue-800 lg:hidden">Pending</span> */}
-
-                            <td className="whitespace-no-wrap hidden py-4 text-xs font-normal sm:px-3 lg:table-cell">
-                                <button className="bg-yellow-50 px-3 py-2 rounded-lg">
-                                    <FiEdit className="text-yellow-600" />
-                                </button>
-                                <button className="ms-3 bg-red-50 px-3 py-2 rounded-lg">
-                                    <FiTrash2 className="text-red-800" />
-                                </button>
-                            </td>
                         </tr>
                     )))}
                 </tbody>

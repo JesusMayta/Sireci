@@ -1,2 +1,2 @@
 export * from './MarriageDocument';
-export * from './ModalToUpdate';
+export * from './ModalUpdateMarriage';

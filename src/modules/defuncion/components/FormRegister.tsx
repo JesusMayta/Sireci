@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { DeathDocumentValidations, PersonOptions } from '../../../helpers';
 import { useDeathDocsStore, useUiStore } from '../../../hooks';
 import { Bounce, toast } from 'react-toastify';
+import { HiDocumentArrowUp, HiXCircle } from 'react-icons/hi2';
 
 export const FormRegister = ({ user }: { user: string }) => {
 
 
-    const { startRegisterDeathDoc, startSendSuccessMessage } = useDeathDocsStore();
-    const { onChangeStateViewForm } = useUiStore();
+    const { startRegisterDeathDoc, startShowMessageDeath } = useDeathDocsStore();
+    const { startOpenViewForm } = useUiStore();
 
     const [person, setPerson] = useState<PersonOptions>({ _id: '', per_document: '', per_document_number: '', per_names: '', per_state: false, per_first_lastname: '' });
     const [errorPerson, setErrorPerson] = useState<boolean>(false);
@@ -27,8 +28,8 @@ export const FormRegister = ({ user }: { user: string }) => {
             });
 
             if (success) {
-                onChangeStateViewForm(false)
-                startSendSuccessMessage('Certificado registrado exitosamente!');
+                startOpenViewForm(false)
+                startShowMessageDeath('Certificado registrado exitosamente!');
             } else {
                 toast.error('Ocurrio un error al momento de registrar', { transition: Bounce });
             };
@@ -69,10 +70,15 @@ export const FormRegister = ({ user }: { user: string }) => {
                                 </div>
                             </div>
 
-                            <div className="mt-20 flex justify-center gap-x-8 w-full">
-                                <button type="submit" className="button_hover text-green-700 hover:before:bg-green-700 border-green-700 bg-green-50 before:bg-green-500 hover:shadow-green-800 before:left-0 hover:before:left-0"><span className="relative z-10 font-semibold">Registrar</span></button>
-
-                                <button type="reset" className="button_hover text-red-600 hover:before:bg-red-700 border-red-700 bg-red-50 before:bg-red-500 hover:shadow-red-800 before:right-0 hover:before:right-0"><span className="relative z-10 font-semibold">Registrar</span></button>
+                            <div className="flex flex-row mt-24 w-full justify-center gap-x-12 text-white font-semibold">
+                                <button type="submit" className="flex items-center gap-x-2 bg-green-700 px-7 py-2 rounded-lg shadow-lg shadow-green-950 hover:shadow-md hover:shadow-green-900 duration-300">
+                                    <HiDocumentArrowUp className="text-lg" />
+                                    Registrar
+                                </button>
+                                <button type="reset" className="flex items-center gap-x-2 bg-red-700 px-7 py-2 rounded-lg shadow-lg shadow-red-950 hover:shadow-md hover:shadow-red-900 duration-300">
+                                    <HiXCircle className="text-lg" />
+                                    Cancelar
+                                </button>
                             </div>
                         </div>
                     </Form>

@@ -1,19 +1,19 @@
 import { useState } from 'react';
+import { Bounce, toast } from 'react-toastify';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { HiDocumentArrowUp, HiXCircle } from 'react-icons/hi2';
 
 import { BirthDocumentValidations, PersonOptions } from '../../../helpers';
 import { ErrorText, MessageAlert, SearchPerson, ToastAlert } from '../../components';
 import { useAuthStore, useBirthDocsStore, useUiStore } from '../../../hooks';
-import { Bounce, toast } from 'react-toastify';
 
 const PersonObject = { _id: '', per_names: '', per_first_lastname: '', per_state: false, per_document: '' };
 
 export const FormRegister = () => {
 
     const { userSession } = useAuthStore();
-    const { startRegisterBirthDocument, startSendSuccessMessage } = useBirthDocsStore();
-    const { onChangeStateViewForm } = useUiStore();
+    const { startRegisterBirthDocument, startShowBirthMessage } = useBirthDocsStore();
+    const { startOpenViewForm } = useUiStore();
 
     const [errorSearch, setErrorSearch] = useState({ errorPerson: false, errorFather: false, errorMother: false });
     const [personsToAdd, setPersonsToAdd] = useState({ principal_person: PersonObject, birth_mother: PersonObject, birth_father: PersonObject });
@@ -38,8 +38,8 @@ export const FormRegister = () => {
             });
 
             if (success) {
-                onChangeStateViewForm(false)
-                startSendSuccessMessage('Certificado registrado exitosamente!');
+                startShowBirthMessage('Certificado registrado exitosamente!');
+                startOpenViewForm(false)
             } else {
                 toast.error('Ocurrio un error al momento de registrar', { transition: Bounce });
             };
@@ -49,7 +49,7 @@ export const FormRegister = () => {
     return (
         <>
             <Formik
-                initialValues={{ birth_date: '', codigo: '' }}
+                initialValues={{ birth_date: '', birth_book: '' }}
                 validationSchema={BirthDocumentValidations}
                 onSubmit={handleSubmit}
             >
@@ -75,9 +75,9 @@ export const FormRegister = () => {
                                 {(errorSearch.errorMother) && <ErrorText />}
                             </div>
                             <div className="w-full sm:w-1/2 flex flex-col mt-3 sm:mt-0">
-                                <label htmlFor="codigo" className="text-sm font-semibold">Código de acta:</label>
-                                <Field type="text" id="codigo" name="codigo" className={`input_field ${(!errors.codigo || !touched.codigo) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
-                                <ErrorMessage name="codigo" component={() => <MessageAlert message={errors.codigo} />} />
+                                <label htmlFor="birth_book" className="text-sm font-semibold">Código de acta:</label>
+                                <Field type="text" id="birth_book" name="birth_book" className={`input_field ${(!errors.birth_book || !touched.birth_book) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
+                                <ErrorMessage name="birth_book" component={() => <MessageAlert message={errors.birth_book} />} />
                             </div>
                         </div>
 

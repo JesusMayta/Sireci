@@ -1,7 +1,7 @@
 import { FcServices, FcPlus, FcConferenceCall, FcLike, FcReading } from 'react-icons/fc';
-import { GiDeathSkull } from "react-icons/gi";
+import { GiDeathSkull } from 'react-icons/gi';
 
-export const routes = [
+const routes = [
     { id: 1, to: '/nacimiento', name: 'Nacimiento', icon: FcPlus },
     { id: 2, to: '/matrimonio', name: 'Matrimonio', icon: FcLike },
     { id: 3, to: '/defuncion', name: 'Defunción', icon: GiDeathSkull },

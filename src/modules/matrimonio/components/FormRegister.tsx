@@ -13,8 +13,8 @@ const PersonObject = { _id: '', per_names: '', per_first_lastname: '', per_state
 export const FormRegister = () => {
 
     const { userSession } = useAuthStore();
-    const { startRegisterMarriageDoc, startSendSuccessMessage } = useMarriageDocsStore();
-    const { onChangeStateViewForm } = useUiStore();
+    const { startRegisterMarriageDoc, startShowMarriageAlert } = useMarriageDocsStore();
+    const { startOpenViewForm } = useUiStore();
 
     const [errorSearch, setErrorSearch] = useState({ errorHusband: false, errorWife: false });
     const [personsToAdd, setPersonsToAdd] = useState({ mar_husband: PersonObject, mar_wife: PersonObject });
@@ -29,13 +29,13 @@ export const FormRegister = () => {
                 user_user_id: userSession.id,
                 mar_husband: personsToAdd.mar_husband._id,
                 mar_wife: personsToAdd.mar_wife._id,
-                mar_date: values.mar_date
+                ...values
             };
 
             const success = await startRegisterMarriageDoc(marriageDocument);
             if (success) {
-                onChangeStateViewForm(false)
-                startSendSuccessMessage('Certificado registrado exitosamente!');
+                startOpenViewForm(false)
+                startShowMarriageAlert('Certificado registrado exitosamente!');
             } else {
                 toast.error('Ocurrio un error al momento de registrar', { transition: Bounce });
             };
@@ -45,11 +45,11 @@ export const FormRegister = () => {
     return (
         <>
             <Formik
-                initialValues={{ mar_date: '', codigo: '' }}
+                initialValues={{ mar_date: '', mar_book: '' }}
                 validationSchema={MarriageDocumentValidations}
                 onSubmit={handleSubmit}
             >
-                {({ errors }) => (
+                {({ errors, touched }) => (
                     <Form>
                         <div className="flex flex-row w-full gap-x-4">
                             <div className="w-1/2 flex flex-col">
@@ -71,14 +71,17 @@ export const FormRegister = () => {
 
                         <div className="flex flex-row gap-x-4 mt-4">
                             <div className="w-1/2">
-                                <label htmlFor="codigo" className="font-semibold text-sm">Código de acta</label>
-                                <Field type="text" id="codigo" name="codigo" className="text-sm mt-2 py-2 px-3 w-full rounded-lg border focus:outline-none bg-white shadow-lg shadow-gray-300 border-gray-400" />
-                                <ErrorMessage name="codigo" component={() => <MessageAlert message={errors.codigo} />} />
+                                <label htmlFor="mar_book" className="font-semibold text-sm">Libro de acta</label>
+                                <Field type="text" id="mar_book"
+                                    placeholder="mar-1221"
+                                    name="mar_book"
+                                    className={`input_field ${(!errors.mar_book || !touched.mar_book) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
+                                <ErrorMessage name="mar_book" component={() => <MessageAlert message={errors.mar_book} />} />
                             </div>
 
                             <div className="w-1/2">
                                 <label htmlFor="mar_date" className="font-semibold text-sm">Fecha Registro</label>
-                                <Field type="date" id="mar_date" name="mar_date" className="text-sm mt-2 py-2 px-3 w-full rounded-lg border focus:outline-none bg-white shadow-lg shadow-gray-300 border-gray-400" />
+                                <Field type="date" id="mar_date" name="mar_date" className={`input_field ${(!errors.mar_date || !touched.mar_date) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
                                 <ErrorMessage name="mar_date" component={() => <MessageAlert message={errors.mar_date} />} />
                             </div>
                         </div>

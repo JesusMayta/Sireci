@@ -1,11 +1,12 @@
 import { SireciApi } from "../api";
+import { ContentTableMarriage } from "../helpers";
 import { useAppDispatch, useAppSelector } from "../store";
-import { onCheckingDocuments, onGetMarriageDocuments, onSelectCertificateMarriage, onSuccessRegisterDoc } from "../store/documents/documentsSlice";
+import { onCheckingDocuments, onGetMarriageDocuments, onSelectCertificateMarriage, onShowAlertMessage, onUpdatingDocument } from "../store/documents/documentsSlice";
 
 
 export const useMarriageDocsStore = () => {
 
-    const { marriageDocuments, activeCertificateMarriage, isLoadingDocuments } = useAppSelector(state => state.documents);
+    const { marriageDocuments, activeCertificateMarriage, isLoadingDocuments, isUpdateDocument, isDeletingDocument, successMessage } = useAppSelector(state => state.documents);
     const dispatch = useAppDispatch();
 
     const getCertificateById = async (id: string) => {
@@ -24,7 +25,9 @@ export const useMarriageDocsStore = () => {
         dispatch(onCheckingDocuments());
         try {
             const { data: CertificatesMarriage } = await SireciApi().get('/certificates/marriage');
-            dispatch(onGetMarriageDocuments(CertificatesMarriage.data));
+            const FilterMarriage = CertificatesMarriage.data.filter((doc: ContentTableMarriage) => doc.mar_state !== false);
+            dispatch(onShowAlertMessage(undefined));
+            dispatch(onGetMarriageDocuments(FilterMarriage));
         } catch (error) {
             console.log('error');
         };
@@ -41,9 +44,12 @@ export const useMarriageDocsStore = () => {
     };
 
     const startEditMarriageDoc = async (id: string, values: any) => {
+
+        dispatch(onUpdatingDocument(true));
+
         try {
-            const resp = await SireciApi().patch(`/certificates/marriage/${id}`, values);
-            console.log(resp);
+            await SireciApi().patch(`/certificates/marriage/${id}`, values);
+            dispatch(onUpdatingDocument(false));
             return true;
         } catch (error) {
             return false;
@@ -64,8 +70,8 @@ export const useMarriageDocsStore = () => {
         dispatch(onSelectCertificateMarriage({}));
     };
 
-    const startSendSuccessMessage = (message: string) => {
-        dispatch(onSuccessRegisterDoc(message));
+    const startShowMarriageAlert = (message: string) => {
+        dispatch(onShowAlertMessage(message));
     };
 
     return {
@@ -74,6 +80,9 @@ export const useMarriageDocsStore = () => {
         activeCertificateMarriage,
         isLoadingDocuments,
         marriageDocuments,
+        isUpdateDocument,
+        isDeletingDocument,
+        successMessage,
 
         //*Methods
         clearActiveCertificate,
@@ -81,7 +90,7 @@ export const useMarriageDocsStore = () => {
         getCertificateById,
         startDeleteMarriageDoc,
         startEditMarriageDoc,
+        startShowMarriageAlert,
         startRegisterMarriageDoc,
-        startSendSuccessMessage,
     };
 };

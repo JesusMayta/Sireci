@@ -3,16 +3,15 @@ import { usePeopleStore, useUiStore } from '../../../hooks';
 
 export const BarOptions = ({ textButton, optionsSort, placeHolder }: { textButton: string, optionsSort: string[], placeHolder: string }) => {
 
-    const { onChangeStateViewForm } = useUiStore();
+    const { startOpenViewForm } = useUiStore();
     const { startSearchPeople } = usePeopleStore();
 
     const openviewForm = () => {
-        onChangeStateViewForm(true);
+        startOpenViewForm(true);
     };
 
     const onSearchingDocs = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTimeout(() => {
-            console.log(event.target.value);
             startSearchPeople(event.target.value);
         }, 500);
     };

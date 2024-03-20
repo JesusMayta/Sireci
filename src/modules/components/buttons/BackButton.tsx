@@ -3,10 +3,10 @@ import { useUiStore } from "../../../hooks"
 
 export const BackButton = () => {
 
-    const { onChangeStateViewForm } = useUiStore();
+    const { startOpenViewForm } = useUiStore();
 
     return (
-        <button onClick={() => onChangeStateViewForm(false)} className="flex items-center gap-x-2 font-bold hover:underline">
+        <button onClick={() => startOpenViewForm(false)} className="flex items-center gap-x-2 font-bold hover:underline">
             <IoMdArrowBack />
             Volver
         </button>

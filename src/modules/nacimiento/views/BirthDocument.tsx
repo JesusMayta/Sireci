@@ -1,5 +1,5 @@
-import { BackButton, InfoForm } from "../../components";
-import { FormRegister } from "../components/FormRegister";
+import { BackButton, InfoForm } from '../../components';
+import { FormRegister } from '../components/FormRegister';
 
 export const BirthDocument = () => {
 

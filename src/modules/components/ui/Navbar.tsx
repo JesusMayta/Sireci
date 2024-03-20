@@ -2,11 +2,10 @@ import { IoMenuSharp } from 'react-icons/io5';
 
 import { useAuthStore, useUiStore } from '../../../hooks';
 
-
 export const Navbar = () => {
 
     const { userSession } = useAuthStore();
-    const { onOpenSideBar } = useUiStore();
+    const { startOpenSidebar } = useUiStore();
 
     const photoUser = "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg";
 
@@ -16,7 +15,7 @@ export const Navbar = () => {
                 <div className="flex items-center gap-x-10 w-1/2">
 
                     {/* Menu sidebar */}
-                    <button className="inline xl:hidden" onClick={onOpenSideBar}>
+                    <button className="inline xl:hidden" onClick={() => startOpenSidebar(true)}>
                         <IoMenuSharp className="text-2xl sm:text-3xl" />
                     </button>
 

@@ -32,10 +32,12 @@ export interface PersonOptions {
 export interface ContentTableBirth {
     _id: string;
     birth_book: string;
-    birth_father: string;
-    birth_mother: string;
+    birth_father: PersonOptions;
+    birth_mother: PersonOptions;
     person_per_id: PersonOptions;
+    birth_state: boolean;
     user_user_id: string;
+    birth_date: string;
 };
 
 export interface ContentTableMarriage {
@@ -43,7 +45,6 @@ export interface ContentTableMarriage {
     mar_book: string,
     mar_husband: PersonOptions;
     mar_wife: PersonOptions;
-    mar_file: string;
     mar_state: boolean;
     user_user_id: string;
     mar_date: string;
@@ -58,6 +59,17 @@ export interface ContentTableDeath {
     dea_date: string;
 };
 
+export interface ActiveCertificateBirth {
+    _id: string;
+    birth_book: string;
+    birth_father: PersonOptions;
+    birth_mother: PersonOptions;
+    person_per_id: PersonOptions;
+    birth_state: boolean;
+    user_user_id: string;
+    birth_date: string;
+};
+
 export interface ActiveCertificateMarriage {
     _id: string;
     mar_book: string;
@@ -66,4 +78,12 @@ export interface ActiveCertificateMarriage {
     mar_state: boolean;
     user_user_id: string,
     mar_date: string;
+};
+
+export interface ActiveCertificateDeath {
+    _id: string;
+    dea_book: string;
+    person_per_id: PersonOptions;
+    user_user_id: string;
+    dea_date: string;
 };

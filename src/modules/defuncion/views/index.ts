@@ -1,2 +1,2 @@
-export * from './DefunciónDocument';
+export * from './DefuncionDocument';
 export * from './ModalUpdateDeath';

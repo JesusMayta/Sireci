@@ -2,7 +2,6 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useAuthStore } from '../../../hooks';
 import { LoginOptions, LoginValidations } from '../../../helpers';
 import { MessageAlert } from '../../components';
-import styles from '../pages/LoginPage.module.css';
 
 export const FormLogin = () => {
 
@@ -25,7 +24,7 @@ export const FormLogin = () => {
                         type="email"
                         name="email"
                         id="email"
-                        className={`${styles.input_field} ${(!errors.email || !touched.email) ? 'border-gray-400' : 'border-red-600 text-red-700'}`} placeholder="username@mail.com"
+                        className={`login_input ${(!errors.email || !touched.email) ? 'border-gray-400' : 'border-red-600 text-red-700'}`} placeholder="username@mail.com"
                     />
                     <ErrorMessage name="email" component={() => <MessageAlert message={errors.email} />} />
 
@@ -35,7 +34,7 @@ export const FormLogin = () => {
                             type="password"
                             name="password"
                             id="password"
-                            className={`${styles.input_field} ${(!errors.password || !touched.password) ? 'border-gray-400' : 'border-red-600'}`}
+                            className={`login_input ${(!errors.password || !touched.password) ? 'border-gray-400' : 'border-red-600'}`}
                         />
                         <ErrorMessage name="password" component={() => <MessageAlert message={errors.password} />} />
                     </div>

@@ -2,7 +2,7 @@ import { useAuthStore } from '../../../hooks';
 import { BackButton, InfoForm } from '../../components';
 import { FormRegister } from '../components/FormRegister';
 
-export const DefunciónDocument = () => {
+export const DefuncionDocument = () => {
 
     const { userSession } = useAuthStore();
 
