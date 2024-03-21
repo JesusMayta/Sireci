@@ -3,12 +3,12 @@ import { FiEdit, FiTrash2 } from 'react-icons/fi';
 
 import { useBirthDocsStore, usePeopleStore, useUiStore } from '../../../hooks';
 import { ContentTableBirth, FilterPeopleBirth } from '../../../helpers';
-import { DeleteModal, LoadComponent } from '../../components';
+import { DeleteModal, LoadComponent, LoadingModal } from '../../components';
 
 export const TableBirthDocuments = () => {
 
     const { textFindPeople } = usePeopleStore();
-    const { isLoadingDocuments, birthDocuments, getAllCertificatesBirth, successMessage, getCertificateBirthById } = useBirthDocsStore();
+    const { isLoadingDocuments, birthDocuments, getAllCertificatesBirth, successMessage, getCertificateBirthById, isUpdateDocument } = useBirthDocsStore();
     const { startOpenEditModal, isOpenDeleteModal, startOpenDeleteModal } = useUiStore();
 
     const [optionsToDelete, setoptionsToDelete] = useState({ id: '', option: '' });
@@ -96,6 +96,7 @@ export const TableBirthDocuments = () => {
                         </table>
                     </div>
                 )}
+            {(isUpdateDocument) && <LoadingModal />}
             {(isOpenDeleteModal) && <DeleteModal toDelete={optionsToDelete} />}
         </div>
     );

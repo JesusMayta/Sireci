@@ -89,13 +89,13 @@ export const FormRegister = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-row mt-10 sm:mt-16 w-full justify-center gap-x-12 text-white font-semibold">
+                        <div className="flex flex-row mt-10 pb-6 sm:mt-16 w-full justify-center gap-x-6 sm:gap-x-12 text-white font-semibold text-xs sm:text-base">
                             <button type="submit" className="flex items-center gap-x-2 bg-green-700 px-7 py-2 rounded-lg shadow-lg shadow-green-950 hover:shadow-md hover:shadow-green-900 duration-300">
                                 <HiDocumentArrowUp className="text-lg" />
                                 Registrar
                             </button>
                             <button type="reset" className="flex items-center gap-x-2 bg-red-700 px-7 py-2 rounded-lg shadow-lg shadow-red-950 hover:shadow-md hover:shadow-red-900 duration-300">
-                                <HiXCircle className="text-xl" />
+                                <HiXCircle className="text-lg" />
                                 Cancelar
                             </button>
                         </div>

@@ -1,7 +1,7 @@
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { useMarriageDocsStore, usePeopleStore, useUiStore } from '../../../hooks';
 import { ContentTableMarriage, FilterPeopleMarriage } from '../../../helpers';
-import { DeleteModal, LoadComponent } from '../../components';
+import { DeleteModal, LoadComponent, LoadingModal } from '../../components';
 import { useEffect, useState } from "react";
 
 const tableHead = ['Marido', 'Mujer', 'Libro', 'Fecha de registro', 'Acción'];
@@ -9,7 +9,7 @@ const tableHead = ['Marido', 'Mujer', 'Libro', 'Fecha de registro', 'Acción'];
 export const TableMarriage = () => {
 
     const { textFindPeople } = usePeopleStore();
-    const { getCertificateById, marriageDocuments, getAllCertificatesMarriage, isLoadingDocuments, successMessage } = useMarriageDocsStore();
+    const { getCertificateById, marriageDocuments, getAllCertificatesMarriage, isLoadingDocuments, successMessage, isUpdateDocument } = useMarriageDocsStore();
     const { startOpenEditModal, startOpenDeleteModal, isOpenDeleteModal } = useUiStore();
 
     const [optionsToDelete, setOptionsToDelete] = useState({ id: '', option: '' });
@@ -52,8 +52,11 @@ export const TableMarriage = () => {
                             <tbody className="bg-white lg:border-gray-300">
                                 {(FilterPeopleMarriage(textFindPeople, marriageDocuments).map((data: ContentTableMarriage) =>
                                     <tr key={data._id} className="border-b border-gray-400 text-black hover:scale-95 duration-300">
-                                        <td className="ps-7 lg:ps-3 py-1 text-xs text-left lg:text-center text-black font-semibold">
+                                        <td className="ps-3 py-1 text-xs text-left lg:text-center text-black font-semibold sm:px-3">
+                                            <p className="lg:hidden font-normal me-1 mb-1">Esposo:</p>
                                             {`${data.mar_husband.per_names} ${data.mar_husband.per_first_lastname}`}
+                                            <p className="lg:hidden font-normal me-1 mb-1 mt-2">Esposa:</p>
+                                            {`${data.mar_wife.per_names} ${data.mar_wife.per_first_lastname}`}
                                             <div className="mt-1 lg:hidden">
                                                 <p className="font-semibold ">{data.mar_husband.per_names}</p>
                                             </div>
@@ -62,16 +65,20 @@ export const TableMarriage = () => {
                                         <td className="hidden text-center py-1 text-xs sm:px-6 lg:table-cell font-semibold">{`${data.mar_wife.per_names} ${data.mar_wife.per_first_lastname}`}</td>
                                         <td className="hidden text-center py-1 text-xs sm:px-6 lg:table-cell font-semibold">{new Date(data.mar_date).toISOString().substring(0, 10)}</td>
 
-                                        <td className="py-3 lg:py-2 px-6 text-sm text-gray-600">
-                                            <p className="text-right lg:text-center"><span className="lg:hidden font-semibold">Código:</span> {data.mar_book}</p>
-                                            <div className="flex lg:hidden flex-col gap-y-3 items-end w-full">
-                                                <button className="flex items-center justify-center gap-x-2 mt-3 w-[30%] rounded-xl bg-yellow-500 py-[7px] px-3 text-xs font-medium text-white">
-                                                    <FiEdit />
+                                        <td className="py-3 lg:py-2 px-6 text-xs">
+                                            <p className="text-right lg:text-center"><span className="lg:hidden font-semibold me-1">Libro:</span> {data.mar_book}</p>
+                                            <div className="flex lg:hidden flex-col gap-y-3 items-end w-full mt-3">
+                                                <button
+                                                    onClick={() => openEditModal(data._id)}
+                                                    className="flex items-center w-[70%] rounded-xl bg-yellow-400 py-2 px-3 text-xs font-medium text-black border border-yellow-800 outline-none">
+                                                    <FiEdit className="me-1" />
                                                     Editar
                                                 </button>
 
-                                                <button className="flex items-center justify-center w-2/5 rounded-xl  bg-blue-600 py-2 px-3 text-left text-xs font-medium text-white">
-                                                    <FiTrash2 />
+                                                <button
+                                                    onClick={() => onDeleteDoc(data._id)}
+                                                    className="flex items-center w-[70%] rounded-xl bg-red-400 py-2 px-3 text-xs font-medium text-white border border-red-800 outline-none">
+                                                    <FiTrash2 className="me-1" />
                                                     Eliminar
                                                 </button>
                                             </div>
@@ -92,6 +99,7 @@ export const TableMarriage = () => {
                     </div>
                 )}
             {(isOpenDeleteModal) && <DeleteModal toDelete={optionsToDelete} />}
+            {(isUpdateDocument) && <LoadingModal />}
         </div>
     );
 };

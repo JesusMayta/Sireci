@@ -4,11 +4,11 @@ import { FormRegister } from '../components/FormRegister';
 export const BirthDocument = () => {
 
     return (
-        <div className="w-full h-full flex flex-row mt-5 p-4 animate-fade-right animate-duration-1000">
-            <div className="w-full lg:w-[60%]">
+        <div className="w-full h-full flex flex-row mt-5 p-1 sm:p-4 animate-fade-right animate-duration-1000">
+            <div className="w-full lg:w-[60%] ">
                 <BackButton />
-                <h2 className="mt-6 text-center text-2xl sm:text-3xl font-semibold">Complete los campos</h2>
-                <div className="mt-4 sm:mt-20 px-6 xl:px-4 2xl:px-12">
+                <h2 className="mt-3 sm:mt-6 text-center text-xl sm:text-3xl font-semibold">Complete los campos</h2>
+                <div className="mt-3 sm:mt-20 px-6 xl:px-4 2xl:px-12">
                     <FormRegister />
                 </div>
             </div>

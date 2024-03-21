@@ -51,20 +51,20 @@ export const ModalUpdateMarriage = () => {
                     {({ errors, touched }) => (
                         <Form>
                             <div className="px-8 mt-3">
-                                <div className="w-full flex flex-row gap-x-4 mt-8">
-                                    <div className="flex flex-col w-1/2">
+                                <div className="w-full flex flex-col sm:flex-row gap-x-4 mt-8">
+                                    <div className="flex flex-col w-full sm:w-1/2">
                                         <p className="rounded-lg text-center bg-black text-white text-xs py-1 font-semibold">Datos del esposo</p>
                                         <SearchPerson inputText={`${personsToEdit.mar_husband.per_names} ${personsToEdit.mar_husband.per_first_lastname}`} error={false} getPerson={(person: PersonOptions) => setPersonsToEdit({ ...personsToEdit, mar_husband: person })} placeHolder="Datos del esposo..." />
                                     </div>
 
-                                    <div className="w-1/2">
+                                    <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
                                         <p className="rounded-lg text-center bg-black text-white text-xs py-1 font-semibold">Datos de la esposa</p>
                                         <SearchPerson inputText={`${personsToEdit.mar_wife.per_names} ${personsToEdit.mar_wife.per_first_lastname}`} error={false} getPerson={(person: PersonOptions) => setPersonsToEdit({ ...personsToEdit, mar_husband: person })} placeHolder="Datos de la esposa..." />
                                     </div>
                                 </div>
 
-                                <div className="w-full flex flex-row gap-x-4 mt-4">
-                                    <div className="flex flex-col w-1/2">
+                                <div className="w-full flex flex-col sm:flex-row gap-x-4 mt-4">
+                                    <div className="flex flex-col w-full sm:w-1/2">
                                         <label htmlFor="mar_date" className="rounded-lg text-center bg-black text-white text-xs py-1 font-semibold">Fecha de registro</label>
                                         <Field
                                             type="date" name="mar_date"
@@ -72,7 +72,7 @@ export const ModalUpdateMarriage = () => {
                                         <ErrorMessage name="mar_date" component={() => <MessageAlert message={errors.mar_date} />} />
                                     </div>
 
-                                    <div className="flex flex-col w-1/2">
+                                    <div className="flex flex-col w-full sm:w-1/2 mt-4 sm:mt-0">
                                         <label htmlFor="mar_book" className="rounded-lg text-center bg-black text-white text-xs py-1 font-semibold">Libro del certificado</label>
                                         <Field
                                             placeholder="marriage-2025"

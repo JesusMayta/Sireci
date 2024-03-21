@@ -28,10 +28,10 @@ export const PrincipalLayout = ({ children }: { children: React.ReactNode }) => 
                 </div>
                 <div className="h-[92%] w-full">
                     <div className="flex flex-col justify-between h-full">
-                        <div className="h-[90%] flex bg-grad flex-col justify-between w-full">
+                        <div className="h-[90%] flex flex-col justify-between w-full overflow-y-auto sm:overflow-hidden">
                             {children}
                         </div>
-                        <div className="h-[10%] w-full">
+                        <div className="h-10 sm:h-[10%] w-full">
                             <Footer />
                         </div>
                     </div>

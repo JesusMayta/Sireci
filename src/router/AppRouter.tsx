@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { LoadingPage, LoginPage, NacimientoPage, MatrimonioPage, UsersPage, DefuncionPage, PersonasPages } from '../modules';
 import { useAuthStore } from '../hooks';
+import { ProfilePage } from '../modules/profile';
 
 export const AppRouter = () => {
 
@@ -29,6 +30,7 @@ export const AppRouter = () => {
                     <Route path="/matrimonio" element={<MatrimonioPage />} />
                     <Route path='/personas' element={< PersonasPages />} />
                     <Route path='/defuncion' element={< DefuncionPage />} />
+                    <Route path='/profile' element={< ProfilePage />} />
                     <Route path="/*" element={<Navigate to="/nacimiento" />} />
                     {(userSession.isAdmin === 1) && <Route path='/usuarios' element={< UsersPage />} />}
                 </>)};

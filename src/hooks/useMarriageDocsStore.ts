@@ -10,10 +10,14 @@ export const useMarriageDocsStore = () => {
     const dispatch = useAppDispatch();
 
     const getCertificateById = async (id: string) => {
+
+        dispatch(onUpdatingDocument(true));
+
         try {
             const { data: CertificateMarriage } = await SireciApi().get(`/certificates/marriage/${id}`);
             console.log(CertificateMarriage.data);
             dispatch(onSelectCertificateMarriage(CertificateMarriage.data));
+            dispatch(onUpdatingDocument(false));
             return true;
         } catch (error) {
             return false;

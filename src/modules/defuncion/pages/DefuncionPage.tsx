@@ -12,12 +12,12 @@ export const DefuncionPage = () => {
         <PrincipalLayout>
             <>
                 <div className="pt-6 sm:pt-2">
-                    <TitlePage title={(isOpenViewForm) ? 'Registrar acta de matrimonio' : 'Actas de matrimonio'} />
+                    <TitlePage title={(isOpenViewForm) ? 'Registrar acta de defunción' : 'Actas de Defunción'} />
                 </div>
                 {(isOpenViewForm) ?
                     (<DefuncionDocument />)
                     : (
-                        <PrincipalView SortBy={['DNI', 'Nombres y apellidos', 'Libro del acta', 'Acción']} placeHolder='Buscar por dni, nombres Ó libro' textButton='Agregar acta'>
+                        <PrincipalView SortBy={['DNI', 'Nombres', 'Libro']} placeHolder='Buscar por dni, nombres Ó libro' textButton='Agregar acta'>
                             <TableDeathDocs />
                         </PrincipalView>
                     )}

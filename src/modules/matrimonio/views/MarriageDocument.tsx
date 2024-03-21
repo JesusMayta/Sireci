@@ -7,8 +7,8 @@ export const MarriageDocument = () => {
         <div className="w-full h-full flex flex-row mt-5 p-4 animate-fade-right animate-duration-1000">
             <div className="w-full lg:w-[60%]">
                 <BackButton />
-                <h2 className="mt-6 text-center text-3xl font-semibold">Complete los campos</h2>
-                <div className="mt-16 px-6 xl:px-4 2xl:px-12">
+                <h2 className="mt-6 sm:mt-10 text-center text-xl sm:text-3xl font-semibold">Complete los campos</h2>
+                <div className="px-1 sm:px-6 xl:px-4 2xl:px-12">
                     <FormRegister />
                 </div>
             </div>
