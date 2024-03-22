@@ -4,6 +4,7 @@ import { SireciApi } from '../api/sireciApi';
 import { onCheckingAuthSession, onLoginUserSession, onLogoutUserSession, useAppDispatch, useAppSelector } from '../store';
 import { LoginOptions } from '../helpers';
 
+
 export const useAuthStore = () => {
 
     const { status, userSession, errorMessage } = useAppSelector((state) => state.auth);
@@ -27,7 +28,6 @@ export const useAuthStore = () => {
 
         const token = localStorage.getItem('token');
         if (!token) return dispatch(onLogoutUserSession('Su sesión ha caducado'));
-
 
         try {
             const Token: { email: string } = jwtDecode(token);

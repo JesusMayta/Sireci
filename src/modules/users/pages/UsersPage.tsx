@@ -1,25 +1,22 @@
 
-import { useUiStore } from "../../../hooks";
-import { TitlePage } from "../../components";
-import { PrincipalLayout, PrincipalView } from "../../layouts";
-import { TableUsers } from '../views/TableUsers';
-
-
+import { useUiStore } from '../../../hooks';
+import { FormLayout, PrincipalLayout, PrincipalView } from '../../layouts';
+import { TableUsers } from '../components';
 
 export const UsersPage = () => {
 
     const { isOpenViewForm } = useUiStore();
 
     return (
-        <PrincipalLayout>
+        <PrincipalLayout title={(isOpenViewForm) ? 'Registrar nuevo usuario' : 'Lista de Usuarios'}>
             <>
-                <div className="pt-6 sm:pt-2">
-                    <TitlePage title={(isOpenViewForm) ? 'Registrar nuevo usuario' : 'Lista de Usuarios'} />
-                </div>
                 {(isOpenViewForm) ?
-                    (<p>dd</p>)
-                    : (
-                        <PrincipalView SortBy={['Nombres', 'Apellidos', 'Username', 'Tipo de usuario']} placeHolder='Buscar por dni, nombres Ó libro' textButton="Agregar usuario">
+                    (
+                        <FormLayout infoText="En esta sección es importante que usted digite bien los datos de un usuario nuevo, para que asi pueda realizar sus actividades en la aplicación.">
+                            <h1>Hola mundo</h1>
+                        </FormLayout>
+                    ) : (
+                        <PrincipalView SortBy={['Nombres', 'Apellidos', 'Username', 'Rol']} placeHolder='Buscar por dni, nombres, email y rol' textButton='Usuario'>
                             <TableUsers />
                         </PrincipalView>
                     )}

@@ -4,7 +4,7 @@ import { Bounce, toast } from 'react-toastify';
 import { useAuthStore } from '../../../hooks';
 
 import { ToastAlert } from '../../components';
-import { FormLogin, ImageLogin, NavBar } from '../components';
+import { FormLogin, ImageLogin } from '../components';
 
 export const LoginPage = () => {
 
@@ -20,7 +20,10 @@ export const LoginPage = () => {
     <div className="h-screen w-screen">
       <section className="relative flex w-full h-full bg-gray-200">
         <div className="absolute z-10 w-full h-16">
-          <NavBar />
+          <nav className="flex justify-between items-center w-full h-full bg-gray-900 text-white px-10 md:px-24 shadow-lg shadow-gray-950">
+            <p className="text-2xl sm:text-4xl font-extrabold">SIRECI</p>
+            <p className="font-semibold text-sm sm:text-xl">Servicio de Registro Civil</p>
+          </nav>
         </div>
         <ImageLogin />
         <div className="flex items-center h-full w-full md:w-[60%] lg:w-[35%] xl:w-[30%] bg-white">

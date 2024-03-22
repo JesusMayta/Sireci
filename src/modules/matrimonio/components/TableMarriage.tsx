@@ -55,8 +55,10 @@ export const TableMarriage = () => {
                                         <td className="ps-3 py-1 text-xs text-left lg:text-center text-black font-semibold sm:px-3">
                                             <p className="lg:hidden font-normal me-1 mb-1">Esposo:</p>
                                             {`${data.mar_husband.per_names} ${data.mar_husband.per_first_lastname}`}
-                                            <p className="lg:hidden font-normal me-1 mb-1 mt-2">Esposa:</p>
-                                            {`${data.mar_wife.per_names} ${data.mar_wife.per_first_lastname}`}
+                                            <div className="lg:hidden">
+                                                <p className="font-normal me-1 mb-1 mt-2">Esposa:</p>
+                                                {`${data.mar_wife.per_names} ${data.mar_wife.per_first_lastname}`}
+                                            </div>
                                             <div className="mt-1 lg:hidden">
                                                 <p className="font-semibold ">{data.mar_husband.per_names}</p>
                                             </div>

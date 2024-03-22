@@ -20,6 +20,7 @@ export const TableBirthDocuments = () => {
     if (isLoadingDocuments) {
         return <LoadComponent />
     };
+
     const openEditModal = async (id: string) => {
         const isCorrect = await getCertificateBirthById(id);
         if (isCorrect) {

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { usePeopleStore, useUiStore } from '../../hooks';
-import { Footer, Navbar, Sidebar } from '../components';
+import { Footer, Navbar, Sidebar, TitlePage } from '../components';
 
-export const PrincipalLayout = ({ children }: { children: React.ReactNode }) => {
+export const PrincipalLayout = ({ children, title }: { children: React.ReactNode, title: string }) => {
 
     const { isOpenSidebar, startOpenViewForm } = useUiStore();
     const { startSearchPeople, getAllPersons } = usePeopleStore();
@@ -29,6 +29,9 @@ export const PrincipalLayout = ({ children }: { children: React.ReactNode }) => 
                 <div className="h-[92%] w-full">
                     <div className="flex flex-col justify-between h-full">
                         <div className="h-[90%] flex flex-col justify-between w-full overflow-y-auto sm:overflow-hidden">
+                            <div className="pt-6 sm:pt-2">
+                                <TitlePage title={title} />
+                            </div>
                             {children}
                         </div>
                         <div className="h-10 sm:h-[10%] w-full">

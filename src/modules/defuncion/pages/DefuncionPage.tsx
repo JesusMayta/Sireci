@@ -1,23 +1,22 @@
-import { TitlePage } from '../../components';
-import { PrincipalLayout, PrincipalView } from '../../layouts';
+import { FormLayout, PrincipalLayout, PrincipalView } from '../../layouts';
 import { useUiStore } from '../../../hooks';
-import { TableDeathDocs } from '../components/TableDeathDocs';
-import { ModalUpdateDeath, DefuncionDocument } from '../views';
+import { TableDeathDocs, FormRegister, ModalUpdateDeath } from '../components';
 
 export const DefuncionPage = () => {
 
     const { isOpenViewForm, isOpenEditModal } = useUiStore();
 
     return (
-        <PrincipalLayout>
+        <PrincipalLayout title={(isOpenViewForm) ? 'Registrar acta de defunción' : 'Actas de Defunción'}>
             <>
-                <div className="pt-6 sm:pt-2">
-                    <TitlePage title={(isOpenViewForm) ? 'Registrar acta de defunción' : 'Actas de Defunción'} />
-                </div>
                 {(isOpenViewForm) ?
-                    (<DefuncionDocument />)
-                    : (
-                        <PrincipalView SortBy={['DNI', 'Nombres', 'Libro']} placeHolder='Buscar por dni, nombres Ó libro' textButton='Agregar acta'>
+                    (
+                        <FormLayout infoText="Es el procedimiento donde se registra el fallecimiento de una persona, para ello debe contar con el Certificado de Defunción, el cual tiene que estar debidamente firmado y sellado por profesional de salud o Declaración Jurada de la autoridad política, judicial o religiosa, en los lugares donde no existe un profesional de salud que acredite la defunción.">
+                            <FormRegister />
+                        </FormLayout>
+                    ) :
+                    (
+                        <PrincipalView SortBy={['DNI', 'Nombres', 'Libro']} placeHolder='Buscar por dni, nombres y libro' textButton='Agregar acta'>
                             <TableDeathDocs />
                         </PrincipalView>
                     )}

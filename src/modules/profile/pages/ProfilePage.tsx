@@ -1,9 +1,10 @@
-import { PrincipalLayout } from "../../layouts"
+import { PrincipalLayout } from '../../layouts';
 
 export const ProfilePage = () => {
+
   return (
-    <PrincipalLayout>
-      <div>dsa</div>
+    <PrincipalLayout title="Mi Perfil de usuario">
+      <div className="h-full mt-4">asd</div>
     </PrincipalLayout>
   );
 };

@@ -2,13 +2,13 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { ErrorText, MessageAlert, SearchPerson, ToastAlert } from '../../components';
 import { useState } from 'react';
 import { DeathDocumentValidations, PersonOptions } from '../../../helpers';
-import { useDeathDocsStore, useUiStore } from '../../../hooks';
+import { useAuthStore, useDeathDocsStore, useUiStore } from '../../../hooks';
 import { Bounce, toast } from 'react-toastify';
 import { HiDocumentArrowUp, HiXCircle } from 'react-icons/hi2';
 
-export const FormRegister = ({ user }: { user: string }) => {
+export const FormRegister = () => {
 
-
+    const { userSession } = useAuthStore();
     const { startRegisterDeathDoc, startShowMessageDeath } = useDeathDocsStore();
     const { startOpenViewForm } = useUiStore();
 
@@ -23,7 +23,7 @@ export const FormRegister = ({ user }: { user: string }) => {
             setErrorPerson(false);
             const success = await startRegisterDeathDoc({
                 ...values,
-                user_user_id: user,
+                user_user_id: userSession.id,
                 person_per_id: person._id,
             });
 

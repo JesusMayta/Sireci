@@ -3,7 +3,14 @@ import { Bounce, toast } from 'react-toastify';
 import { BarOptions, ToastAlert } from '../components';
 import { useAppSelector } from '../../store';
 
-export const PrincipalView = ({ children, SortBy, placeHolder, textButton }: { children: ReactNode, SortBy: string[], placeHolder: string, textButton: string }) => {
+interface PrincipalOptions {
+    children: ReactNode;
+    SortBy: string[];
+    placeHolder: string;
+    textButton: string;
+};
+
+export const PrincipalView = ({ children, SortBy, placeHolder, textButton }: PrincipalOptions) => {
 
     const { successMessage } = useAppSelector(state => state.documents);
 

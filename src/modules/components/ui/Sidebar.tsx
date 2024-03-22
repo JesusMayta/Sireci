@@ -13,6 +13,7 @@ export const Sidebar = () => {
     const path = window.location.pathname;
 
     const logoutSession = () => {
+        startOpenSidebar(false);
         logoutUserSession();
     };
 
