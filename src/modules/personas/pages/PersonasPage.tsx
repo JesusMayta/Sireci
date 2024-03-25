@@ -27,15 +27,10 @@ export const PersonasPages = () => {
   });
 
   return (
-    <PrincipalLayout>
+    <PrincipalLayout pageTitle='Registro de personas'>
       <>
         <div className='h-full'>
-          <div className='pt-6 sm:pt-2'>
-            <TitlePage title={`Registro de personas`} />
-          </div>
-
           <form className=''>
-            {/* <div className='grid grid-cols-2 gap-4 float-start m-2 w-full'> */}
             <div className={`${commonFormClasses.formResponsiveGrid}`}>
               <div className=''>
                 <label className={commonFormClasses.label}>Nombres</label>
@@ -138,29 +133,27 @@ export const PersonasPages = () => {
                   <option value='1' label='Otros'></option>
                   <option value='0' label='Prefiero no decirlo'></option>
                 </select>
-                <div>
-                  <label className={commonFormClasses.label}>
-                    Estado Civil
-                  </label>
-                  <input
-                    type='text'
-                    id='marital_status'
-                    name='marital_status'
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.marital_status}
-                    placeholder='Indique su estado civil'
-                    className={`${commonFormClasses.input}`}
-                  />
-                </div>
-                <div>
-                  <button
-                    type='submit'
-                    className='mt-6 bg-teal-700 text-white h-10 w-32'
-                  >
-                    Registrar
-                  </button>
-                </div>
+              </div>
+              <div>
+                <label className={commonFormClasses.label}>Estado Civil</label>
+                <input
+                  type='text'
+                  id='marital_status'
+                  name='marital_status'
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.marital_status}
+                  placeholder='Indique su estado civil'
+                  className={`${commonFormClasses.input}`}
+                />
+              </div>
+              <div>
+                <button
+                  type='submit'
+                  className='mt-6 bg-teal-700 text-white h-10 w-32'
+                >
+                  Registrar
+                </button>
               </div>
             </div>
           </form>
