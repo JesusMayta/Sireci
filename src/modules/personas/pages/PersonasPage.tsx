@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { PrincipalLayout } from '../../layouts';
 import * as Yup from 'yup';
 import { TitlePage } from '../../components';
+import { commonFormClasses } from '../../../utils/common-form-classes';
 
 const validationSchema = Yup.object({
   nombres: Yup.string().required('Campo requerido'),
@@ -28,15 +29,16 @@ export const PersonasPages = () => {
   return (
     <PrincipalLayout>
       <>
-        <div className='h-full bg-gray-300'>
+        <div className='h-full'>
           <div className='pt-6 sm:pt-2'>
             <TitlePage title={`Registro de personas`} />
           </div>
 
-          <form className='w-[800px] h-[600px] '>
-            <div className='grid grid-cols-2 gap-4 float-start m-2 w-full'>
-              <div className='mb-2'>
-                <label>Nombres:</label>
+          <form className=''>
+            {/* <div className='grid grid-cols-2 gap-4 float-start m-2 w-full'> */}
+            <div className={`${commonFormClasses.formResponsiveGrid}`}>
+              <div className=''>
+                <label className={commonFormClasses.label}>Nombres</label>
                 <input
                   type='text'
                   id='nombres'
@@ -45,7 +47,7 @@ export const PersonasPages = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.nombres}
                   placeholder='Ingrese sus nombres'
-                  className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                  className={`${commonFormClasses.input}`}
                 />
                 {formik.touched.nombres && formik.errors.nombres ? (
                   <div className='text-red-500 text-lg'>
@@ -54,7 +56,9 @@ export const PersonasPages = () => {
                 ) : null}
               </div>
               <div>
-                <label>Primer Apellido:</label>
+                <label className={commonFormClasses.label}>
+                  Primer Apellido
+                </label>
                 <input
                   type='text'
                   id='primer_apellido'
@@ -63,7 +67,7 @@ export const PersonasPages = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.primer_apellido}
                   placeholder='Ingrese su apellido paterno'
-                  className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                  className={`${commonFormClasses.input}`}
                 />
                 {formik.touched.primer_apellido &&
                 formik.errors.primer_apellido ? (
@@ -73,7 +77,9 @@ export const PersonasPages = () => {
                 ) : null}
               </div>
               <div>
-                <label>Segundo Apellido:</label>
+                <label className={commonFormClasses.label}>
+                  Segundo Apellido
+                </label>
                 <input
                   type='text'
                   id='segundo_apellido'
@@ -82,18 +88,18 @@ export const PersonasPages = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.segundo_apellido}
                   placeholder='Ingrese su apellido materno'
-                  className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                  className={`${commonFormClasses.input}`}
                 />
               </div>
               <div>
-                <label>Documento:</label>
+                <label className={commonFormClasses.label}>Documento</label>
                 <select
                   id='tipo_documento'
                   name='tipo_documento'
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.tipo_documento}
-                  className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                  className={`${commonFormClasses.input}`}
                 >
                   <option value='' label='Selecciona su tipo de documento' />
                   <option value='2' label='D.N.I'></option>
@@ -102,7 +108,9 @@ export const PersonasPages = () => {
                 </select>
               </div>
               <div>
-                <label>Numero de documento:</label>
+                <label className={commonFormClasses.label}>
+                  Numero de documento
+                </label>
                 <input
                   type='text'
                   id='documeto_number'
@@ -111,18 +119,18 @@ export const PersonasPages = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.documeto_number}
                   placeholder='Ingrese su numero de D.N.I o carnet de extranjería'
-                  className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                  className={`${commonFormClasses.input}`}
                 />
               </div>
               <div>
-                <label>Genero:</label>
+                <label className={commonFormClasses.label}>Genero</label>
                 <select
                   id='persona_genero'
                   name='persona_genero'
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.persona_genero}
-                  className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                  className={`${commonFormClasses.input}`}
                 >
                   <option value='' label='Seleccione su genero' />
                   <option value='3' label='Femenino'></option>
@@ -131,7 +139,9 @@ export const PersonasPages = () => {
                   <option value='0' label='Prefiero no decirlo'></option>
                 </select>
                 <div>
-                  <label>Estado Civil:</label>
+                  <label className={commonFormClasses.label}>
+                    Estado Civil
+                  </label>
                   <input
                     type='text'
                     id='marital_status'
@@ -140,7 +150,7 @@ export const PersonasPages = () => {
                     onBlur={formik.handleBlur}
                     value={formik.values.marital_status}
                     placeholder='Indique su estado civil'
-                    className='mt-1 p-2 border-2  w-full focus:outline-none focus:ring'
+                    className={`${commonFormClasses.input}`}
                   />
                 </div>
                 <div>
