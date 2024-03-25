@@ -42,7 +42,7 @@ export const PrincipalLayout = ({
                 <TitlePage title={pageTitle} />
               </div>
             )}
-            <div className='h-[90%] flex bg-grad flex-col bg-red-300 justify-between w-full py-6 my-4 px-4 sm:px-10 overflow-y-scroll'>
+            <div className='h-[90%] flex bg-grad flex-col justify-between w-full'>
               {children}
             </div>
             <div className='h-[10%] w-full'>

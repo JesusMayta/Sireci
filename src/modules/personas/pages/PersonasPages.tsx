@@ -1,14 +1,7 @@
 import { useFormik } from 'formik';
-import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
-import * as Yup from 'yup';
+import { PrincipalLayout } from '../../layouts';
 import { commonFormClasses } from '../../../utils/common-form-classes';
-import { TitlePage } from '../../components';
-import { successButton } from '../../../utils/general-style-classes';
-
-const validationSchema = Yup.object({
-  nombres: Yup.string().required('Campo requerido'),
-  primer_apellido: Yup.string().required('Campo requerido'),
-});
+import { validationSchema } from './PersonasPage';
 
 export const PersonasPages = () => {
   const formik = useFormik({
@@ -28,10 +21,7 @@ export const PersonasPages = () => {
   });
 
   return (
-    <PrincipalLayout>
-      <div className='pt-6 sm:pt-2'>
-        <TitlePage title={'Registrar persona'} />
-      </div>
+    <PrincipalLayout pageTitle='Registro de personas'>
       <PrincipalViewContainer>
         <div className='h-full'>
           <form className=''>
@@ -152,7 +142,10 @@ export const PersonasPages = () => {
                 />
               </div>
               <div>
-                <button type='submit' className={successButton}>
+                <button
+                  type='submit'
+                  className='mt-6 bg-teal-700 text-white h-10 w-32'
+                >
                   Registrar
                 </button>
               </div>
