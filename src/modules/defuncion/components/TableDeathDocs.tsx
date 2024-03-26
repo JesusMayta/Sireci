@@ -41,7 +41,7 @@ export const TableDeathDocs = () => {
             {(FilterPeopleDeath(textFindPeople, deathCertificates).length === 0) ? (
                 <div className="flex justify-center mt-32 h-full text-3xl font-semibold">No hay coincidencias de busqueda</div>) :
                 (
-                    <div className="mt-6 overflow-hidden rounded-xl bg-white px-6 shadow-md shadow-gray-900 lg:px-3 select-none">
+                    <div className="mt-6 overflow-hidden rounded-xl bg-white px-2 shadow-md shadow-gray-900 lg:px-3 select-none">
                         <table className="min-w-full h-fit">
                             <thead className="hidden border-b-2 border-gray-950 lg:table-header-group">
                                 <tr className="whitespace-normal font-semibold text-black text-center">
@@ -54,9 +54,9 @@ export const TableDeathDocs = () => {
                             <tbody className="bg-white lg:border-gray-300">
                                 {(FilterPeopleDeath(textFindPeople, deathCertificates).map((data: ContentTableDeath) =>
                                     <tr key={data._id} className="border-b border-gray-400 text-black hover:scale-95 duration-300">
-                                        <td className="ps-1 py-1 text-xs text-left lg:text-center text-black font-semibold sm:px-3">
+                                        <td className="ps-1 py-1 text-xs text-left lg:text-center text-black sm:px-3">
                                             <p className="lg:hidden font-normal me-1 mb-1">DNI:</p>
-                                            {data.person_per_id.per_document_number}
+                                            <p className="font-semibold">{data.person_per_id.per_document_number}</p>
                                             <div className="mt-1 lg:hidden">
                                                 <p className="font-semibold mt-1">{`${data.person_per_id.per_names} ${data.person_per_id.per_first_lastname}`}</p>
                                                 <p className="mt-2">+ {new Date(data.dea_date).toISOString().substring(0, 10)}</p>
@@ -65,13 +65,13 @@ export const TableDeathDocs = () => {
 
                                         <td className="hidden text-center py-1 text-xs sm:px-6 lg:table-cell font-semibold">{`${data.person_per_id.per_names} ${data.person_per_id.per_first_lastname}`}</td>
 
-                                        <td className="py-3 lg:py-2 px-6 text-xs">
+                                        <td className="py-3 lg:py-2 px-3 text-xs">
                                             <p className="text-right lg:text-center"><span className="lg:hidden font-semibold me-1">Libro:</span> {data.dea_book}</p>
                                             <div className="flex lg:hidden flex-col gap-y-3 items-end w-full mt-3">
                                                 <button
                                                     onClick={() => onUpdateCertificate(data._id)}
                                                     className="flex items-center w-[70%] rounded-xl bg-yellow-400 py-2 px-3 text-xs font-medium text-black border border-yellow-800 outline-none">
-                                                    <FiEdit className="me-1" />
+                                                    <FiEdit className="text-lg me-2 sm:me-3" />
                                                     Editar
                                                 </button>
                                                 <button

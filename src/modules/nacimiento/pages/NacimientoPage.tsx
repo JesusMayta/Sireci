@@ -3,7 +3,7 @@ import { useUiStore } from '../../../hooks';
 
 import { TableBirthDocuments, FormRegister, ModalUpdateBirth } from '../components';
 
-const SortBy = ['Dni', 'Nombres', 'Código'];
+const SortBy = ['Dni', 'Nombres', 'Libro'];
 
 export const NacimientoPage = () => {
 
@@ -19,7 +19,7 @@ export const NacimientoPage = () => {
                         </FormLayout>
                     ) :
                     (
-                        <PrincipalView SortBy={SortBy} placeHolder='Buscar por dni, nombres y libro' textButton='Agregar acta'>
+                        <PrincipalView SortBy={SortBy} placeHolder='Buscar por dni, nombres y libro' textButton='Nueva acta' page='birth'>
                             <TableBirthDocuments />
                         </PrincipalView>
                     )}

@@ -75,8 +75,8 @@ export const FormRegister = () => {
                                 {(errorSearch.errorMother) && <ErrorText />}
                             </div>
                             <div className="w-full sm:w-1/2 flex flex-col mt-3 sm:mt-0">
-                                <label htmlFor="birth_book" className="text-sm font-semibold">Código de acta:</label>
-                                <Field type="text" id="birth_book" name="birth_book" className={`input_field ${(!errors.birth_book || !touched.birth_book) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
+                                <label htmlFor="birth_book" className="text-sm font-semibold">Libro del acta:</label>
+                                <Field type="text" id="birth_book" name="birth_book" className={`input_field ${(!errors.birth_book || !touched.birth_book) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} placeholder="birth-2023" />
                                 <ErrorMessage name="birth_book" component={() => <MessageAlert message={errors.birth_book} />} />
                             </div>
                         </div>

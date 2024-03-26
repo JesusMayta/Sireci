@@ -19,7 +19,7 @@ export const MatrimonioPage = () => {
                         </FormLayout>
                     ) :
                     (
-                        <PrincipalView SortBy={SortBy} placeHolder='Buscar al esposo o a la esposa' textButton='Agregar acta'>
+                        <PrincipalView SortBy={SortBy} placeHolder='Buscar al esposo o a la esposa' textButton='Nueva acta' page='marriage'>
                             <TableMarriage />
                         </PrincipalView>
                     )}

@@ -6,7 +6,8 @@ export const uiSlice = createSlice({
         isOpenSidebar: false,
         isOpenViewForm: false,
         isOpenEditModal: false,
-        isOpenDeleteModal: false
+        isOpenDeleteModal: false,
+        textToSort: '',
     },
     reducers: {
         onOpenSidebar: (state, { payload }) => {
@@ -20,7 +21,10 @@ export const uiSlice = createSlice({
         },
         onOpenDeleteModal: (state, { payload }) => {
             state.isOpenDeleteModal = payload;
-        }
+        },
+        onSetTextToSort: (state, { payload }) => {
+            state.textToSort = payload;
+        },
     }
 });
 
@@ -37,4 +41,6 @@ export const {
 
     // Sidebar
     onOpenSidebar,
+
+    onSetTextToSort
 } = uiSlice.actions;

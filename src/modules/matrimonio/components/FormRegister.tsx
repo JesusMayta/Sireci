@@ -53,16 +53,16 @@ export const FormRegister = () => {
                     <Form>
                         <div className="flex flex-col sm:flex-row w-full gap-x-4 mt-10 sm:mt-20">
                             <div className="flex flex-col w-full sm:w-1/2">
-                                <h2 className="font-semibold bg-gray-900 text-white rounded-lg text-center py-1 text-sm">Datos del marido</h2>
-                                <div className="mt-2">
+                                <p className="font-semibold rounded-lg text-left text-sm">Datos del esposo:</p>
+                                <div className="mt-1">
                                     <SearchPerson inputText='' error={errorSearch.errorHusband} placeHolder="Buscar al esposo" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_husband: person })} />
                                     {(errorSearch.errorHusband) && <ErrorText />}
                                 </div>
                             </div>
 
                             <div className="w-full sm:w-1/2 flex flex-col mt-4 sm:mt-0">
-                                <h2 className="font-semibold bg-gray-900 text-white rounded-lg text-center py-1 text-sm">Datos de la esposa</h2>
-                                <div className="mt-2">
+                                <p className="font-semibold rounded-lg text-left text-sm">Datos de la esposa:</p>
+                                <div className="mt-1">
                                     <SearchPerson inputText='' error={errorSearch.errorWife} placeHolder="Buscar a la esposa" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_wife: person })} />
                                     {(errorSearch.errorWife) && <ErrorText />}
                                 </div>

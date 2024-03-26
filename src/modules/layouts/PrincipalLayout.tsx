@@ -4,7 +4,7 @@ import { Footer, Navbar, Sidebar, TitlePage } from '../components';
 
 export const PrincipalLayout = ({ children, title }: { children: React.ReactNode, title: string }) => {
 
-    const { isOpenSidebar, startOpenViewForm } = useUiStore();
+    const { isOpenSidebar, startOpenViewForm, startSelectSort } = useUiStore();
     const { startSearchPeople, getAllPersons } = usePeopleStore();
 
     useEffect(() => {
@@ -16,6 +16,9 @@ export const PrincipalLayout = ({ children, title }: { children: React.ReactNode
 
         //* clear filter to search
         startSearchPeople('');
+
+        startSelectSort('');
+
     }, []);
 
     return (

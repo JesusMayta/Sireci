@@ -27,8 +27,8 @@ export const LoginPage = () => {
         </div>
         <ImageLogin />
         <div className="flex items-center h-full w-full md:w-[60%] lg:w-[35%] xl:w-[30%] bg-white">
-          <div className="w-full h-[70%] px-12">
-            <h2 className="mt-24 text-center font-extrabold text-5xl sm:text-6xl">Bienvenido</h2>
+          <div className="w-full h-[70%] flex flex-col justify-center">
+            <h2 className="mt-24 text-center font-extrabold text-5xl xl:text-6xl">Bienvenido</h2>
             <p className="text-center font-semibold mt-4 mb-12">Ingrese sus crendenciales</p>
             <FormLogin />
           </div>

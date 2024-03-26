@@ -1,7 +1,7 @@
 
 import { useUiStore } from '../../../hooks';
 import { FormLayout, PrincipalLayout, PrincipalView } from '../../layouts';
-import { TableUsers } from '../components';
+import { TableUsers, FormRegisterUser } from '../components';
 
 export const UsersPage = () => {
 
@@ -13,7 +13,7 @@ export const UsersPage = () => {
                 {(isOpenViewForm) ?
                     (
                         <FormLayout infoText="En esta sección es importante que usted digite bien los datos de un usuario nuevo, para que asi pueda realizar sus actividades en la aplicación.">
-                            <h1>Hola mundo</h1>
+                            <FormRegisterUser />
                         </FormLayout>
                     ) : (
                         <PrincipalView SortBy={['Nombres', 'Apellidos', 'Username', 'Rol']} placeHolder='Buscar por dni, nombres, email y rol' textButton='Usuario'>

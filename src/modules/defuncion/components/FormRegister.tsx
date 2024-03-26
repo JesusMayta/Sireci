@@ -46,7 +46,7 @@ export const FormRegister = () => {
                 {({ errors, touched }) => (
                     <Form>
                         <div className="w-full mt-12 sm:mt-0">
-                            <h2 className="w-full bg-gray-950 text-white font-semibold text-center py-1 sm:py-3 rounded-lg text-sm sm:text-base">Datos del dinfunto</h2>
+                            <h2 className="w-full bg-gray-950 text-white font-semibold text-center py-1 sm:py-2 rounded-lg text-sm sm:text-base">Datos del dinfunto</h2>
 
                             <div className="mt-4 flex flex-col sm:flex-row w-full gap-x-8 xl:gap-x-6 2xl:gap-x-16 text-sm sm:text-base">
                                 <div className="w-full sm:w-1/2">
