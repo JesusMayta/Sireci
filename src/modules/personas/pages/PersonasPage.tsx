@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
 import * as Yup from 'yup';
 import { commonFormClasses } from '../../../utils/common-form-classes';
-import { TitlePage } from '../../components';
+import { ErrorText, TitlePage } from '../../components';
 import { successButton } from '../../../utils/general-style-classes';
 
 const validationSchema = Yup.object({
@@ -48,11 +48,9 @@ export const PersonasPages = () => {
                   placeholder='Ingrese sus nombres'
                   className={`${commonFormClasses.input}`}
                 />
-                {formik.touched.nombres && formik.errors.nombres ? (
-                  <div className='text-red-500 text-lg'>
-                    {formik.errors.nombres}
-                  </div>
-                ) : null}
+                {formik.touched.nombres && (
+                  <ErrorText errorMessage={formik.errors.nombres} />
+                )}
               </div>
               <div>
                 <label className={commonFormClasses.label}>
@@ -68,12 +66,9 @@ export const PersonasPages = () => {
                   placeholder='Ingrese su apellido paterno'
                   className={`${commonFormClasses.input}`}
                 />
-                {formik.touched.primer_apellido &&
-                formik.errors.primer_apellido ? (
-                  <div className='text-red-500 text-lg'>
-                    {formik.errors.primer_apellido}
-                  </div>
-                ) : null}
+                {formik.touched.primer_apellido && (
+                  <ErrorText errorMessage={formik.errors.primer_apellido} />
+                )}
               </div>
               <div>
                 <label className={commonFormClasses.label}>
