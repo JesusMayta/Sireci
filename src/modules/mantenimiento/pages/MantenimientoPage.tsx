@@ -1,62 +1,94 @@
-import { PrincipalLayout } from "../../layouts"
+import { commonFormClasses } from '../../../utils/common-form-classes';
+import { successButton } from '../../../utils/general-style-classes';
+import { TitlePage } from '../../components';
+import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
 
 export const MantenimientoPage = () => {
   return (
     <PrincipalLayout>
-      <>
-        <div className="h-full p-4 bg-gray-300">
-          <div className='bg-blue-800 text-white w-full h-10 pt-2 pl-10 text-justify'>Datos de la municipalidad</div>
+      <div className='pt-6 sm:pt-2'>
+        <TitlePage title={'Realizar backup'} />
+      </div>
+      <PrincipalViewContainer>
+        <div className='h-full'>
           <form>
-            <div>
-              <div className="mt-16 flex items-center">
-                <label  className="ml-24 font-medium">Nombre</label>
-                <input id="nombre" type="text" className="ml-24 py-2  ps-3 w-9/12 rounded-lg border-2 border-gray-400 " placeholder="nombre de la municipalidad " />
+            <div className={`${commonFormClasses.formResponsiveGrid}`}>
+              <div className=''>
+                <label className={commonFormClasses.label}>Nombre</label>
+                <input
+                  id='nombre'
+                  type='text'
+                  className={`${commonFormClasses.input}`}
+                  placeholder='nombre de la municipalidad '
+                />
               </div>
-              <div className=" flex items-center">
-                <label  className="ml-24 font-medium">RUC</label>
-                <input id="nombre" type="text" className="ml-32 py-2  ps-3 w-9/12 rounded-lg border-2 border-gray-400 " placeholder="escriba el RUC " />
+              <div className=''>
+                <label className={commonFormClasses.label}>RUC</label>
+                <input
+                  id='nombre'
+                  type='text'
+                  className={`${commonFormClasses.input}`}
+                  placeholder='escriba el RUC '
+                />
               </div>
-              <div className="mt-6 flex items-center">
-                <label  className="ml-24 font-medium">Sitio web</label>
-                <input id="nombre" type="text" className="ml-24 py-2  ps-3 w-9/12 rounded-lg border-2 border-gray-400 " placeholder="nombre de algun sitio web " />
+              <div className=''>
+                <label className={commonFormClasses.label}>Sitio web</label>
+                <input
+                  id='nombre'
+                  type='text'
+                  className={`${commonFormClasses.input}`}
+                  placeholder='nombre de algun sitio web '
+                />
               </div>
-              <div className="mt-6 flex items-center">
-                <label  className="ml-24 font-medium">Telefono</label>
-                <input id="nombre" type="text" className="ml-24 py-2  ps-3 w-9/12 rounded-lg border-2 border-gray-400 " placeholder="escriba su telefono " />
+              <div className=''>
+                <label className={commonFormClasses.label}>Telefono</label>
+                <input
+                  id='nombre'
+                  type='text'
+                  className={`${commonFormClasses.input}`}
+                  placeholder='escriba su telefono '
+                />
               </div>
-              <div className="mt-6 flex items-center">
-                <label  className="ml-24 font-medium">Direccion</label>
-                <input id="nombre" type="text" className="ml-24 py-2  ps-3 w-9/12 rounded-lg border-2 border-gray-400 " placeholder="escriba su direccion " />
+              <div className=''>
+                <label className={commonFormClasses.label}>Direccion</label>
+                <input
+                  id='nombre'
+                  type='text'
+                  className={`${commonFormClasses.input}`}
+                  placeholder='escriba su direccion '
+                />
               </div>
-              <div className="mt-6 flex items-center">
-                <label  className="ml-24 font-medium">Email</label>
-                <input id="nombre" type="email" className="ml-32 py-2  ps-3 w-9/12 rounded-lg border-2 border-gray-400 " placeholder="escriba su correro electrónico " />
+              <div className=''>
+                <label className={commonFormClasses.label}>Email</label>
+                <input
+                  id='nombre'
+                  type='email'
+                  className={`${commonFormClasses.input}`}
+                  placeholder='escriba su correro electrónico '
+                />
               </div>
-              <div className="flex justify-end pt-12">
-                <button  className='bg-teal-700  text-white h-10 w-32 '> Guardar</button>
+              <div className='flex flex-wrap gap-x-6 gap-y-4'>
+                <button type='submit' className={successButton}>
+                  Guardar
+                </button>
+                <button type='submit' className={successButton}>
+                  Download
+                </button>
               </div>
-
-              <div className="flex justify-end pt-12">
-                <button  className='bg-teal-700  text-white h-10 w-32 '> Download</button>
-              </div>
-
               <div>
-                <select>
-                    <option>actas de matrimonio</option>
-                    <option>people</option>
-                    <option>defuncion</option>
-                    <option>nacimiento</option>
-                    <option></option>
-
+                <select className={`${commonFormClasses.input}`}>
+                  <option>actas de matrimonio</option>
+                  <option>people</option>
+                  <option>defuncion</option>
+                  <option>nacimiento</option>
+                  <option></option>
                 </select>
               </div>
-            </div>             
+            </div>
           </form>
-        </div>        
-      </>
-       {/* crear un select que te guarde los nombres de las colecciones  */}
-
-
+        </div>
+      </PrincipalViewContainer>
+      {/* crear un select que te guarde los nombres de las colecciones  */}
     </PrincipalLayout>
-  )
-}
+  );
+};
