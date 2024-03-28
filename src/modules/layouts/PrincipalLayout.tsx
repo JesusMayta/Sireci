@@ -4,12 +4,12 @@ import { Footer, Navbar, Sidebar, TitlePage } from '../components';
 
 export const PrincipalLayout = ({
   children,
-  pageTitle,
+  title,
 }: {
   children: React.ReactNode;
-  pageTitle?: string;
+  title: string;
 }) => {
-  const { isOpenSidebar, startOpenViewForm } = useUiStore();
+  const { isOpenSidebar, startOpenViewForm, startSelectSort } = useUiStore();
   const { startSearchPeople, getAllPersons } = usePeopleStore();
 
   useEffect(() => {
@@ -21,6 +21,8 @@ export const PrincipalLayout = ({
 
     //* clear filter to search
     startSearchPeople('');
+
+    startSelectSort('');
   }, []);
 
   return (
@@ -37,15 +39,13 @@ export const PrincipalLayout = ({
         </div>
         <div className='h-[92%] w-full'>
           <div className='flex flex-col justify-between h-full'>
-            {pageTitle && (
-              <div className='pt-6 sm:pt-2 z-5'>
-                <TitlePage title={pageTitle} />
+            <div className='h-[90%] flex flex-col justify-between w-full overflow-y-auto sm:overflow-hidden'>
+              <div className='pt-6 sm:pt-2'>
+                <TitlePage title={title} />
               </div>
-            )}
-            <div className='h-[90%] flex bg-grad flex-col justify-between w-full'>
               {children}
             </div>
-            <div className='h-[10%] w-full'>
+            <div className='h-10 sm:h-[10%] w-full'>
               <Footer />
             </div>
           </div>

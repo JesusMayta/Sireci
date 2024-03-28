@@ -3,13 +3,13 @@ import { FiEdit, FiTrash2 } from 'react-icons/fi';
 
 import { useBirthDocsStore, usePeopleStore, useUiStore } from '../../../hooks';
 import { ContentTableBirth, FilterPeopleBirth } from '../../../helpers';
-import { DeleteModal, LoadComponent } from '../../components';
+import { DeleteModal, LoadComponent, LoadingModal } from '../../components';
 
 export const TableBirthDocuments = () => {
 
     const { textFindPeople } = usePeopleStore();
-    const { isLoadingDocuments, birthDocuments, getAllCertificatesBirth, successMessage, getCertificateBirthById } = useBirthDocsStore();
-    const { startOpenEditModal, isOpenDeleteModal, startOpenDeleteModal } = useUiStore();
+    const { isLoadingDocuments, birthDocuments, getAllCertificatesBirth, successMessage, getCertificateBirthById, isUpdateDocument } = useBirthDocsStore();
+    const { startOpenEditModal, isOpenDeleteModal, startOpenDeleteModal, textToSort } = useUiStore();
 
     const [optionsToDelete, setoptionsToDelete] = useState({ id: '', option: '' });
 
@@ -20,6 +20,7 @@ export const TableBirthDocuments = () => {
     if (isLoadingDocuments) {
         return <LoadComponent />
     };
+
     const openEditModal = async (id: string) => {
         const isCorrect = await getCertificateBirthById(id);
         if (isCorrect) {
@@ -37,7 +38,7 @@ export const TableBirthDocuments = () => {
             {(FilterPeopleBirth(textFindPeople, birthDocuments).length === 0) ? (
                 <div className="flex justify-center mt-32 h-full text-2xl font-semibold">No hay coincidencias de busqueda</div>)
                 : (
-                    <div className="overflow-hidden rounded-xl bg-white px-3 shadow-md shadow-gray-900 lg:px-3 select-none">
+                    <div className="overflow-hidden rounded-xl bg-white px-1 shadow-md shadow-gray-900 lg:px-3 select-none">
                         <table className="min-w-full h-fit">
                             <thead className="hidden border-b-2 border-gray-950 lg:table-header-group">
                                 <tr className="whitespace-normal font-semibold text-black text-center">
@@ -68,13 +69,13 @@ export const TableBirthDocuments = () => {
                                             <div className="flex lg:hidden flex-col gap-y-3 items-end w-full mt-3">
                                                 <button
                                                     onClick={() => openEditModal(data._id)}
-                                                    className="flex items-center w-[70%] rounded-xl bg-yellow-400 py-2 px-3 text-xs font-medium text-black border border-yellow-800 outline-none">
-                                                    <FiEdit className="text-lg me-3" />
+                                                    className="flex justify-center items-center w-[70%] rounded-xl bg-yellow-400 py-2 px-3 text-xs font-medium text-black border border-yellow-800 outline-none">
+                                                    <FiEdit className="text-md me-1 sm:me-3" />
                                                     Editar
                                                 </button>
                                                 <button
                                                     onClick={() => openDeleteModal(data._id)}
-                                                    className="flex items-center w-[70%] rounded-xl bg-red-400 py-2 px-3 text-xs font-medium text-white border border-red-800 outline-none">
+                                                    className="flex justify-center items-center w-[70%] rounded-xl bg-red-400 py-2 px-3 text-xs font-medium text-white border border-red-800 outline-none">
                                                     <FiTrash2 className="text-lg me-1" />
                                                     Eliminar
                                                 </button>
@@ -96,6 +97,7 @@ export const TableBirthDocuments = () => {
                         </table>
                     </div>
                 )}
+            {(isUpdateDocument) && <LoadingModal />}
             {(isOpenDeleteModal) && <DeleteModal toDelete={optionsToDelete} />}
         </div>
     );

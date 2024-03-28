@@ -128,7 +128,7 @@ export const FormRegister = () => {
               </div>
               <div className='w-full sm:w-1/2 flex flex-col mt-3 sm:mt-0'>
                 <label htmlFor='birth_book' className='text-sm font-semibold'>
-                  Código de acta:
+                  Libro de acta:
                 </label>
                 <Field
                   type='text'

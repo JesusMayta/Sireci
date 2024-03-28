@@ -9,9 +9,13 @@ export const useBirthDocsStore = () => {
     const dispatch = useAppDispatch();
 
     const getCertificateBirthById = async (id: string) => {
+
+        dispatch(onUpdatingDocument(true));
+
         try {
             const { data: CertificateBirth } = await SireciApi().get(`/certificates/birth/${id}`);
             dispatch(onSelectCertificateBirth(CertificateBirth.data));
+            dispatch(onUpdatingDocument(false));
             return true;
         } catch (error) {
             return false;

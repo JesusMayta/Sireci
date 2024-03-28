@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
 import * as Yup from 'yup';
 import { commonFormClasses } from '../../../utils/common-form-classes';
-import { ErrorText, TitlePage } from '../../components';
+import { ErrorText } from '../../components';
 import { successButton } from '../../../utils/general-style-classes';
 
 const validationSchema = Yup.object({
@@ -28,10 +28,7 @@ export const PersonasPages = () => {
   });
 
   return (
-    <PrincipalLayout>
-      <div className='pt-6 sm:pt-2'>
-        <TitlePage title={'Registrar persona'} />
-      </div>
+    <PrincipalLayout title={'Registrar persona'}>
       <PrincipalViewContainer>
         <div className='h-full'>
           <form className=''>

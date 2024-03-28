@@ -17,3 +17,4 @@ export * from './ui/Navbar';
 export * from './ui/Sidebar';
 export * from './ui/TitlePage';
 export * from './ui/LoadingComponent';
+export * from './ui/LoadingModal';

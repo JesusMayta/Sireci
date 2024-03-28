@@ -9,9 +9,13 @@ export const useDeathDocsStore = () => {
     const dispatch = useAppDispatch();
 
     const getCertificateById = async (id: string) => {
+
+        dispatch(onUpdatingDocument(true));
+
         try {
             const { data: CertificateDeath } = await SireciApi().get(`/certificates/death/${id}`);
             dispatch(onSelectCertificateDeath(CertificateDeath.data));
+            dispatch(onUpdatingDocument(false));
             return true;
         } catch (error) {
             return false;

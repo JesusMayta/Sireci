@@ -1,5 +1,5 @@
-import { IoMdArrowBack } from "react-icons/io"
-import { useUiStore } from "../../../hooks"
+import { IoMdArrowBack } from 'react-icons/io';
+import { useUiStore } from '../../../hooks';
 
 export const BackButton = () => {
 

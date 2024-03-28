@@ -48,14 +48,14 @@ export const ModalUpdateDeath = () => {
                     {({ errors, touched }) => (
                         <Form>
                             <div className="px-8 mt-3">
-                                <div className="w-full flex flex-row gap-x-4 mt-8">
-                                    <div className="flex flex-col w-1/2">
-                                        <p className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Datos de la persona</p>
+                                <div className="w-full flex flex-col sm:flex-row gap-x-4 mt-8">
+                                    <div className="flex flex-col w-full sm:w-1/2">
+                                        <p className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Datos de la persona</p>
                                         <SearchPerson inputText={`${certificate.per_names} ${certificate.per_first_lastname}`} error={false} getPerson={(person: PersonOptions) => setCertificate(person)} placeHolder="Datos de la persona..." />
                                     </div>
 
-                                    <div className="flex flex-col w-1/2">
-                                        <label htmlFor="mar_book" className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Fecha de defunción</label>
+                                    <div className="flex flex-col w-full sm:w-1/2 mt-5 sm:mt-0">
+                                        <label htmlFor="mar_book" className="rounded-lg text-center text-xs sm:text-sm bg-black text-white py-1 font-semibold">Fecha de defunción</label>
                                         <Field
                                             type="date" name="dea_date"
                                             className={`input_field ${(!errors.dea_date || !touched.dea_date) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
@@ -64,9 +64,9 @@ export const ModalUpdateDeath = () => {
 
                                 </div>
 
-                                <div className="w-full mt-4">
+                                <div className="w-full mt-5">
                                     <div className="flex flex-col">
-                                        <label htmlFor="mar_book" className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Libro del certificado</label>
+                                        <label htmlFor="mar_book" className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Libro del certificado</label>
                                         <Field
                                             placeholder="dea-2025"
                                             type="text" name="dea_book"

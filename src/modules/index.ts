@@ -5,4 +5,5 @@ export * from './matrimonio/pages/MatrimonioPage';
 export * from './nacimiento/pages/NacimientoPage';
 export * from './personas/pages/PersonasPage';
 export * from './users/pages/UsersPage';
-export * from './mantenimiento/pages/MantenimientoPage'
+export * from './profile/pages/ProfilePage';
+export * from './mantenimiento/pages/MantenimientoPage';

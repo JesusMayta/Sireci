@@ -1,14 +1,10 @@
-import { PrincipalLayout } from "../../layouts"
-import { ProfileForm } from "./ProfileForm"
+import { PrincipalLayout } from '../../layouts';
 
 export const ProfilePage = () => {
+
   return (
-    <div>
-      <PrincipalLayout>
-        <section className="mt-8">
-          <ProfileForm />
-        </section>
-      </PrincipalLayout>
-    </div>
-  )
-}
+    <PrincipalLayout title="Mi Perfil de usuario">
+      <div className="h-full mt-4">asd</div>
+    </PrincipalLayout>
+  );
+};

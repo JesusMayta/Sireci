@@ -52,24 +52,24 @@ export const ModalUpdateBirth = () => {
                             <div className="px-8 mt-3">
                                 <div className="w-full flex flex-col sm:flex-row gap-x-4 mt-8">
                                     <div className="flex flex-col w-full sm:w-1/2">
-                                        <p className="rounded-lg text-center bg-black text-white text-xs py-1 font-semibold">Datos de la persona</p>
+                                        <p className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Datos de la persona</p>
                                         <SearchPerson inputText={`${personsToEdit.principalPerson.per_names} ${personsToEdit.principalPerson.per_first_lastname}`} error={false} getPerson={(person: PersonOptions) => setPersonsToEdit({ ...personsToEdit, principalPerson: person })} placeHolder="Datos de la persona..." />
                                     </div>
 
-                                    <div className="w-full sm:w-1/2 mt-6 sm:mt-0">
-                                        <p className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Datos del padre</p>
+                                    <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
+                                        <p className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Datos del padre</p>
                                         <SearchPerson inputText={`${personsToEdit.fatherPerson.per_names} ${personsToEdit.fatherPerson.per_first_lastname}`} error={false} getPerson={(person: PersonOptions) => setPersonsToEdit({ ...personsToEdit, fatherPerson: person })} placeHolder="Datos del padre.." />
                                     </div>
                                 </div>
 
-                                <div className="w-full flex flex-col sm:flex-row gap-x-4 mt-6 sm:mt-8">
+                                <div className="w-full flex flex-col sm:flex-row gap-x-4 mt-4 sm:mt-8">
                                     <div className="flex flex-col w-full sm:w-1/2">
-                                        <p className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Datos de la madre</p>
+                                        <p className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Datos de la madre</p>
                                         <SearchPerson inputText={`${personsToEdit.motherPerson.per_names} ${personsToEdit.motherPerson.per_first_lastname}`} error={false} getPerson={(person: PersonOptions) => setPersonsToEdit({ ...personsToEdit, motherPerson: person })} placeHolder="Datos de la madre..." />
                                     </div>
 
-                                    <div className="flex flex-col w-full sm:w-1/2 mt-6 sm:mt-0">
-                                        <label htmlFor="birth_date" className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Fecha de nacimiento</label>
+                                    <div className="flex flex-col w-full sm:w-1/2 mt-4 sm:mt-0">
+                                        <label htmlFor="birth_date" className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Fecha de nacimiento</label>
                                         <Field
                                             type="date" name="birth_date"
                                             className={`input_field ${(!errors.birth_date || !touched.birth_date) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
@@ -77,9 +77,9 @@ export const ModalUpdateBirth = () => {
                                     </div>
                                 </div>
 
-                                <div className="w-full flex flex-col sm:flex-row mt-4  pe-0 sm:pe-3">
+                                <div className="w-full flex flex-col sm:flex-row mt-4 pe-0 sm:pe-3">
                                     <div className="flex flex-col w-full sm:w-1/2">
-                                        <label htmlFor="mar_book" className="rounded-lg text-center bg-black text-white text-sm py-1 font-semibold">Libro del certificado:</label>
+                                        <label htmlFor="mar_book" className="rounded-lg text-center bg-black text-white text-xs sm:text-sm py-1 font-semibold">Libro del certificado:</label>
                                         <Field
                                             placeholder="birth-2025"
                                             type="text" name="birth_book"

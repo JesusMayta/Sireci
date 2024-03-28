@@ -51,26 +51,26 @@ export const FormRegister = () => {
             >
                 {({ errors, touched }) => (
                     <Form>
-                        <div className="flex flex-row w-full gap-x-4">
-                            <div className="w-1/2 flex flex-col">
-                                <h2 className="font-semibold bg-gray-900 text-white rounded-lg text-center py-2">Datos del marido</h2>
-                                <div className="mt-2">
+                        <div className="flex flex-col sm:flex-row w-full gap-x-4 mt-10 sm:mt-20">
+                            <div className="flex flex-col w-full sm:w-1/2">
+                                <p className="font-semibold rounded-lg text-left text-sm">Datos del esposo:</p>
+                                <div className="mt-1">
                                     <SearchPerson inputText='' error={errorSearch.errorHusband} placeHolder="Buscar al esposo" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_husband: person })} />
                                     {(errorSearch.errorHusband) && <ErrorText />}
                                 </div>
                             </div>
 
-                            <div className="w-1/2 flex flex-col">
-                                <h2 className="font-semibold bg-gray-900 text-white rounded-lg text-center py-2">Datos de la esposa</h2>
-                                <div className="mt-2">
+                            <div className="w-full sm:w-1/2 flex flex-col mt-4 sm:mt-0">
+                                <p className="font-semibold rounded-lg text-left text-sm">Datos de la esposa:</p>
+                                <div className="mt-1">
                                     <SearchPerson inputText='' error={errorSearch.errorWife} placeHolder="Buscar a la esposa" getPerson={(person: PersonOptions) => setPersonsToAdd({ ...personsToAdd, mar_wife: person })} />
                                     {(errorSearch.errorWife) && <ErrorText />}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-row gap-x-4 mt-4">
-                            <div className="w-1/2">
+                        <div className="flex flex-col sm:flex-row gap-x-4 mt-3 sm:mt-6 w-full">
+                            <div className="flex flex-col w-full sm:w-1/2 mt-1 sm:mt-0">
                                 <label htmlFor="mar_book" className="font-semibold text-sm">Libro de acta</label>
                                 <Field type="text" id="mar_book"
                                     placeholder="mar-1221"
@@ -79,14 +79,14 @@ export const FormRegister = () => {
                                 <ErrorMessage name="mar_book" component={() => <MessageAlert message={errors.mar_book} />} />
                             </div>
 
-                            <div className="w-1/2">
+                            <div className="flex flex-col w-full sm:w-1/2 mt-4 sm:mt-0">
                                 <label htmlFor="mar_date" className="font-semibold text-sm">Fecha Registro</label>
                                 <Field type="date" id="mar_date" name="mar_date" className={`input_field ${(!errors.mar_date || !touched.mar_date) ? 'border-gray-400' : 'border-red-600 text-red-600'}`} />
                                 <ErrorMessage name="mar_date" component={() => <MessageAlert message={errors.mar_date} />} />
                             </div>
                         </div>
 
-                        <div className="flex flex-row mt-24 w-full justify-center gap-x-12 text-white font-semibold">
+                        <div className="flex flex-row mt-10 pb-6 sm:mt-16 w-full justify-center gap-x-6 sm:gap-x-12 text-white font-semibold text-xs sm:text-base">
                             <button type="submit" className="flex items-center gap-x-2 bg-green-700 px-7 py-2 rounded-lg shadow-lg shadow-green-950 hover:shadow-md hover:shadow-green-900 duration-300">
                                 <HiDocumentArrowUp className="text-lg" />
                                 Registrar

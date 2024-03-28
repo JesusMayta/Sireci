@@ -1,14 +1,10 @@
 import { commonFormClasses } from '../../../utils/common-form-classes';
 import { successButton } from '../../../utils/general-style-classes';
-import { TitlePage } from '../../components';
 import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
 
 export const MantenimientoPage = () => {
   return (
-    <PrincipalLayout>
-      <div className='pt-6 sm:pt-2'>
-        <TitlePage title={'Realizar backup'} />
-      </div>
+    <PrincipalLayout title={'Realizar backup'}>
       <PrincipalViewContainer>
         <div className='h-full'>
           <form>
