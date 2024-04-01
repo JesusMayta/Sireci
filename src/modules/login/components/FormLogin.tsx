@@ -44,7 +44,7 @@ export const FormLogin = () => {
                                     className={`login_input ${(!errors.password || !touched.password) ? 'border-gray-400' : 'border-red-600'}`}
                                 />
                                 <button className="absolute right-[10px] bottom-2 text-xl" onClick={() => setShowPassword(!showPassword)} type="button">
-                                    {(showPassword) ? (
+                                    {(!showPassword) ? (
                                         <BsEyeSlashFill />
                                     ) : (
                                         <BsEyeFill />

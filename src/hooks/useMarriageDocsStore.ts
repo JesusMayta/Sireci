@@ -15,7 +15,6 @@ export const useMarriageDocsStore = () => {
 
         try {
             const { data: CertificateMarriage } = await SireciApi().get(`/certificates/marriage/${id}`);
-            console.log(CertificateMarriage.data);
             dispatch(onSelectCertificateMarriage(CertificateMarriage.data));
             dispatch(onUpdatingDocument(false));
             return true;
@@ -39,8 +38,7 @@ export const useMarriageDocsStore = () => {
 
     const startRegisterMarriageDoc = async (values: any) => {
         try {
-            const { data } = await SireciApi().post('/certificates/marriage', values);
-            console.log(data);
+            await SireciApi().post('/certificates/marriage', values);
             return true;
         } catch (error) {
             return false;
@@ -62,8 +60,7 @@ export const useMarriageDocsStore = () => {
 
     const startDeleteMarriageDoc = async (id: string) => {
         try {
-            const resp = await SireciApi().delete(`/certificates/marriage/${id}`);
-            console.log(resp);
+            await SireciApi().delete(`/certificates/marriage/${id}`);
             return true;
         } catch (error) {
             return false;

@@ -1,21 +1,15 @@
-import { useUserStore } from "../../../hooks";
+import { usePeopleStore, useUiStore, useUserStore } from "../../../hooks";
 import { useEffect } from "react";
 import { LoadComponent } from "../../components";
-
-interface User {
-    user_name: string;
-    user_username: string;
-    user_address: string;
-    user_email: string;
-    user_first_lastname: string;
-    user_is_admin: number
-};
+import { ContentTableUsers, FilterUsers } from "../../../helpers";
 
 const tableHead = ['Nombres', 'Apellidos', ' E-mail', ' Username', 'Dirección', '¿Es administrador?'];
 
 export const TableUsers = () => {
 
     const { users, getAllUsers, isLoadingUsers, messageAlert } = useUserStore();
+    const { textFindPeople } = usePeopleStore();
+    const { textToSort } = useUiStore();
 
     useEffect(() => {
         getAllUsers();
@@ -38,7 +32,7 @@ export const TableUsers = () => {
                     </thead>
 
                     <tbody className="bg-white lg:border-gray-300">
-                        {(users.map((user: User) => (
+                        {(FilterUsers(textFindPeople, users, textToSort).map((user: ContentTableUsers) => (
                             <tr key={user.user_email} className="border-b border-gray-400 text-black hover:scale-95 duration-300">
                                 <td className="py-4 text-left text-sm font-semibold sm:px-3 lg:text-left border-r border-gray-400 lg:border-0">
                                     <p className="capitalize hidden lg:block">{user.user_name}</p>

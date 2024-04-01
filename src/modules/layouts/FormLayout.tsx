@@ -1,7 +1,12 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import { BackButton, InfoForm } from '../components';
 
-export const FormLayout = ({ children, infoText }: { children: ReactNode, infoText: string }) => {
+interface Props {
+    children: ReactNode;
+    infoText: string;
+};
+
+export const FormLayout: FC<Props> = ({ children, infoText }) => {
     return (
         <div className="w-full h-full flex flex-row mt-5 p-1 sm:p-4 animate-fade-right animate-duration-1000">
             <div className="w-full lg:w-[60%] ">

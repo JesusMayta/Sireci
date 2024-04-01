@@ -1,23 +1,26 @@
-import { Fragment, useState } from 'react'
+import { FC, Fragment, useEffect, useState } from 'react'
 import { Combobox, Transition } from '@headlessui/react'
 import { HiMiniChevronUpDown } from 'react-icons/hi2';
 import { PersonOptions } from '../../../helpers';
 import { usePeopleStore } from '../../../hooks';
 
-interface SearchOptions {
+interface Props {
     error: boolean;
     placeHolder: string;
     getPerson: (person: PersonOptions) => void;
     inputText: string;
 };
 
-export const SearchPerson = ({ error, placeHolder, getPerson, inputText }: SearchOptions) => {
+export const SearchPerson: FC<Props> = ({ error, placeHolder, getPerson, inputText }) => {
 
-    const { people } = usePeopleStore();
+    const { people, getAllPersons } = usePeopleStore();
 
     const [selected, setSelected] = useState(inputText)
     const [query, setQuery] = useState('')
 
+    useEffect(() => {
+        getAllPersons();
+    }, []);
 
     const onGetValue = (person: any) => {
         setSelected(person);

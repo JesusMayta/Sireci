@@ -12,7 +12,7 @@ export const TableDeathDocs = () => {
 
     const { textFindPeople } = usePeopleStore();
     const { isLoadingDocuments, deathCertificates, getAllCertificatesDeath, getCertificateById, successMessage, isUpdateDocument } = useDeathDocsStore();
-    const { startOpenDeleteModal, startOpenEditModal, isOpenDeleteModal } = useUiStore();
+    const { startOpenDeleteModal, startOpenEditModal, isOpenDeleteModal, textToSort } = useUiStore();
 
     const [optionsToDelete, setOptionsToDelete] = useState({ id: '', option: '' });
 
@@ -38,7 +38,7 @@ export const TableDeathDocs = () => {
 
     return (
         <div className="mt-8 h-full">
-            {(FilterPeopleDeath(textFindPeople, deathCertificates).length === 0) ? (
+            {(FilterPeopleDeath(textFindPeople, deathCertificates, textToSort).length === 0) ? (
                 <div className="flex justify-center mt-32 h-full text-3xl font-semibold">No hay coincidencias de busqueda</div>) :
                 (
                     <div className="mt-6 overflow-hidden rounded-xl bg-white px-2 shadow-md shadow-gray-900 lg:px-3 select-none">
@@ -52,7 +52,7 @@ export const TableDeathDocs = () => {
                             </thead>
 
                             <tbody className="bg-white lg:border-gray-300">
-                                {(FilterPeopleDeath(textFindPeople, deathCertificates).map((data: ContentTableDeath) =>
+                                {(FilterPeopleDeath(textFindPeople, deathCertificates, textToSort).map((data: ContentTableDeath) =>
                                     <tr key={data._id} className="border-b border-gray-400 text-black hover:scale-95 duration-300">
                                         <td className="ps-1 py-1 text-xs text-left lg:text-center text-black sm:px-3">
                                             <p className="lg:hidden font-normal me-1 mb-1">DNI:</p>

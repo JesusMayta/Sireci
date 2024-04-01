@@ -1,5 +1,10 @@
+import { FC } from "react";
 
-export const InfoForm = ({ text }: { text: string }) => {
+interface Props {
+    text: string;
+};
+
+export const InfoForm: FC<Props> = ({ text }) => {
     return (
         <>
             <h3 className="font-semibold text-4xl">Republica del Perú</h3>

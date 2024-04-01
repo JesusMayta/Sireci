@@ -11,7 +11,7 @@ import {
   TableMarriage,
 } from '../components';
 
-const SortBy = ['Esposo', 'Esposa', 'Código'];
+const SortBy = ['Esposo', 'Esposa', 'Libro'];
 
 export const MatrimonioPage = () => {
   const { isOpenViewForm, isOpenEditModal } = useUiStore();

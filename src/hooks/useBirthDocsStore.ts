@@ -64,13 +64,12 @@ export const useBirthDocsStore = () => {
         dispatch(onDeletingDocument(true));
 
         try {
-            const { data } = await SireciApi().delete(`/certificates/birth/${id}`);
-            console.log(data);
+            await SireciApi().delete(`/certificates/birth/${id}`);
             dispatch(onDeletingDocument(false));
             return true;
         } catch (error) {
             return false
-        }
+        };
     };
 
     const clearActiveCertificate = () => {

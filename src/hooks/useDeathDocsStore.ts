@@ -29,7 +29,6 @@ export const useDeathDocsStore = () => {
             const { data: CertificatesDeath } = await SireciApi().get('/certificates/death');
             const FilterDeath = CertificatesDeath.data.filter((doc: ContentTableDeath) => doc.dea_state !== false);
             dispatch(onGetDeathCertificates(FilterDeath));
-
         } catch (error) {
             console.log('error');
         };
@@ -37,8 +36,7 @@ export const useDeathDocsStore = () => {
 
     const startRegisterDeathDoc = async (values: any) => {
         try {
-            const { data } = await SireciApi().post('/certificates/death', values);
-            console.log(data);
+            await SireciApi().post('/certificates/death', values);
             return true;
         } catch (error) {
             return false;
@@ -62,9 +60,8 @@ export const useDeathDocsStore = () => {
         dispatch(onUpdatingDocument(true));
 
         try {
-            const resp = await SireciApi().patch(`/certificates/death/${id}`, values);
+            await SireciApi().patch(`/certificates/death/${id}`, values);
             dispatch(onUpdatingDocument(false));
-            console.log(resp);
             return true;
         } catch (error) {
             return false;
