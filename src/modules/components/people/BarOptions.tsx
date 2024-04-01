@@ -1,7 +1,14 @@
 import { MdAdd, MdOutlineSearch } from 'react-icons/md';
 import { usePeopleStore, useUiStore } from '../../../hooks';
+import { FC } from 'react';
 
-export const BarOptions = ({ textButton, optionsSort, placeHolder, page }: { textButton: string, optionsSort: string[], placeHolder: string, page: string }) => {
+interface Props {
+    textButton: string;
+    optionsSort: string[];
+    placeHolder: string;
+};
+
+export const BarOptions: FC<Props> = ({ textButton, optionsSort, placeHolder }) => {
 
     const { startOpenViewForm, startSelectSort } = useUiStore();
     const { startSearchPeople } = usePeopleStore();
@@ -32,6 +39,7 @@ export const BarOptions = ({ textButton, optionsSort, placeHolder, page }: { tex
                     <div className="flex items-center">
                         <label htmlFor="orderBy" className="mr-2 flex-shrink-0 text-xs sm:text-sm font-semibold text-black">Ordenar por: </label>
                         <select onChange={onHandleSelect} name="" id="orderBy" className="sm:mr-4 block w-full rounded-xl shadow-md shadow-gray-400  border border-gray-400 p-1 pr-10 text-xs sm:text-sm outline-none cursor-pointer">
+                            <option value="" className='text-sm'>Seleccionar</option>
                             {(optionsSort.map(option => (
                                 <option key={option} className="text-sm">{option}</option>
                             )))}

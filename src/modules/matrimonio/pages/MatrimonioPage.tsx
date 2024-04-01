@@ -2,7 +2,7 @@ import { useUiStore } from '../../../hooks';
 import { FormLayout, PrincipalLayout, PrincipalView } from '../../layouts';
 import { FormRegister, ModalUpdateMarriage, TableMarriage } from '../components';
 
-const SortBy = ['Esposo', 'Esposa', 'Código'];
+const SortBy = ['Esposo', 'Esposa', 'Libro'];
 
 export const MatrimonioPage = () => {
 
@@ -19,7 +19,7 @@ export const MatrimonioPage = () => {
                         </FormLayout>
                     ) :
                     (
-                        <PrincipalView SortBy={SortBy} placeHolder='Buscar al esposo o a la esposa' textButton='Nueva acta' page='marriage'>
+                        <PrincipalView SortBy={SortBy} placeHolder='Buscar al esposo o a la esposa' textButton='Nueva acta'>
                             <TableMarriage />
                         </PrincipalView>
                     )}

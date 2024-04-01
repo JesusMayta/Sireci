@@ -4,13 +4,13 @@ import { ContentTableMarriage, FilterPeopleMarriage } from '../../../helpers';
 import { DeleteModal, LoadComponent, LoadingModal } from '../../components';
 import { useEffect, useState } from "react";
 
-const tableHead = ['Marido', 'Mujer', 'Libro', 'Fecha de registro', 'Acción'];
+const tableHead = ['Marido', 'Mujer', 'Fecha de registro', 'Libro', 'Acción'];
 
 export const TableMarriage = () => {
 
     const { textFindPeople } = usePeopleStore();
     const { getCertificateById, marriageDocuments, getAllCertificatesMarriage, isLoadingDocuments, successMessage, isUpdateDocument } = useMarriageDocsStore();
-    const { startOpenEditModal, startOpenDeleteModal, isOpenDeleteModal } = useUiStore();
+    const { startOpenEditModal, startOpenDeleteModal, isOpenDeleteModal, textToSort } = useUiStore();
 
     const [optionsToDelete, setOptionsToDelete] = useState({ id: '', option: '' });
 
@@ -36,7 +36,7 @@ export const TableMarriage = () => {
 
     return (
         <div className="mt-8 h-full">
-            {(FilterPeopleMarriage(textFindPeople, marriageDocuments).length === 0) ? (
+            {(FilterPeopleMarriage(textFindPeople, marriageDocuments, textToSort).length === 0) ? (
                 <div className="flex justify-center mt-32 h-full text-2xl font-semibold">No hay coincidencias de busqueda</div>)
                 : (
                     <div className="mt-6 overflow-hidden rounded-xl bg-white px-1 shadow-md shadow-gray-900 lg:px-3 select-none">
@@ -50,7 +50,7 @@ export const TableMarriage = () => {
                             </thead>
 
                             <tbody className="bg-white lg:border-gray-300">
-                                {(FilterPeopleMarriage(textFindPeople, marriageDocuments).map((data: ContentTableMarriage) =>
+                                {(FilterPeopleMarriage(textFindPeople, marriageDocuments, textToSort).map((data: ContentTableMarriage) =>
                                     <tr key={data._id} className="border-b border-gray-400 text-black hover:scale-95 duration-300">
                                         <td className="ps-3 py-1 text-xs text-left lg:text-center text-black font-semibold sm:px-3">
                                             <p className="lg:hidden font-normal me-1 mb-1">Esposo:</p>

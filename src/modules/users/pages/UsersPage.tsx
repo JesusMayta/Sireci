@@ -1,4 +1,3 @@
-
 import { useUiStore } from '../../../hooks';
 import { FormLayout, PrincipalLayout, PrincipalView } from '../../layouts';
 import { TableUsers, FormRegisterUser } from '../components';
@@ -16,7 +15,7 @@ export const UsersPage = () => {
                             <FormRegisterUser />
                         </FormLayout>
                     ) : (
-                        <PrincipalView SortBy={['Nombres', 'Apellidos', 'Username', 'Rol']} placeHolder='Buscar por dni, nombres, email y rol' textButton='Usuario'>
+                        <PrincipalView SortBy={['Nombres', 'Apellidos', 'Username', 'Email']} placeHolder='Buscar por nombres, username ó email' textButton='Usuario'>
                             <TableUsers />
                         </PrincipalView>
                     )}

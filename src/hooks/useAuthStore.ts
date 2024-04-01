@@ -33,6 +33,7 @@ export const useAuthStore = () => {
             const Token: { email: string } = jwtDecode(token);
             const { data: UserLogged } = await SireciApi().get(`/users/by-email/${Token.email}`);
             dispatch(onLoginUserSession(UserLogged.data));
+            return true;
         } catch (error) {
             logoutUserSession();
         };
@@ -43,7 +44,7 @@ export const useAuthStore = () => {
         setTimeout(() => {
             localStorage.clear();
             dispatch(onLogoutUserSession(undefined));
-        }, 2000);
+        }, 1500);
     };
 
     const verifyAuthToken = async () => {
@@ -61,13 +62,14 @@ export const useAuthStore = () => {
     };
 
     return {
-        // Properties
+        //* Properties
         status,
         userSession,
         errorMessage,
 
-        // Methods
+        //* Methods
         startLogin,
+        // getUserByEmail,
         logoutUserSession,
         verifyAuthToken
     };

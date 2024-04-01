@@ -16,7 +16,7 @@ export const DefuncionPage = () => {
                         </FormLayout>
                     ) :
                     (
-                        <PrincipalView SortBy={['DNI', 'Nombres', 'Libro']} placeHolder='Buscar por dni, nombres y libro' textButton='Nueva acta' page='death'>
+                        <PrincipalView SortBy={['Dni', 'Nombres', 'Libro']} placeHolder='Buscar por dni, nombres y libro' textButton='Nueva acta'>
                             <TableDeathDocs />
                         </PrincipalView>
                     )}

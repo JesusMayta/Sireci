@@ -19,7 +19,7 @@ export const NacimientoPage = () => {
                         </FormLayout>
                     ) :
                     (
-                        <PrincipalView SortBy={SortBy} placeHolder='Buscar por dni, nombres y libro' textButton='Nueva acta' page='birth'>
+                        <PrincipalView SortBy={SortBy} placeHolder='Buscar por dni, nombres y libro' textButton='Nueva acta'>
                             <TableBirthDocuments />
                         </PrincipalView>
                     )}

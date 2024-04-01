@@ -1,15 +1,18 @@
-import { useEffect } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import { usePeopleStore, useUiStore } from '../../hooks';
 import { Footer, Navbar, Sidebar, TitlePage } from '../components';
 
-export const PrincipalLayout = ({ children, title }: { children: React.ReactNode, title: string }) => {
+interface Props {
+    children: ReactNode,
+    title: string
+};
+
+export const PrincipalLayout: FC<Props> = ({ children, title }) => {
 
     const { isOpenSidebar, startOpenViewForm, startSelectSort } = useUiStore();
-    const { startSearchPeople, getAllPersons } = usePeopleStore();
+    const { startSearchPeople } = usePeopleStore();
 
     useEffect(() => {
-        //* Get Persons
-        getAllPersons();
 
         //* Close form to Add certificate
         startOpenViewForm(false);

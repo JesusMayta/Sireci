@@ -59,6 +59,15 @@ export interface ContentTableDeath {
     dea_date: string;
 };
 
+export interface ContentTableUsers {
+    user_name: string;
+    user_username: string;
+    user_address: string;
+    user_email: string;
+    user_first_lastname: string;
+    user_is_admin: number
+};
+
 export interface ActiveCertificateBirth {
     _id: string;
     birth_book: string;

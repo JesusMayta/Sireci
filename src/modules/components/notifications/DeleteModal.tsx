@@ -35,7 +35,7 @@ export const DeleteModal = ({ toDelete }: { toDelete: { id: string, option: stri
         };
 
         if (success) {
-            dispatch(onShowAlertMessage('Certificado eliminado exitosamente!'));
+            dispatch(onShowAlertMessage('Certificado archivado exitosamente!'));
             startOpenDeleteModal(false);
         } else {
             toast.error('Ocurrio un error al momento de editar', { transition: Bounce });

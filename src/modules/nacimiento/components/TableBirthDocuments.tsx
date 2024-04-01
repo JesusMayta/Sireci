@@ -35,7 +35,7 @@ export const TableBirthDocuments = () => {
 
     return (
         <div className="mt-10 h-full">
-            {(FilterPeopleBirth(textFindPeople, birthDocuments).length === 0) ? (
+            {(FilterPeopleBirth(textFindPeople, birthDocuments, textToSort).length === 0) ? (
                 <div className="flex justify-center mt-32 h-full text-2xl font-semibold">No hay coincidencias de busqueda</div>)
                 : (
                     <div className="overflow-hidden rounded-xl bg-white px-1 shadow-md shadow-gray-900 lg:px-3 select-none">
@@ -50,7 +50,7 @@ export const TableBirthDocuments = () => {
                             </thead>
 
                             <tbody className="bg-white lg:border-gray-300">
-                                {(FilterPeopleBirth(textFindPeople, birthDocuments).map((data: ContentTableBirth) =>
+                                {(FilterPeopleBirth(textFindPeople, birthDocuments, textToSort).map((data: ContentTableBirth) =>
                                     <tr key={data._id} className="border-b border-gray-400 text-black hover:scale-95 duration-300">
                                         <td className="ps-3 py-1 text-xs text-left lg:text-center text-black font-semibold sm:px-3">
                                             <span className="lg:hidden font-normal me-1">DNI:</span><span>{data.person_per_id.per_document_number}</span>

@@ -17,7 +17,7 @@ export const useUserStore = () => {
             const { data: AllUsers } = await SireciApi().get('/users');
             dispatch(onLoadUsers(AllUsers.data));
         } catch (error) {
-            console.log(error);
+            return [];
         };
     };
 
@@ -26,12 +26,10 @@ export const useUserStore = () => {
         dispatch(onRegisterNewUser(true));
 
         try {
-            const { data } = await SireciApi().post('/auth/register', values);
-            console.log(data);
+            await SireciApi().post('/auth/register', values);
             dispatch(onRegisterNewUser(false));
             return true;
         } catch (error) {
-            console.log(error);
             return false;
         };
     };
