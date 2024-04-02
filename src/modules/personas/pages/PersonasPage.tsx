@@ -26,7 +26,7 @@ export const PersonasPages = () => {
     });
 
     return (
-        <PrincipalLayout>
+        <PrincipalLayout title="Registrar personas">
             <>
                 <div className="h-full p-4">
                     <div className='bg-blue-800 text-white w-full h-10 pt-2 pl-10 text-justify'>Registro de personas</div>
