@@ -65,7 +65,7 @@ export interface ContentTableUsers {
     user_address: string;
     user_email: string;
     user_first_lastname: string;
-    user_is_admin: number
+    user_is_admin: number;
 };
 
 export interface ActiveCertificateBirth {

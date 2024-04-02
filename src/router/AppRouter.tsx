@@ -1,22 +1,21 @@
 import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-
+import { useAuthStore } from '../hooks';
 import {
-  LoadingPage,
-  MantenimientoPage,
-  LoginPage,
-  NacimientoPage,
-  MatrimonioPage,
   DefuncionPage,
-  UsersPage,
+  LoadingPage,
+  LoginPage,
+  MatrimonioPage,
+  NacimientoPage,
   PersonasPages,
+  ProfilePage,
+  UsersPage,
+  MantenimientoPage,
 } from '../modules';
 
-import { useAuthStore } from '../hooks';
-import { ProfilePage } from '../modules/profile';
-
 export const AppRouter = () => {
-  const { status, userSession, verifyAuthToken } = useAuthStore();
+  const { status, verifyAuthToken } = useAuthStore();
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     verifyAuthToken();
@@ -28,7 +27,7 @@ export const AppRouter = () => {
 
   return (
     <Routes>
-      {status === 'not-authenticated' ? (
+      {!token ? (
         <>
           <Route path='/' element={<LoginPage />} />
           <Route path='/*' element={<Navigate to='/' />} />
@@ -37,17 +36,14 @@ export const AppRouter = () => {
         <>
           <Route path='/nacimiento' element={<NacimientoPage />} />
           <Route path='/matrimonio' element={<MatrimonioPage />} />
-          <Route path='/mantenimiento' element={<MantenimientoPage />} />
+          <Route path='/personas' element={<PersonasPages />} />
           <Route path='/defuncion' element={<DefuncionPage />} />
           <Route path='/profile' element={<ProfilePage />} />
-          {userSession.isAdmin === 1 && (
-            <Route path='/usuarios' element={<UsersPage />} />
-          )}
-          <Route path='/personas' element={<PersonasPages />} />
+          <Route path='/mantenimiento' element={<MantenimientoPage />} />{' '}
+          <Route path='/usuarios' element={<UsersPage />} />
           <Route path='/*' element={<Navigate to='/nacimiento' />} />
         </>
       )}
-      ;
     </Routes>
   );
 };

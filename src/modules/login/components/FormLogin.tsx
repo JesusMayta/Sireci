@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useAuthStore } from '../../../hooks';
+import { useState } from 'react';
 import { LoginOptions, LoginValidations } from '../../../helpers';
+import { useAuthStore } from '../../../hooks';
 import { MessageAlert } from '../../components';
 
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
@@ -18,7 +18,7 @@ export const FormLogin = () => {
 
     return (
         <Formik
-            initialValues={{ email: '', password: '', }}
+            initialValues={{ email: '', password: '' }}
             onSubmit={handleSubmit}
             validationSchema={LoginValidations}
         >
@@ -44,7 +44,7 @@ export const FormLogin = () => {
                                     className={`login_input ${(!errors.password || !touched.password) ? 'border-gray-400' : 'border-red-600'}`}
                                 />
                                 <button className="absolute right-[10px] bottom-2 text-xl" onClick={() => setShowPassword(!showPassword)} type="button">
-                                    {(!showPassword) ? (
+                                    {(showPassword) ? (
                                         <BsEyeSlashFill />
                                     ) : (
                                         <BsEyeFill />

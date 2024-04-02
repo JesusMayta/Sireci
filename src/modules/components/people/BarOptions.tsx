@@ -38,10 +38,10 @@ export const BarOptions: FC<Props> = ({ textButton, optionsSort, placeHolder }) 
                 <div className="flex items-center justify-between lg:justify-end w-full">
                     <div className="flex items-center">
                         <label htmlFor="orderBy" className="mr-2 flex-shrink-0 text-xs sm:text-sm font-semibold text-black">Ordenar por: </label>
-                        <select onChange={onHandleSelect} name="" id="orderBy" className="sm:mr-4 block w-full rounded-xl shadow-md shadow-gray-400  border border-gray-400 p-1 pr-10 text-xs sm:text-sm outline-none cursor-pointer">
-                            <option value="" className='text-sm'>Seleccionar</option>
+                        <select onChange={onHandleSelect} name="" id="orderBy" className="font-semibold sm:mr-4 block w-full rounded-xl shadow-md shadow-gray-400  border border-gray-400 p-1 pr-10 text-xs sm:text-sm outline-none cursor-pointer">
+                            <option value="" className='text-sm'>Seleccionar...</option>
                             {(optionsSort.map(option => (
-                                <option key={option} className="text-sm">{option}</option>
+                                <option key={option} className="text-sm lowercase font-semibold">{option}</option>
                             )))}
                         </select>
                     </div>

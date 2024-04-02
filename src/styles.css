@@ -15,7 +15,7 @@ body {
 
 /* Form inputs */
 .input_field {
-  @apply mt-2 py-[5.5px] px-3 w-full rounded-lg focus:outline-none bg-white shadow-lg shadow-gray-300 border placeholder:text-sm;
+  @apply mt-2 py-[5.5px] px-3 w-full rounded-lg focus:outline-none bg-white shadow-lg shadow-gray-300 border placeholder:text-sm text-sm;
 }
 
 .login_input {

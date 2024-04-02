@@ -16,6 +16,9 @@ export const SortBirthDocuments = (birthDocuments: ContentTableBirth[], filterSo
         case 'Libro':
             birthSorted = sort(birthDocuments).asc(person => person.birth_book);
             break;
+        default:
+            birthSorted = birthDocuments;
+            break;
     };
     return birthSorted;
 };
@@ -33,6 +36,9 @@ export const SortMarriageDocuments = (marriageDocuments: ContentTableMarriage[],
             break;
         case 'Libro':
             marriageSort = sort(marriageDocuments).asc(person => person.mar_book);
+            break;
+        default:
+            marriageSort = marriageDocuments;
             break;
     };
     return marriageSort;
@@ -52,6 +58,9 @@ export const SortDeathDocuments = (deathDocuments: ContentTableDeath[], filterSo
             break;
         case 'Libro':
             deathSorted = sort(deathDocuments).asc(person => person.dea_book);
+            break;
+        default:
+            deathSorted = deathDocuments;
             break;
     };
     return deathSorted;
@@ -73,6 +82,9 @@ export const SortUsers = (allUsers: ContentTableUsers[], filterSort: string) => 
             break;
         case 'Email':
             sortedUsers = sort(allUsers).asc(person => person.user_email);
+            break;
+        default:
+            sortedUsers = allUsers;
             break;
     };
     return sortedUsers;

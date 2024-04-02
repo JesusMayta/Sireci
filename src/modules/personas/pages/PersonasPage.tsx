@@ -28,7 +28,7 @@ export const PersonasPages = () => {
   });
 
   return (
-    <PrincipalLayout title={'Registrar persona'}>
+    <PrincipalLayout title={'Registrar personas'}>
       <PrincipalViewContainer>
         <div className='h-full'>
           <form className=''>
