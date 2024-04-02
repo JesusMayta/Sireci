@@ -27,7 +27,7 @@ export const useAuthStore = () => {
     const getUserByEmail = async () => {
 
         const token = localStorage.getItem('token');
-        if (!token) return dispatch(onLogoutUserSession('Su sesión ha caducado'));
+        if (!token) return logoutUserSession();
 
         try {
             const Token: { email: string } = jwtDecode(token);
@@ -51,13 +51,10 @@ export const useAuthStore = () => {
 
         dispatch(onCheckingAuthSession());
 
-        const token = localStorage.getItem('token');
-        if (!token) return dispatch(onLogoutUserSession(undefined));
-
         try {
             await getUserByEmail();
         } catch (error) {
-            dispatch(onLogoutUserSession(undefined));
+            logoutUserSession();
         };
     };
 
@@ -69,7 +66,6 @@ export const useAuthStore = () => {
 
         //* Methods
         startLogin,
-        // getUserByEmail,
         logoutUserSession,
         verifyAuthToken
     };

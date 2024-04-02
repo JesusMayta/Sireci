@@ -1,11 +1,20 @@
 import { IoCloseOutline } from 'react-icons/io5';
 import { TiWarningOutline } from 'react-icons/ti';
-import { useBirthDocsStore, useDeathDocsStore, useMarriageDocsStore, useUiStore } from '../../../hooks';
 import { Bounce, toast } from 'react-toastify';
+
+import { useBirthDocsStore, useDeathDocsStore, useMarriageDocsStore, useUiStore } from '../../../hooks';
 import { useAppDispatch } from '../../../store';
 import { onShowAlertMessage } from '../../../store/documents/documentsSlice';
+import { FC } from 'react';
 
-export const DeleteModal = ({ toDelete }: { toDelete: { id: string, option: string } }) => {
+interface Props {
+    toDelete: {
+        id: string;
+        option: string;
+    };
+}
+
+export const DeleteModal: FC<Props> = ({ toDelete }) => {
 
     const { startDeleteBirthDoc, isDeletingDocument } = useBirthDocsStore();
     const { startDeleteMarriageDoc, isDeletingDocument: deletingMarriageDoc } = useMarriageDocsStore();
