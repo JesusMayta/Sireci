@@ -1,34 +1,24 @@
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../store';
 import {
-  onObtainedBackupDocuments,
+  onObtainedBackupDocumentNames,
   onRetrievingData,
 } from '../store/backup/backupSlice';
 import { SireciApi } from '../api';
 
 export const useBackupStore = () => {
-  const { isBackupDocumentSelected, isLoadingDocuments, backupDocuments } =
+  const { isBackupDocumentSelected, isLoadingDocuments, backupDocumentNames } =
     useAppSelector((state) => state.backup);
   const dispatch = useDispatch();
 
-  const getBackupDocuments = async (documentName: string) => {
+  const getBackupDocumentNames = async () => {
     dispatch(onRetrievingData());
 
     try {
-      const { data } = await SireciApi().get(`/backup/${documentName}`);
-      dispatch(onObtainedBackupDocuments(data));
-      return true;
-    } catch (error) {
-      return false;
-    }
-  };
-
-  const getBackupDocumentNames = async (documentName: string) => {
-    dispatch(onRetrievingData());
-
-    try {
-      const { data } = await SireciApi().get(`/backup/${documentName}`);
-      dispatch(onObtainedBackupDocuments(data));
+      const { data: backupDocumentNames } = await SireciApi().get(
+        `/backup/collections-name`
+      );
+      dispatch(onObtainedBackupDocumentNames(backupDocumentNames.data));
       return true;
     } catch (error) {
       return false;
@@ -38,8 +28,7 @@ export const useBackupStore = () => {
   return {
     isBackupDocumentSelected,
     isLoadingDocuments,
-    backupDocuments,
-    getBackupDocuments,
+    backupDocumentNames,
     getBackupDocumentNames,
   };
 };

@@ -5,20 +5,20 @@ export const backupSlice = createSlice({
   initialState: {
     isBackupDocumentSelected: false,
     isLoadingDocuments: false,
-    backupDocuments: [],
+    backupDocumentNames: [],
     selectedBackupChunk: '',
   },
   reducers: {
     onRetrievingData: (state) => {
       state.isLoadingDocuments = true;
     },
-    onObtainedBackupDocuments: (state, { payload }) => {
-      state.backupDocuments = payload;
+    onObtainedBackupDocumentNames: (state, { payload }) => {
+      state.backupDocumentNames = payload;
       state.isBackupDocumentSelected = true;
       state.isLoadingDocuments = false;
     },
   },
 });
 
-export const { onRetrievingData, onObtainedBackupDocuments } =
+export const { onRetrievingData, onObtainedBackupDocumentNames } =
   backupSlice.actions;

@@ -2,16 +2,65 @@ import { commonFormClasses } from '../../../utils/common-form-classes';
 import { successButton } from '../../../utils/general-style-classes';
 import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
 import { useBackupStore } from '../../../hooks';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { LoadComponent } from '../../components';
+import { getEnvVariables } from '../../../helpers';
+
+const { VITE_API_URL } = getEnvVariables();
 
 export const MantenimientoPage = () => {
-  const { getBackupDocuments, isLoadingDocuments, backupDocuments } =
+  const { getBackupDocumentNames, isLoadingDocuments, backupDocumentNames } =
     useBackupStore();
 
+  const selectRef = useRef(null);
+  const selectedBackupName = useRef('');
+
   useEffect(() => {
-    getBackupDocuments('');
+    getBackupDocumentNames();
   }, []);
+
+  const handleSelectedBackupNameChange = () => {
+    selectedBackupName.current = selectRef.current?.value;
+  };
+
+  const handleDownload = () => {
+    const urlPath = `backup/${selectedBackupName.current}`;
+
+    const completeUrl = `${VITE_API_URL}/${urlPath}`;
+    console.log('completeUrl');
+    console.log(completeUrl);
+
+    const token = `Bearer ${localStorage.getItem('token')}`;
+
+    console.log('token');
+    console.log(token);
+
+    fetch(completeUrl, {
+      method: 'GET',
+      headers: {
+        // Add any necessary headers (e.g., authorization token)
+        authorization: token,
+      },
+    })
+      .then((res) => res.blob())
+      .then((data) => {
+        const url = window.URL.createObjectURL(data);
+        const link = document.createElement('a');
+        link.href = url;
+        const fileName =
+          'sireci' +
+          (selectedBackupName.current === '' ? '' : '_') +
+          selectedBackupName.current;
+        link.setAttribute('download', `${fileName}.json`); // Set the desired file name
+        document.body.appendChild(link);
+
+        link.click();
+        link.parentNode?.removeChild(link);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
 
   return (
     <PrincipalLayout title={'Realizar backup'}>
@@ -20,80 +69,38 @@ export const MantenimientoPage = () => {
           <LoadComponent />
         ) : (
           <>
-            <pre>{`Backup: ${JSON.stringify(backupDocuments)}`}</pre>
             <div className='h-full'>
               <form>
                 <div className={`${commonFormClasses.formResponsiveGrid}`}>
-                  <div className=''>
-                    <label className={commonFormClasses.label}>Nombre</label>
-                    <input
-                      id='nombre'
-                      type='text'
+                  <div>
+                    <select
                       className={`${commonFormClasses.input}`}
-                      placeholder='nombre de la municipalidad '
-                    />
-                  </div>
-                  <div className=''>
-                    <label className={commonFormClasses.label}>RUC</label>
-                    <input
-                      id='nombre'
-                      type='text'
-                      className={`${commonFormClasses.input}`}
-                      placeholder='escriba el RUC '
-                    />
-                  </div>
-                  <div className=''>
-                    <label className={commonFormClasses.label}>Sitio web</label>
-                    <input
-                      id='nombre'
-                      type='text'
-                      className={`${commonFormClasses.input}`}
-                      placeholder='nombre de algun sitio web '
-                    />
-                  </div>
-                  <div className=''>
-                    <label className={commonFormClasses.label}>Telefono</label>
-                    <input
-                      id='nombre'
-                      type='text'
-                      className={`${commonFormClasses.input}`}
-                      placeholder='escriba su telefono '
-                    />
-                  </div>
-                  <div className=''>
-                    <label className={commonFormClasses.label}>Direccion</label>
-                    <input
-                      id='nombre'
-                      type='text'
-                      className={`${commonFormClasses.input}`}
-                      placeholder='escriba su direccion '
-                    />
-                  </div>
-                  <div className=''>
-                    <label className={commonFormClasses.label}>Email</label>
-                    <input
-                      id='nombre'
-                      type='email'
-                      className={`${commonFormClasses.input}`}
-                      placeholder='escriba su correro electrónico '
-                    />
+                      onChange={handleSelectedBackupNameChange}
+                      ref={selectRef}
+                    >
+                      {['', ...backupDocumentNames].map(
+                        (backupDocumentName, i) => (
+                          <option
+                            key={i}
+                            defaultValue={''}
+                            value={backupDocumentName}
+                          >
+                            {backupDocumentName === ''
+                              ? 'todos'
+                              : backupDocumentName}
+                          </option>
+                        )
+                      )}
+                    </select>
                   </div>
                   <div className='flex flex-wrap gap-x-6 gap-y-4'>
-                    <button type='submit' className={successButton}>
-                      Guardar
-                    </button>
-                    <button type='submit' className={successButton}>
+                    <button
+                      type='button'
+                      className={successButton}
+                      onClick={handleDownload}
+                    >
                       Download
                     </button>
-                  </div>
-                  <div>
-                    <select className={`${commonFormClasses.input}`}>
-                      <option>actas de matrimonio</option>
-                      <option>people</option>
-                      <option>defuncion</option>
-                      <option>nacimiento</option>
-                      <option></option>
-                    </select>
                   </div>
                 </div>
               </form>
