@@ -7,9 +7,8 @@ import {
 import { SireciApi } from '../api';
 
 export const useBackupStore = () => {
-  const { isBackupDocumentSelected, isLoadingDocuments } = useAppSelector(
-    (state) => state.backup
-  );
+  const { isBackupDocumentSelected, isLoadingDocuments, backupDocuments } =
+    useAppSelector((state) => state.backup);
   const dispatch = useDispatch();
 
   const getBackupDocuments = async (documentName: string) => {
@@ -39,6 +38,7 @@ export const useBackupStore = () => {
   return {
     isBackupDocumentSelected,
     isLoadingDocuments,
+    backupDocuments,
     getBackupDocuments,
     getBackupDocumentNames,
   };
