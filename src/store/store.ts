@@ -1,18 +1,20 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { uiSlice } from "./ui/uiSlice";
-import { authSlice } from "./auth/authSlice";
-import { userSlice } from "./users/userSlice";
-import { peopleSlice } from "./people/peopleSlice";
-import { documentsSlice } from "./documents/documentsSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { uiSlice } from './ui/uiSlice';
+import { authSlice } from './auth/authSlice';
+import { userSlice } from './users/userSlice';
+import { peopleSlice } from './people/peopleSlice';
+import { documentsSlice } from './documents/documentsSlice';
+import { backupSlice } from './backup/backupSlice';
 
 export const store = configureStore({
-    reducer: {
-        auth: authSlice.reducer,
-        documents: documentsSlice.reducer,
-        people: peopleSlice.reducer,
-        ui: uiSlice.reducer,
-        users: userSlice.reducer,
-    },
+  reducer: {
+    auth: authSlice.reducer,
+    documents: documentsSlice.reducer,
+    people: peopleSlice.reducer,
+    ui: uiSlice.reducer,
+    users: userSlice.reducer,
+    backup: backupSlice.reducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
