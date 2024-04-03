@@ -39,7 +39,7 @@ export const AppRouter = () => {
           <Route path='/personas' element={<PersonasPages />} />
           <Route path='/defuncion' element={<DefuncionPage />} />
           <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/mantenimiento' element={<MantenimientoPage />} />{' '}
+          <Route path='/mantenimiento' element={<MantenimientoPage />} />
           <Route path='/usuarios' element={<UsersPage />} />
           <Route path='/*' element={<Navigate to='/nacimiento' />} />
         </>

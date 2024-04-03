@@ -5,6 +5,7 @@ import { useBackupStore } from '../../../hooks';
 import { useEffect, useRef } from 'react';
 import { LoadComponent } from '../../components';
 import { getEnvVariables } from '../../../helpers';
+import { SireciApi } from '../../../api';
 
 const { VITE_API_URL } = getEnvVariables();
 
@@ -24,26 +25,12 @@ export const MantenimientoPage = () => {
   };
 
   const handleDownload = () => {
-    const urlPath = `backup/${selectedBackupName.current}`;
+    const urlPath = `/backup/${selectedBackupName.current}`;
 
-    const completeUrl = `${VITE_API_URL}/${urlPath}`;
-    console.log('completeUrl');
-    console.log(completeUrl);
-
-    const token = `Bearer ${localStorage.getItem('token')}`;
-
-    console.log('token');
-    console.log(token);
-
-    fetch(completeUrl, {
-      method: 'GET',
-      headers: {
-        // Add any necessary headers (e.g., authorization token)
-        authorization: token,
-      },
-    })
-      .then((res) => res.blob())
-      .then((data) => {
+    SireciApi()
+      .get(urlPath, { responseType: 'blob' })
+      .then((response) => {
+        const data = response.data;
         const url = window.URL.createObjectURL(data);
         const link = document.createElement('a');
         link.href = url;
