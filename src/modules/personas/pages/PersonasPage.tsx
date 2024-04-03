@@ -1,14 +1,9 @@
 import { useFormik } from 'formik';
 import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
-import * as Yup from 'yup';
 import { commonFormClasses } from '../../../utils/common-form-classes';
 import { ErrorText } from '../../components';
 import { successButton } from '../../../utils/general-style-classes';
-
-const validationSchema = Yup.object({
-  nombres: Yup.string().required('Campo requerido'),
-  primer_apellido: Yup.string().required('Campo requerido'),
-});
+import { PersonaDocumentValidations } from '../../../helpers';
 
 export const PersonasPages = () => {
   const formik = useFormik({
@@ -21,7 +16,7 @@ export const PersonasPages = () => {
       persona_genero: '',
       marital_status: '',
     },
-    validationSchema: validationSchema,
+    validationSchema: PersonaDocumentValidations,
     onSubmit: (values) => {
       console.log('valores enviados', values);
     },
