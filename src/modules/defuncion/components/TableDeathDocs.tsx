@@ -39,7 +39,7 @@ export const TableDeathDocs = () => {
     return (
         <div className="mt-8 h-full">
             {(FilterPeopleDeath(textFindPeople, deathCertificates, textToSort).length === 0) ? (
-                <div className="flex justify-center mt-32 h-full text-3xl font-semibold">No hay coincidencias de busqueda</div>) :
+                <div className="flex justify-center mt-32 h-full text-3xl font-semibold">No se han encontrado registros</div>) :
                 (
                     <div className="mt-6 overflow-hidden rounded-xl bg-white px-2 shadow-md shadow-gray-900 lg:px-3 select-none">
                         <table className="min-w-full h-fit">

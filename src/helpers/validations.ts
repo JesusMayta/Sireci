@@ -32,3 +32,11 @@ export const UserRegisterValidations = Yup.object({
     user_password: Yup.string().min(8, 'Debe contener mínimo 8 caracteres').required('El password es requerido'),
     user_username: Yup.string().required('Este campo es requerido'),
 });
+
+export const ProfileValidations = Yup.object({
+    name: Yup.string().matches(/^[^\d]+$/, 'El nombre no puede contener números').required('El nombre es requerido'),
+    lastName: Yup.string().matches(/^[^\d]+$/, 'El apellido no puede contener números'),
+    email: Yup.string().email('EL correo no es válido').required('El email es requerido'),
+    username: Yup.string().required('El nombre de usuario es requerido'),
+    address: Yup.string().required('La dirección es requerida'),
+});

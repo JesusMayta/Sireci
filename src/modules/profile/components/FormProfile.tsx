@@ -1,5 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import { useAuthStore } from '../../../hooks';
+import { ProfileValidations } from '../../../helpers';
 
 export const FormProfile = () => {
 
@@ -12,6 +13,7 @@ export const FormProfile = () => {
     return (
         <Formik
             initialValues={{ name: userSession.name, lastName: userSession.lastName, email: userSession.email, username: userSession.username, address: userSession.address }}
+            validationSchema={ProfileValidations}
             onSubmit={handleSubmit}
         >
             <Form>

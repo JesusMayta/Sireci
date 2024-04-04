@@ -36,7 +36,7 @@ export const TableBirthDocuments = () => {
     return (
         <div className="mt-10 h-full">
             {(FilterPeopleBirth(textFindPeople, birthDocuments, textToSort).length === 0) ? (
-                <div className="flex justify-center mt-32 h-full text-2xl font-semibold">No hay coincidencias de busqueda</div>)
+                <div className="flex justify-center mt-32 h-full text-2xl font-semibold">No se han encontrado registros</div>)
                 : (
                     <div className="overflow-hidden rounded-xl bg-white px-1 shadow-md shadow-gray-900 lg:px-3 select-none">
                         <table className="min-w-full h-fit">

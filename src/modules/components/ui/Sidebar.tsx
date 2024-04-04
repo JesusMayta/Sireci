@@ -37,7 +37,7 @@ export const Sidebar = () => {
                 <div className="flex flex-col justify-around items-center  w-full h-[25%] border-t border-gray-800">
                     <p className="self-start font-black">Mas opciones</p>
                     <div className="w-full h-[60%]">
-                        <Link to="/profile" className={`${(path === '/profile') ? 'bg-gray-900 text-white shadow-lg shadow-gray-700' : ''} flex items-center py-2 mx-1 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg`}>
+                        <Link to="/profile" onClick={() => startOpenSidebar(false)} className={`${(path === '/profile') ? 'bg-gray-900 text-white shadow-lg shadow-gray-700' : ''} flex items-center py-2 mx-1 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-700 rounded-lg`}>
                             <FcPortraitMode className="w-[35%] text-xl sm:text-3xl" />
                             <p className="text-center text-sm sm:text-base">Mi perfil</p>
                         </Link>
