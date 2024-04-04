@@ -5,3 +5,4 @@ export * from './useUiStore';
 export * from './usePeopleStore';
 export * from './useBirthDocsStore';
 export * from './useMarriageDocsStore';
+export * from './useBackupStore';

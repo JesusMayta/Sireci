@@ -1,9 +1,7 @@
 import { useFormik } from 'formik';
-import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
+import { PrincipalLayout } from '../../layouts';
 import { commonFormClasses } from '../../../utils/common-form-classes';
-import { ErrorText } from '../../components';
-import { successButton } from '../../../utils/general-style-classes';
-import { PersonaDocumentValidations } from '../../../helpers';
+import { validationSchema } from './PersonasPage';
 
 export const PersonasPages = () => {
   const formik = useFormik({
@@ -16,14 +14,14 @@ export const PersonasPages = () => {
       persona_genero: '',
       marital_status: '',
     },
-    validationSchema: PersonaDocumentValidations,
+    validationSchema: validationSchema,
     onSubmit: (values) => {
       console.log('valores enviados', values);
     },
   });
 
   return (
-    <PrincipalLayout title={'Registrar personas'}>
+    <PrincipalLayout pageTitle='Registro de personas'>
       <PrincipalViewContainer>
         <div className='h-full'>
           <form className=''>
@@ -40,9 +38,11 @@ export const PersonasPages = () => {
                   placeholder='Ingrese sus nombres'
                   className={`${commonFormClasses.input}`}
                 />
-                {formik.touched.nombres && (
-                  <ErrorText errorMessage={formik.errors.nombres} />
-                )}
+                {formik.touched.nombres && formik.errors.nombres ? (
+                  <div className='text-red-500 text-lg'>
+                    {formik.errors.nombres}
+                  </div>
+                ) : null}
               </div>
               <div>
                 <label className={commonFormClasses.label}>
@@ -58,9 +58,12 @@ export const PersonasPages = () => {
                   placeholder='Ingrese su apellido paterno'
                   className={`${commonFormClasses.input}`}
                 />
-                {formik.touched.primer_apellido && (
-                  <ErrorText errorMessage={formik.errors.primer_apellido} />
-                )}
+                {formik.touched.primer_apellido &&
+                formik.errors.primer_apellido ? (
+                  <div className='text-red-500 text-lg'>
+                    {formik.errors.primer_apellido}
+                  </div>
+                ) : null}
               </div>
               <div>
                 <label className={commonFormClasses.label}>
@@ -139,7 +142,10 @@ export const PersonasPages = () => {
                 />
               </div>
               <div>
-                <button type='submit' className={successButton}>
+                <button
+                  type='submit'
+                  className='mt-6 bg-teal-700 text-white h-10 w-32'
+                >
                   Registrar
                 </button>
               </div>

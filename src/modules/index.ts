@@ -6,3 +6,4 @@ export * from './nacimiento/pages/NacimientoPage';
 export * from './personas/pages/PersonasPage';
 export * from './users/pages/UsersPage';
 export * from './profile/pages/ProfilePage';
+export * from './mantenimiento/pages/MantenimientoPage';
