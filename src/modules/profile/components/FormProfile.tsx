@@ -91,7 +91,7 @@ export const FormProfile = () => {
           <div className="mt-20 flex justify-center">
             <button
               type="submit"
-              className="py-2 px-8 font-medium bg-blue-700 text-white rounded-lg  shadow-lg shadow-blue-700 hover:shadow-md hover:shadow-blue-800 duration-300"
+              className="py-2 px-8 font-medium bg-blue-700 text-white rounded-lg  shadow-lg shadow-blue-700 hover:shadow-md hover:shadow-blue-800 duration-300 z-[2]"
             >
               Atualizar datos
             </button>
