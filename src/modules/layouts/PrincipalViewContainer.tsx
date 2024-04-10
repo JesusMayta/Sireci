@@ -17,7 +17,12 @@ export const PrincipalViewContainer = ({
   }, [successMessage]);
 
   return (
-    <div className='my-6 pb-4 px-4 sm:px-10 overflow-y-scroll h-[90%]'>
+    <div
+      className="my-6 pb-4 px-4 sm:px-10 h-[90%]"
+      style={{
+        overflowY: 'auto',
+      }}
+    >
       {children}
       <ToastAlert />
     </div>
