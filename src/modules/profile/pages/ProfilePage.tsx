@@ -8,7 +8,7 @@ export const ProfilePage = () => {
   return (
     <PrincipalLayout title="Mi Perfil de usuario">
       <PrincipalViewContainer>
-        <div className="relative h-full">
+        <div className="relative h-full mt-3">
           <h2 className="text-center text-3xl font-semibold">
             Actualizar mis datos
           </h2>

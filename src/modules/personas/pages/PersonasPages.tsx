@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { PrincipalLayout } from '../../layouts';
+import { PrincipalLayout, PrincipalViewContainer } from '../../layouts';
 import { commonFormClasses } from '../../../utils/common-form-classes';
 import { validationSchema } from './PersonasPage';
 
@@ -21,7 +21,7 @@ export const PersonasPages = () => {
   });
 
   return (
-    <PrincipalLayout pageTitle='Registro de personas'>
+    <PrincipalLayout title='Registro de personas'>
       <PrincipalViewContainer>
         <div className='h-full'>
           <form className=''>
@@ -59,7 +59,7 @@ export const PersonasPages = () => {
                   className={`${commonFormClasses.input}`}
                 />
                 {formik.touched.primer_apellido &&
-                formik.errors.primer_apellido ? (
+                  formik.errors.primer_apellido ? (
                   <div className='text-red-500 text-lg'>
                     {formik.errors.primer_apellido}
                   </div>
